@@ -4,46 +4,56 @@ import { motion } from 'framer-motion'
 import { SimpleNavbar } from '@/components/layout/SimpleNavbar'
 import { TemplateSection } from '@/components/sections/TemplateSection'
 import { contactData } from '@/data/portfolioData'
+import { useTypewriter } from '@/lib/useTypewriter'
 
 export default function ContactPage() {
+  const roles = ['ML Engineer', 'AI Engineer', 'AI Agent Specialist']
+  const { text: currentRole } = useTypewriter({
+    words: roles,
+    typeSpeed: 150,
+    deleteSpeed: 100,
+    delayBetweenWords: 2000,
+    loop: true
+  })
+
   const contactMethods = [
     {
       icon: '✉️',
       title: 'Email',
-      value: 'steric.tsui@example.com',
-      description: 'Best for formal inquiries and detailed discussions',
-      link: 'mailto:steric.tsui@example.com',
+      value: 'steric.tsui@mail.utoronto.ca',
+      description: 'Best for AI/ML project inquiries and research discussions',
+      link: 'mailto:steric.tsui@mail.utoronto.ca',
       color: 'from-blue-500 to-blue-600'
     },
     {
       icon: '💼',
       title: 'LinkedIn',
-      value: '/in/sterictsui',
-      description: 'Professional networking and career opportunities',
-      link: 'https://linkedin.com/in/sterictsui',
+      value: '/in/steric-tsui',
+      description: 'Professional networking for AI/ML opportunities',
+      link: 'https://linkedin.com/in/steric-tsui',
       color: 'from-blue-600 to-blue-700'
     },
     {
       icon: '🐙',
       title: 'GitHub',
-      value: '/sterictsui',
-      description: 'Code collaboration and open source projects',
-      link: 'https://github.com/sterictsui',
+      value: '/stericishere',
+      description: 'AI/ML projects, research code, and open source contributions',
+      link: 'https://github.com/stericishere',
       color: 'from-gray-600 to-gray-700'
     },
     {
       icon: '🌐',
       title: 'Portfolio',
-      value: 'sterictsui.dev',
-      description: 'Latest work and project showcases',
-      link: 'https://sterictsui.dev',
+      value: 'steric-tsui.com',
+      description: 'Latest AI/ML work and research project showcases',
+      link: 'https://steric-tsui.com',
       color: 'from-purple-500 to-purple-600'
     }
   ]
 
   const availability = {
     status: 'Available',
-    description: 'Open for new opportunities and collaborations',
+    description: 'Open for AI/ML research opportunities and agent development projects',
     responseTime: 'Within 24 hours',
     timezone: 'PST (GMT-8)'
   }
@@ -63,9 +73,13 @@ export default function ContactPage() {
           <h1 className="text-5xl md:text-6xl font-bold mb-6 bg-gradient-to-r from-red-500 to-red-600 bg-clip-text text-transparent">
             Get In Touch
           </h1>
+          <div className="text-2xl md:text-3xl font-semibold mb-4 text-gray-300">
+            <span className="text-white">{currentRole}</span>
+            <span className="animate-pulse ml-1 text-red-500">|</span>
+          </div>
           <p className="text-xl text-gray-400 max-w-3xl mx-auto leading-relaxed">
-            Ready to bring your ideas to life? Let&apos;s connect and discuss how we can 
-            work together to create something amazing.
+            Ready to explore AI/ML solutions or discuss agent development? Let&apos;s connect and 
+            collaborate on innovative AI projects that push the boundaries of technology.
           </p>
         </div>
       </motion.div>
@@ -154,11 +168,11 @@ export default function ContactPage() {
           </h2>
           <div className="bg-gray-800/50 rounded-lg p-8 border border-gray-700/30">
             <p className="text-lg text-gray-300 mb-6">
-              Prefer to reach out directly? Send me an email with your project details, 
-              and I&apos;ll get back to you within 24 hours.
+              Prefer to reach out directly? Send me an email with your AI/ML project details, 
+              research collaboration ideas, or agent development requirements.
             </p>
             <motion.a
-              href="mailto:steric.tsui@example.com?subject=Project Inquiry&body=Hi Steric,%0D%0A%0D%0AI'd like to discuss a project with you.%0D%0A%0D%0AProject details:%0D%0A[Please describe your project here]%0D%0A%0D%0ABest regards"
+              href="mailto:steric.tsui@mail.utoronto.ca?subject=AI/ML Project Inquiry&body=Hi Steric,%0D%0A%0D%0AI'd like to discuss an AI/ML project or research collaboration with you.%0D%0A%0D%0AProject details:%0D%0A[Please describe your AI/ML project, research idea, or agent development needs here]%0D%0A%0D%0ABest regards"
               className="inline-block px-8 py-4 bg-red-600 hover:bg-red-700 text-white font-semibold rounded-lg transition-colors duration-300"
               whileHover={{ scale: 1.05 }}
               whileTap={{ scale: 0.95 }}
@@ -199,15 +213,15 @@ export default function ContactPage() {
               },
               {
                 question: "What type of projects do you work on?",
-                answer: "I specialize in full-stack web applications, mobile apps, and cloud infrastructure projects using modern technologies like React, Next.js, Node.js, and AWS."
+                answer: "I specialize in AI/ML research projects, intelligent agent development, and machine learning applications. My focus areas include deep learning, natural language processing, computer vision, and autonomous agent systems using frameworks like TensorFlow, PyTorch, and LangChain."
               },
               {
-                question: "Are you available for remote work?",
-                answer: "Yes, I'm completely comfortable with remote work and have experience collaborating with teams across different time zones."
+                question: "Are you available for research collaborations?",
+                answer: "Absolutely! I'm actively seeking research collaborations in AI/ML, particularly in agent systems, multi-modal learning, and applied machine learning. I'm open to both academic and industry partnerships."
               },
               {
-                question: "What&apos;s your preferred project size?",
-                answer: "I work on projects of all sizes, from quick fixes to long-term engagements. I'm particularly interested in challenging technical problems and innovative solutions."
+                question: "What&apos;s your experience with AI agents?",
+                answer: "As an AI agent specialist, I have extensive experience developing autonomous systems, multi-agent frameworks, and intelligent automation solutions. I'm particularly passionate about creating agents that can reason, learn, and adapt to complex environments."
               }
             ].map((faq, index) => (
               <motion.div

@@ -1,0 +1,245 @@
+%-------------------------
+% Resume in Latex
+% Author : Jake Gutierrez
+% Based off of: https://github.com/sb2nov/resume
+% License : MIT
+%------------------------
+
+\documentclass[letterpaper,11pt]{article}
+
+\usepackage{latexsym}
+\usepackage[empty]{fullpage}
+\usepackage{titlesec}
+\usepackage{marvosym}
+\usepackage[usenames,dvipsnames]{color}
+\usepackage{verbatim}
+\usepackage{enumitem}
+\usepackage[hidelinks]{hyperref}
+\usepackage{fancyhdr}
+\usepackage[english]{babel}
+\usepackage{tabularx}
+\usepackage{fontawesome5}
+\usepackage{multicol}
+\setlength{\multicolsep}{-3.0pt}
+\setlength{\columnsep}{-1pt}
+\input{glyphtounicode}
+
+
+%----------FONT OPTIONS----------
+% sans-serif
+% \usepackage[sfdefault]{FiraSans}
+% \usepackage[sfdefault]{roboto}
+% \usepackage[sfdefault]{noto-sans}
+% \usepackage[default]{sourcesanspro}
+
+% serif
+% \usepackage{CormorantGaramond}
+% \usepackage{charter}
+
+
+\pagestyle{fancy}
+\fancyhf{} % clear all header and footer fields
+\fancyfoot{}
+\renewcommand{\headrulewidth}{0pt}
+\renewcommand{\footrulewidth}{0pt}
+
+% Adjust margins
+\addtolength{\oddsidemargin}{-0.6in}
+\addtolength{\evensidemargin}{-0.5in}
+\addtolength{\textwidth}{1.19in}
+\addtolength{\topmargin}{-.7in}
+\addtolength{\textheight}{1.4in}
+
+\urlstyle{same}
+
+\raggedbottom
+\raggedright
+\setlength{\tabcolsep}{0in}
+
+% Sections formatting
+\titleformat{\section}{
+  \vspace{-4pt}\scshape\raggedright\large\bfseries
+}{}{0em}{}[\color{black}\titlerule \vspace{-5pt}]
+
+% Ensure that generate pdf is machine readable/ATS parsable
+\pdfgentounicode=1
+
+%-------------------------
+% Custom commands
+\newcommand{\resumeItem}[1]{
+  \item\small{
+    {#1 \vspace{-2pt}}
+  }
+}
+
+\newcommand{\classesList}[4]{
+    \item\small{
+        {#1 #2 #3 #4 \vspace{-2pt}}
+  }
+}
+
+\newcommand{\resumeSubheading}[4]{
+  \vspace{-2pt}\item
+    \begin{tabular*}{1.0\textwidth}[t]{l@{\extracolsep{\fill}}r}
+      \textbf{#1} & \textbf{\small #2} \\
+      \textit{\small#3} & \textit{\small #4} \\
+    \end{tabular*}\vspace{-7pt}
+}
+
+\newcommand{\resumeSubSubheading}[2]{
+    \item
+    \begin{tabular*}{0.97\textwidth}{l@{\extracolsep{\fill}}r}
+      \textit{\small#1} & \textit{\small #2} \\
+    \end{tabular*}\vspace{-7pt}
+}
+
+\newcommand{\resumeProjectHeading}[2]{
+    \item
+    \begin{tabular*}{1.001\textwidth}{l@{\extracolsep{\fill}}r}
+      \small#1 & \textbf{\small #2}\\
+    \end{tabular*}\vspace{-7pt}
+}
+
+\newcommand{\resumeSubItem}[1]{\resumeItem{#1}\vspace{-4pt}}
+
+\renewcommand\labelitemi{$\vcenter{\hbox{\tiny$\bullet$}}$}
+\renewcommand\labelitemii{$\vcenter{\hbox{\tiny$\bullet$}}$}
+
+\newcommand{\resumeSubHeadingListStart}{\begin{itemize}[leftmargin=0.0in, label={}]}
+\newcommand{\resumeSubHeadingListEnd}{\end{itemize}}
+\newcommand{\resumeItemListStart}{\begin{itemize}}
+\newcommand{\resumeItemListEnd}{\end{itemize}\vspace{-5pt}}
+
+%-------------------------------------------
+%%%%%%  RESUME STARTS HERE  %%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+
+\begin{document}
+
+%----------HEADING----------
+% \begin{tabular*}{\textwidth}{l@{\extracolsep{\fill}}r}
+%   \textbf{\href{http://sourabhbajaj.com/}{\Large Sourabh Bajaj}} & Email : \href{mailto:sourabh@sourabhbajaj.com}{sourabh@sourabhbajaj.com}\\
+%   \href{http://sourabhbajaj.com/}{http://www.sourabhbajaj.com} & Mobile : +1-123-456-7890 \\
+% \end{tabular*}
+
+\begin{center}
+    {\Huge \scshape Steric Tsui} \\ \vspace{1pt}
+    203 College St, Toronto, ON \\ \vspace{1pt}
+    \small \raisebox{-0.1\height}\faPhone\ 437-445-5858 ~ \href{mailto:steric.tsui@mail.utoronto.ca}{\raisebox{-0.2\height}\faEnvelope\  \underline{steric.tsui@mail.utoronto.ca}} ~ 
+    \href{https://linkedin.com/in/steric-tsui/}{\raisebox{-0.2\height}\faLinkedin\ \underline{steric-tsui}}  ~
+    \href{https://github.com/stericishere}{\raisebox{-0.2\height}\faGithub\ \underline{stericishere}}
+    \href{https://steric-tsui.com}
+    {\raisebox{-0.2\height}\faChrome\
+    \underline{steric-tsui.com}}
+    \vspace{-8pt}
+\end{center}
+
+
+%-----------EDUCATION-----------
+\section{Education}
+  \resumeSubHeadingListStart
+    \resumeSubheading
+      {University of Toronto}{Expected: May 2027}{Bachelor of Science in Computer Science and Statistics}{Toronto, ON}
+  \resumeSubHeadingListEnd
+
+%------RELEVANT COURSEWORK-------
+% \section{Summary}
+% \begin{center}
+%     \begin{minipage}{0.95\textwidth}
+%                     \small{
+% Results-driven ML Developer passionate about building \& optimizing AI/ML solutions that deliver tangible impact. Proven experience in AI/ML workflows and the development of cutting-edge models. Proficient in PyTorch, Scikit-learn, and MLOps (MLflow) across GCP, Azure, and AWS. Driven to create scalable, impactful real-world AI/ML solutions.
+%             }
+%     \end{minipage}
+% \end{center}
+
+%-----------EXPERIENCE-----------
+\section{Experience}
+  \resumeSubHeadingListStart
+
+    \resumeSubheading
+      {Squirl ASL}{Toronto, ON}
+      {ML Engineer}{Sep 2024 – April 2025}
+      \resumeItemListStart
+        \resumeItem{Fine-tuned a Temporal Convolutional Network (TCN) by performing a grid search over key hyperparameters and implementing a Cosine Annealing scheduler, \textbf{contributing to an award-winning prototype.}}
+        \resumeItem{\textbf{Reduced inference computation by 33\%} using a post-training dynamic frame sampling technique in Azure ML,  \textbf{prioritizing real-time smooth user experience} without compromising model accuracy.}
+        \resumeItem{Improved dataset quality by filtering low-confidence labels in Pandas/NumPy to identify mislabeled data, followed by semi-automated relabelling via makesense.ai, \textbf{boosting F1 score by 22\%.}}
+      \resumeItemListEnd
+
+    % \resumeSubheading
+    %   {TadRamk}{Hong Kong}
+    %   {Research Associate}{May 2024 – Aug 2024}
+    %   \resumeItemListStart
+    %     \resumeItem{Built scalable, reproducible data-ingestion \& pre-prepossessing using OpenCV \& NumPy for 100k+ trademarks, \textbf{cutting prep-time by 70\% and enabling faster experimentation with internal trademark datasets.}}
+    %     \resumeItem{Contributed to a ResNet-50 based classifier on 20,000+ trademarks to assess borderline infringement risk, optimized decision threshold to \textbf{reduce false positives by 25\% while maintaining an 82\% F1-score.}}
+    %     \resumeItem{Architected an end-to-end MLOps workflow using MLflow, establishing best practices for \textbf{experiment tracking, model versioning, and deployment workflows} to \textbf{increased research throughput by 30\%}.}
+
+    % \resumeItemListEnd
+  \resumeSubHeadingListEnd
+\vspace{-16pt}
+
+% -----------PROJECTS-----------
+\section{Projects (Click the title for Github)}
+    \vspace{-5pt}
+    \resumeSubHeadingListStart
+        \resumeProjectHeading  {\href{https://github.com/utmgdsc/TinyProof}{\textbf{TinyProof}}, GDSC $|$ \emph{Pytorch, Google Cloud Platform, Leandojo, Lean4, GCP, Jira, Docker}}{January 2025}
+            \resumeItemListStart
+            \resumeItem{Conducted original research under Dr. Mohammad to build an RL-based theorem prover extending AlphaProof using \textbf{R’max Tree Search}, \textbf{achieving 87\% on college-level proofs surpassing expected baselines}.}
+            \resumeItem{Engineered an \textbf{ETL} pipeline leveraging LeanDojo to extract \& transform supervision pairs from theorem traced data, enabling \textbf{scalable data handling} with \textbf{exception management} for error handling.}
+            \resumeItemListEnd
+          \vspace{-13pt}
+        \resumeProjectHeading  
+        {\href{https://github.com/utmgdsc/TinyProof}{\textbf{Machine Learning Model for Adaptive Education}}$|$ \emph{Pytorch, NumPy}}{January 2025}
+            \resumeItemListStart
+            \resumeItem{Collaborated in a team of four to develop a machine learning model in Python for predicting student performance and recommending question difficulty tailored to learning ability.}
+            \resumeItem{Enhanced traditional Item Response Theory (IRT) to a three-parameter model, achieved 75\% accuracy and outperformed baseline models including neural networks, KNN, SVD, and Bagging.}
+            \resumeItemListEnd
+          \vspace{-13pt}
+      \resumeProjectHeading
+      {\textbf{PokemonRed -- RL Game-Playing Agent} $|$ \emph{Python}}{June 2025}
+            \resumeItemListStart
+            \resumeItem{Applied RL to train an AI agent to play Pokémon Red from pixel input using Python with PyBoy and Stable Baselines 3.}
+            \resumeItem{Developed a CNN-based policy network using PPO, incorporating frame stacking and auxiliary memory features for environmental awareness.}
+            \resumeItem{DEngineered reward shaping strategies to guide learning—adjusted incentives after the agent misinterpreted animation novelty (e.g., moving water) and mislearned behaviors like avoiding Pokémon Centers.}
+            \resumeItem{Demonstrated agent learning progress through training visualizations and interactive gameplay behavior.}
+            \resumeItemListEnd
+        \vspace{-13pt}
+      \resumeProjectHeading
+      {\textbf{Generative Agents: The Dating Show} $|$ \emph{LangGraph, Docker}}{May 2025}
+        \resumeItemListStart
+            \resumeItem{Re-architected the original Generative Agents framework using the PIANO architecture (arXiv:2411.00114), enabling modular, scalable, and memory-efficient agent behavior.}
+            \resumeItem{Designed a novel “dating show” simulation, demonstrating complex multi-agent interaction via advanced prompt engineering and narrative-driven logic.}
+            \resumeItem{Developed an interactive “follow an agent” feature to visualization of agent behaviour of decision-making, memory access, and conversational flows in real-time.}
+            \resumeItem{Project created to explore LLM-based cognitive architectures, agent autonomy, and experience-driven behavior modeling.}
+        \resumeItemListEnd
+    \resumeSubHeadingListEnd
+\vspace{-15pt}
+%
+%-----------PROGRAMMING SKILLS-----------
+\section{Technical Skills}
+ \begin{itemize}[leftmargin=0.15in, label={}]
+    \small{\item{
+     \textbf{Languages}{: Python, C++, Java, , HTML/CSS, JavaScript, SQL, PostgreSQL} \\
+     \textbf{Frameworks}{: Tensorflow, Pandas, Numpy, Scikit-learn, LlamaIndex, LangChain, FastAPI, streamlit} \\
+    \textbf{ML}{: Linear \& Logistic Regression, SVM, KNN, Decision Trees, Random Forests, GLM, GAM} \\
+    \textbf{Deep Learning}{}: MLP, CNNs, LSTM, TCNs, Attention Mechanisms, Backpropagation, (ReLU, Sigmoid, Tanh)}\\
+    \textbf{RL}{: Monte Carlo, SARSA, Q-Learning, DQN, PPO, RMax, GRPO, PGO} \\
+    \textbf{Cloud}{: GCP (GCS, Cloud Scheduler Functions, BigQuery), Azure (ML, Blob Storage), AWS (S3, Sagemaker), Jupyter}\\
+    }
+    \textbf{Certification}{: AWS Machine Learning Engineer-Associate, Oracle Cloud Foundations Associate, Google Cloud Essentials}
+    
+ \end{itemize}
+ \vspace{-16pt}
+
+
+% %-----------INVOLVEMENT---------------
+\section{Leadership / Extracurricular}
+    \resumeSubHeadingListStart
+        \resumeSubheading{UofT AI}{Jun 2024 - }{Conference Associate}{University Name}
+            \resumeItemListStart
+                \resumeItem{Achieved a 4 star fraternity ranking by the Office of Fraternity and Sorority Affairs (highest possible ranking).}
+                \resumeItem{Managed executive board of 5 members and ran weekly meetings to oversee progress in essential parts of the chapter.}
+                \resumeItem{Led chapter of 30+ members to work towards goals that improve and promote community service, academics, and unity.}
+            \resumeItemListEnd
+        
+    \resumeSubHeadingListEnd
+\end{document}

@@ -1,6 +1,8 @@
 'use client'
 
 import { motion } from 'framer-motion'
+import { useEffect, useRef, useState } from 'react'
+import { getResponsiveHoverConfig } from '@/utils/hoverUtils'
 
 interface ContentCardProps {
   title: string
@@ -9,6 +11,7 @@ interface ContentCardProps {
   type: 'project' | 'skill' | 'experience' | 'achievement' | 'contact'
   onClick?: () => void
   className?: string
+  id?: string
 }
 
 export function ContentCard({ 
@@ -17,8 +20,37 @@ export function ContentCard({
   image, 
   type, 
   onClick, 
-  className = '' 
+  className = '',
+  id = `${type}-${title.toLowerCase().replace(/\s+/g, '-')}`
 }: ContentCardProps) {
+  const cardRef = useRef<HTMLDivElement>(null)
+  const [elementBounds, setElementBounds] = useState(null)
+  const [viewport, setViewport] = useState(null)
+  const [isHovered, setIsHovered] = useState(false)
+
+  useEffect(() => {
+    const updateBounds = () => {
+      if (cardRef.current) {
+        const bounds = cardRef.current.getBoundingClientRect()
+        setElementBounds({
+          x: bounds.x,
+          y: bounds.y,
+          width: bounds.width,
+          height: bounds.height
+        })
+        setViewport({
+          width: window.innerWidth,
+          height: window.innerHeight
+        })
+      }
+    }
+
+    updateBounds()
+    window.addEventListener('resize', updateBounds)
+    return () => window.removeEventListener('resize', updateBounds)
+  }, [])
+
+  const hoverConfig = getResponsiveHoverConfig(elementBounds, viewport)
   const getTypeColor = () => {
     switch (type) {
       case 'project': return 'bg-blue-600'
@@ -66,30 +98,36 @@ export function ContentCard({
   }
 
   return (
-    <motion.div
-      className={`relative flex-none w-48 md:w-64 cursor-pointer group ${className}`}
-      onClick={onClick}
-      initial={{ scale: 1, y: 0 }}
-      whileHover={{ 
-        scale: 1.15,
-        y: -16,
-        zIndex: 50,
-        transition: { 
-          duration: 0.3, 
-          ease: [0.25, 0.46, 0.45, 0.94] 
-        }
-      }}
-      whileTap={{ scale: 0.95 }}
-      style={{ 
-        transformOrigin: "center",
-        backfaceVisibility: "hidden",
-        willChange: "transform"
-      }}
+    <div 
+      ref={cardRef}
+      className="relative p-4 flex-none w-48 md:w-64 transition-all duration-300"
     >
+      <motion.div
+        className={`relative cursor-pointer group ${className}`}
+        onClick={onClick}
+        initial={{ scale: 1, y: 0, transform: 'translateZ(0)' }}
+        whileHover={{ 
+          scale: hoverConfig.scale,
+          y: hoverConfig.y,
+          zIndex: 50,
+          transition: { 
+            duration: hoverConfig.duration, 
+            ease: [0.25, 0.46, 0.45, 0.94] 
+          }
+        }}
+        whileTap={{ scale: 0.95 }}
+        onHoverStart={() => setIsHovered(true)}
+        onHoverEnd={() => setIsHovered(false)}
+        style={{ 
+          transformOrigin: hoverConfig.transformOrigin,
+          backfaceVisibility: "hidden",
+          willChange: "transform"
+        }}
+      >
       {/* Enhanced Card Container */}
-      <div className="bg-gray-800 rounded-lg overflow-hidden shadow-xl transition-all duration-300 group-hover:bg-gray-750 group-hover:shadow-[0_25px_50px_-12px_rgba(0,0,0,0.8),0_8px_16px_-8px_rgba(220,38,38,0.3)]">
+      <div className="bg-gray-800 rounded-lg overflow-visible shadow-xl transition-all duration-300 group-hover:bg-gray-750 group-hover:shadow-[0_25px_50px_-12px_rgba(0,0,0,0.8),0_8px_16px_-8px_rgba(220,38,38,0.3)]">
         {/* Image/Icon Section */}
-        <div className={`h-32 md:h-40 ${getTypeColor()} flex items-center justify-center text-white relative overflow-hidden transition-all duration-500 group-hover:brightness-125`}>
+        <div className={`h-32 md:h-40 ${getTypeColor()} flex items-center justify-center text-white relative transition-all duration-500 group-hover:brightness-125`}>
           {image ? (
             <img 
               src={image} 
@@ -207,6 +245,7 @@ export function ContentCard({
       <div className="absolute inset-0 -z-10 opacity-0 group-hover:opacity-100 transition-opacity duration-300">
         <div className="absolute inset-0 bg-black/20 backdrop-blur-sm rounded-lg transform scale-150" />
       </div>
-    </motion.div>
+      </motion.div>
+    </div>
   )
 }

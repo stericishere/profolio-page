@@ -38,13 +38,18 @@ export function TemplateCard({ item, index = 0, isInRow = false, linkTo }: Templ
   }
 
   const CardContent = (
-    <motion.div
-      initial={{ opacity: 0, y: 30 }}
-      animate={{ opacity: 1, y: 0 }}
-      transition={{ delay: index * 0.1, duration: 0.5 }}
-      className={`relative p-6 rounded-lg border ${getCardColor()} backdrop-blur-sm transition-all duration-300 hover:scale-105 cursor-pointer group`}
-      onClick={!linkTo ? handleClick : undefined}
-    >
+    <div className="relative p-2">
+      <motion.div
+        initial={{ opacity: 0, y: 30 }}
+        animate={{ opacity: 1, y: 0 }}
+        transition={{ delay: index * 0.1, duration: 0.5 }}
+        className={`relative z-0 hover:z-20 p-6 rounded-lg border ${getCardColor()} transform-gpu will-change-transform backdrop-blur-sm transition-all duration-300 hover:scale-105 cursor-pointer group`}
+        onClick={!linkTo ? handleClick : undefined}
+        style={{ 
+          transformOrigin: "center center",
+          backfaceVisibility: "hidden"
+        }}
+      >
       <div className="flex flex-col h-full">
         <div className="flex-1">
           <h3 className="text-xl font-semibold text-white mb-2 group-hover:text-red-400 transition-colors">
@@ -95,7 +100,8 @@ export function TemplateCard({ item, index = 0, isInRow = false, linkTo }: Templ
       </div>
       
       <div className="absolute inset-0 rounded-lg bg-gradient-to-br from-white/5 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 pointer-events-none" />
-    </motion.div>
+      </motion.div>
+    </div>
   )
 
   return linkTo ? (

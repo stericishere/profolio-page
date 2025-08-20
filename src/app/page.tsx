@@ -6,7 +6,7 @@ import { NetflixOpening } from '@/components/animations/NetflixOpening'
 import { WhosWatching, type Persona } from '@/components/sections/WhosWatching'
 import { HorizontalSection } from '@/components/sections/HorizontalSection'
 import { SimpleNavbar } from '@/components/layout/SimpleNavbar'
-import { projectsData, experienceData, contactData } from '@/data/portfolioData'
+import { projectsData, experienceData, contactData, topPicksData } from '@/data/portfolioData'
 
 // Typewriter effect hook
 function useTypewriter(words: string[], speed: 100) {
@@ -58,11 +58,9 @@ export default function Home() {
   }
 
   const jobTitles = [
-    'Full-Stack Developer',
-    'React Specialist', 
-    'Node.js Expert',
-    'Cloud Architect',
-    'Tech Lead'
+    'ML Engineer',
+    'AI Engineer', 
+    'AI Agent Specialist'
   ]
 
   const typewriterText = useTypewriter(jobTitles, 100)
@@ -92,9 +90,9 @@ export default function Home() {
       case 'Recruiter':
         return {
           backgroundImage: "/assets/recruiter.gif",
-          heroTitle: "Senior Full-Stack Developer",
-          heroSubtitle: "5+ years building scalable web applications",
-          heroDescription: "Experienced developer specializing in React, Node.js, and cloud architecture. Proven track record of delivering high-quality solutions for enterprise clients."
+          heroTitle: null, // Will use typewriter effect instead
+          heroSubtitle: "UofT Student | AI Agent Development & Machine Learning",
+          heroDescription: "Passionate AI researcher specializing in intelligent agent systems, deep learning, and automated reasoning. Focused on building AI solutions that can understand, learn, and adapt to complex environments."
         }
       case 'Developer':
         return {
@@ -159,7 +157,8 @@ export default function Home() {
 
         {/* Content overlay - Netflix style left alignment */}
         <div className="absolute inset-0 flex flex-col justify-center">
-          <div className="max-w-7xl mx-auto px-8 w-full">
+          <div className="w-full px-36 pr-8 max-w-7xl 
+     px- w-full">
             <div className="max-w-2xl">
               <motion.h1 
                 className="text-5xl md:text-7xl font-bold mb-4 text-white"
@@ -171,13 +170,13 @@ export default function Home() {
               </motion.h1>
               
               <motion.div 
-                className="text-2xl md:text-3xl text-white mb-6"
+                className="text-2xl md:text-3xl text-white mb-6 font-black"
                 initial={{ opacity: 0 }}
                 animate={{ opacity: 1 }}
                 transition={{ delay: 0.4, duration: 0.8 }}
               >
                 <span>{personaContent?.heroTitle || typewriterText}</span>
-                {!personaContent && <span className="animate-pulse ml-1">|</span>}
+                {(!personaContent?.heroTitle) && <span className="animate-pulse ml-1">|</span>}
               </motion.div>
               
               <motion.p 
@@ -225,13 +224,31 @@ export default function Home() {
         </div>
       </section>
 
+      {/* Today's Top Picks Section */}
+      {selectedPersona && (
+        <div id="top-picks">
+          {topPicksData
+            .filter(section => section.id === `top-picks-${selectedPersona.name.toLowerCase()}`)
+            .map((section) => (
+              <HorizontalSection 
+                key={section.id} 
+                section={section} 
+                index={0}
+                maxItems={3}
+                seeAllLink="/projects"
+              />
+            ))
+          }
+        </div>
+      )}
+
       {/* Projects Section */}
       <div id="projects">
         {projectsData.map((section, index) => (
           <HorizontalSection 
             key={section.id} 
             section={section} 
-            index={index}
+            index={selectedPersona ? index + 1 : index}
             maxItems={3}
             seeAllLink="/projects"
           />

@@ -25,10 +25,10 @@ export function ScrollableRow({ title, children, className = '' }: ScrollableRow
   const scroll = (direction: 'left' | 'right') => {
     if (scrollRef.current) {
       const scrollAmount = scrollRef.current.clientWidth * 0.8
-      const newScrollLeft = direction === 'left' 
+      const newScrollLeft = direction === 'left'
         ? scrollRef.current.scrollLeft - scrollAmount
         : scrollRef.current.scrollLeft + scrollAmount
-      
+
       scrollRef.current.scrollTo({
         left: newScrollLeft,
         behavior: 'smooth'
@@ -39,9 +39,9 @@ export function ScrollableRow({ title, children, className = '' }: ScrollableRow
   return (
     <div className={`mb-8 ${className}`}>
       {/* Section Title */}
-      <motion.h2 
+      <motion.h2
         className="text-xl md:text-2xl font-semibold text-white mb-4 px-6 cursor-default"
-        whileHover={{ 
+        whileHover={{
           scale: 1.02,
           color: "#f87171",
           transition: { duration: 0.2 }
@@ -49,16 +49,16 @@ export function ScrollableRow({ title, children, className = '' }: ScrollableRow
       >
         {title}
       </motion.h2>
-      
+
       {/* Scrollable Container */}
-      <div className="relative">
+      <div className="relative z-10">
         {/* Left Arrow */}
         {canScrollLeft && (
           <motion.button
             className="absolute left-2 top-1/2 -translate-y-1/2 z-30 w-12 h-12 bg-black/50 rounded-full flex items-center justify-center text-white"
             onClick={() => scroll('left')}
-            whileHover={{ 
-              scale: 1.1, 
+            whileHover={{
+              scale: 1.1,
               backgroundColor: "rgba(0, 0, 0, 0.8)",
               transition: { duration: 0.2 }
             }}
@@ -69,14 +69,14 @@ export function ScrollableRow({ title, children, className = '' }: ScrollableRow
             </svg>
           </motion.button>
         )}
-        
+
         {/* Right Arrow */}
         {canScrollRight && (
           <motion.button
             className="absolute right-2 top-1/2 -translate-y-1/2 z-30 w-12 h-12 bg-black/50 rounded-full flex items-center justify-center text-white"
             onClick={() => scroll('right')}
-            whileHover={{ 
-              scale: 1.1, 
+            whileHover={{
+              scale: 1.1,
               backgroundColor: "rgba(0, 0, 0, 0.8)",
               transition: { duration: 0.2 }
             }}
@@ -87,20 +87,23 @@ export function ScrollableRow({ title, children, className = '' }: ScrollableRow
             </svg>
           </motion.button>
         )}
-        
-        {/* Scrollable Content */}
+
+        {/* Scrollable Content Wrapper */}
         <div
           ref={scrollRef}
-          className="flex overflow-x-auto scrollbar-hide gap-4 px-6 py-4"
-          style={{ 
-            scrollbarWidth: 'none', 
+          className="overflow-x-auto scrollbar-hide"
+          style={{
+            scrollbarWidth: 'none',
             msOverflowStyle: 'none',
             overflowY: 'visible',
             scrollSnapType: 'x mandatory'
           }}
           onScroll={checkScrollability}
         >
-          {children}
+          {/* Content Container */}
+          <div className="flex gap-4 px-6 py-8" >
+            {children}
+          </div>
         </div>
       </div>
     </div>

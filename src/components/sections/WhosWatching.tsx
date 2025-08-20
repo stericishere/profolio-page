@@ -140,7 +140,7 @@ export function WhosWatching({ onPersonaSelect }: WhosWatchingProps) {
 
             {/* Description (shows on hover) */}
             <p 
-              className="text-sm text-gray-500 mt-1 text-center opacity-0 group-hover:opacity-100 transition-opacity duration-300 max-h-0 group-hover:max-h-10 overflow-hidden"
+              className="text-sm text-gray-500 mt-1 text-center opacity-0 group-hover:opacity-100 transition-opacity duration-300 h-10 flex items-center justify-center"
             >
               {persona.description}
             </p>
