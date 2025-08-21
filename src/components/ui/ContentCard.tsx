@@ -24,20 +24,15 @@ export function ContentCard({
   id = `${type}-${title.toLowerCase().replace(/\s+/g, '-')}`
 }: ContentCardProps) {
   const cardRef = useRef<HTMLDivElement>(null)
-  const [elementBounds, setElementBounds] = useState(null)
-  const [viewport, setViewport] = useState(null)
+  const [elementBounds, setElementBounds] = useState<DOMRect | null>(null)
+  const [viewport, setViewport] = useState<{ width: number; height: number } | null>(null)
   const [isHovered, setIsHovered] = useState(false)
 
   useEffect(() => {
     const updateBounds = () => {
       if (cardRef.current) {
         const bounds = cardRef.current.getBoundingClientRect()
-        setElementBounds({
-          x: bounds.x,
-          y: bounds.y,
-          width: bounds.width,
-          height: bounds.height
-        })
+        setElementBounds(bounds)
         setViewport({
           width: window.innerWidth,
           height: window.innerHeight
@@ -119,7 +114,7 @@ export function ContentCard({
         onHoverStart={() => setIsHovered(true)}
         onHoverEnd={() => setIsHovered(false)}
         style={{ 
-          transformOrigin: hoverConfig.transformOrigin,
+          transformOrigin: 'transformOrigin' in hoverConfig ? hoverConfig.transformOrigin : 'center',
           backfaceVisibility: "hidden",
           willChange: "transform"
         }}

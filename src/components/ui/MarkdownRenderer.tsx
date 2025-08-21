@@ -1,5 +1,9 @@
 'use client'
 
+import ReactMarkdown from 'react-markdown'
+import remarkGfm from 'remark-gfm'
+import { Prism as SyntaxHighlighter } from 'react-syntax-highlighter'
+import { vscDarkPlus } from 'react-syntax-highlighter/dist/esm/styles/prism'
 import { memo } from 'react'
 
 interface MarkdownRendererProps {
@@ -8,150 +12,196 @@ interface MarkdownRendererProps {
 }
 
 export const MarkdownRenderer = memo(({ content, className = "" }: MarkdownRendererProps) => {
-  // Simple markdown parser for our blog content
-  const parseMarkdown = (text: string) => {
-    // Split by double newlines to get sections
-    const sections = text.split('\n\n')
-    
-    return sections.map((section, index) => {
-      // Handle headers
-      if (section.startsWith('## ')) {
-        const headerText = section.replace('## ', '').trim()
-        return (
-          <h2 key={index} className="text-2xl font-bold mb-4 text-white mt-8 first:mt-0">
-            {headerText}
-          </h2>
-        )
-      }
-      
-      if (section.startsWith('### ')) {
-        const headerText = section.replace('### ', '').trim()
-        return (
-          <h3 key={index} className="text-xl font-semibold mb-3 text-white mt-6">
-            {headerText}
-          </h3>
-        )
-      }
-      
-      if (section.startsWith('#### ')) {
-        const headerText = section.replace('#### ', '').trim()
-        return (
-          <h4 key={index} className="text-lg font-semibold mb-2 text-gray-200 mt-4">
-            {headerText}
-          </h4>
-        )
-      }
-      
-      // Handle code blocks
-      if (section.includes('```')) {
-        const codeMatch = section.match(/```(\w+)?\n([\s\S]*?)```/)
-        if (codeMatch) {
-          const language = codeMatch[1] || 'text'
-          const code = codeMatch[2]
-          return (
-            <div key={index} className="my-6">
-              <div className="bg-gray-900 border border-gray-800 rounded-lg overflow-hidden">
-                <div className="px-4 py-2 bg-gray-800 text-gray-400 text-sm font-mono">
-                  {language}
+  return (
+    <div className={`prose prose-invert prose-lg max-w-none ${className}`}>
+      <ReactMarkdown
+        remarkPlugins={[remarkGfm]}
+        components={{
+          // Custom heading components with proper styling
+          h1: ({ children }) => (
+            <h1 className="text-4xl font-bold text-white mb-6 mt-8 border-b border-gray-700 pb-4 first:mt-0">
+              {children}
+            </h1>
+          ),
+          h2: ({ children }) => (
+            <h2 className="text-3xl font-semibold text-white mb-4 mt-8 border-b border-gray-800 pb-2">
+              {children}
+            </h2>
+          ),
+          h3: ({ children }) => (
+            <h3 className="text-2xl font-semibold text-white mb-3 mt-6">
+              {children}
+            </h3>
+          ),
+          h4: ({ children }) => (
+            <h4 className="text-xl font-semibold text-gray-200 mb-3 mt-4">
+              {children}
+            </h4>
+          ),
+          h5: ({ children }) => (
+            <h5 className="text-lg font-semibold text-gray-300 mb-2 mt-4">
+              {children}
+            </h5>
+          ),
+          h6: ({ children }) => (
+            <h6 className="text-base font-semibold text-gray-400 mb-2 mt-3">
+              {children}
+            </h6>
+          ),
+          
+          // Paragraph styling
+          p: ({ children }) => (
+            <p className="text-gray-300 leading-relaxed mb-4">
+              {children}
+            </p>
+          ),
+          
+          // List styling
+          ul: ({ children }) => (
+            <ul className="list-none ml-0 mb-4 space-y-2">
+              {children}
+            </ul>
+          ),
+          ol: ({ children }) => (
+            <ol className="list-none ml-0 mb-4 space-y-2">
+              {children}
+            </ol>
+          ),
+          li: ({ children }) => (
+            <li className="text-gray-300 leading-relaxed flex items-start">
+              <span className="text-red-400 mr-3 mt-1 flex-shrink-0">
+                •
+              </span>
+              <span>{children}</span>
+            </li>
+          ),
+          
+          // Link styling
+          a: ({ href, children }) => (
+            <a 
+              href={href}
+              className="text-red-400 hover:text-red-300 underline transition-colors duration-200"
+              target={href?.startsWith('http') ? '_blank' : undefined}
+              rel={href?.startsWith('http') ? 'noopener noreferrer' : undefined}
+            >
+              {children}
+            </a>
+          ),
+          
+          // Code styling
+          // eslint-disable-next-line @typescript-eslint/no-explicit-any
+          code: (props: any) => {
+            const { inline, className, children, ...restProps } = props
+            const match = /language-(\w+)/.exec(className || '')
+            
+            if (!inline && match) {
+              return (
+                <div className="my-6">
+                  <div className="bg-gray-900 border border-gray-800 rounded-lg overflow-hidden shadow-lg">
+                    <div className="px-4 py-2 bg-gray-800 text-gray-400 text-sm font-mono flex items-center justify-between">
+                      <span className="capitalize">{match[1]}</span>
+                      <button 
+                        onClick={() => navigator.clipboard.writeText(String(children))}
+                        className="text-gray-500 hover:text-gray-300 transition-colors text-xs"
+                        title="Copy to clipboard"
+                      >
+                        Copy
+                      </button>
+                    </div>
+                    <SyntaxHighlighter
+                      style={vscDarkPlus}
+                      language={match[1]}
+                      PreTag="div"
+                      className="!bg-gray-900 !m-0"
+                      customStyle={{
+                        background: 'transparent',
+                        padding: '1rem',
+                        margin: 0,
+                        fontSize: '0.875rem'
+                      }}
+                      {...restProps}
+                    >
+                      {String(children).replace(/\n$/, '')}
+                    </SyntaxHighlighter>
+                  </div>
                 </div>
-                <pre className="p-4 overflow-x-auto">
-                  <code className="text-gray-300 font-mono text-sm leading-relaxed">
-                    {code}
-                  </code>
-                </pre>
+              )
+            }
+            
+            return (
+              <code 
+                className="bg-gray-800 text-red-400 px-2 py-1 rounded text-sm font-mono"
+                {...restProps}
+              >
+                {children}
+              </code>
+            )
+          },
+          
+          // Blockquote styling
+          blockquote: ({ children }) => (
+            <blockquote className="border-l-4 border-red-600 pl-6 py-2 my-6 bg-gray-800/50 rounded-r-lg">
+              <div className="text-gray-300 italic">
+                {children}
               </div>
+            </blockquote>
+          ),
+          
+          // Table styling
+          table: ({ children }) => (
+            <div className="overflow-x-auto my-6">
+              <table className="min-w-full border-collapse border border-gray-700 rounded-lg overflow-hidden">
+                {children}
+              </table>
+            </div>
+          ),
+          th: ({ children }) => (
+            <th className="border border-gray-700 bg-gray-800 px-4 py-2 text-left font-semibold text-white">
+              {children}
+            </th>
+          ),
+          td: ({ children }) => (
+            <td className="border border-gray-700 px-4 py-2 text-gray-300">
+              {children}
+            </td>
+          ),
+          
+          // Horizontal rule
+          hr: () => (
+            <hr className="border-t border-gray-700 my-8" />
+          ),
+          
+          // Strong and emphasis
+          strong: ({ children }) => (
+            <strong className="text-white font-semibold">
+              {children}
+            </strong>
+          ),
+          em: ({ children }) => (
+            <em className="text-gray-200 italic">
+              {children}
+            </em>
+          ),
+          
+          // Image styling
+          img: ({ src, alt }) => (
+            <div className="my-6">
+              <img 
+                src={src} 
+                alt={alt} 
+                className="rounded-lg max-w-full h-auto mx-auto shadow-lg"
+              />
+              {alt && (
+                <p className="text-center text-gray-400 text-sm mt-2 italic">
+                  {alt}
+                </p>
+              )}
             </div>
           )
-        }
-      }
-      
-      // Handle lists
-      if (section.includes('- **') || section.includes('- ')) {
-        const lines = section.split('\n').filter(line => line.trim())
-        return (
-          <ul key={index} className="space-y-2 mb-6 text-gray-300">
-            {lines.map((line, lineIndex) => {
-              if (line.startsWith('- **')) {
-                // Bold list items
-                const match = line.match(/- \*\*(.*?)\*\*:(.*)/)
-                if (match) {
-                  return (
-                    <li key={lineIndex} className="flex">
-                      <span className="text-red-400 font-semibold mr-2">•</span>
-                      <div>
-                        <strong className="text-white">{match[1]}</strong>
-                        <span className="text-gray-300">:{match[2]}</span>
-                      </div>
-                    </li>
-                  )
-                }
-              }
-              if (line.startsWith('- ')) {
-                return (
-                  <li key={lineIndex} className="flex">
-                    <span className="text-red-400 mr-2">•</span>
-                    <span>{line.replace('- ', '')}</span>
-                  </li>
-                )
-              }
-              return null
-            })}
-          </ul>
-        )
-      }
-      
-      // Handle numbered lists
-      if (section.match(/^\d+\./m)) {
-        const lines = section.split('\n').filter(line => line.trim())
-        return (
-          <ol key={index} className="space-y-2 mb-6 text-gray-300 counter-reset">
-            {lines.map((line, lineIndex) => {
-              const match = line.match(/^(\d+)\.\s*(.*)/)
-              if (match) {
-                return (
-                  <li key={lineIndex} className="flex">
-                    <span className="text-red-400 font-semibold mr-3 min-w-[1.5rem]">
-                      {match[1]}.
-                    </span>
-                    <span>{match[2]}</span>
-                  </li>
-                )
-              }
-              return null
-            })}
-          </ol>
-        )
-      }
-      
-      // Handle regular paragraphs with inline formatting
-      if (section.trim()) {
-        let formattedText = section
-        
-        // Handle bold text
-        formattedText = formattedText.replace(/\*\*(.*?)\*\*/g, '<strong class="text-white font-semibold">$1</strong>')
-        
-        // Handle code spans
-        formattedText = formattedText.replace(/`(.*?)`/g, '<code class="bg-gray-800 text-red-400 px-2 py-1 rounded text-sm font-mono">$1</code>')
-        
-        // Handle links (basic)
-        formattedText = formattedText.replace(/\[(.*?)\]\((.*?)\)/g, '<a href="$2" class="text-blue-400 hover:text-blue-300 underline" target="_blank" rel="noopener noreferrer">$1</a>')
-        
-        return (
-          <p 
-            key={index} 
-            className="text-gray-300 leading-relaxed mb-4"
-            dangerouslySetInnerHTML={{ __html: formattedText }}
-          />
-        )
-      }
-      
-      return null
-    }).filter(Boolean)
-  }
-  
-  return (
-    <div className={`markdown-content ${className}`}>
-      {parseMarkdown(content)}
+        }}
+      >
+        {content}
+      </ReactMarkdown>
     </div>
   )
 })

@@ -380,7 +380,7 @@ Every interaction is designed to feel responsive and meaningful:
 
 This project represents a convergence of modern web development practices, thoughtful user experience design, and performance engineering. It demonstrates not just technical capability, but also creative problem-solving and attention to detail that makes the difference between good and exceptional digital experiences.`,
         technologies: ['Next.js 15', 'TypeScript', 'Tailwind CSS 4', 'Framer Motion', 'React Hooks', 'Intersection Observer API', 'Performance Optimization', 'Accessibility', 'Responsive Design'],
-        link: 'https://your-portfolio-domain.com',
+        link: '#',
         github: 'https://github.com/stericishere/netflix-portfolio',
         type: 'project'
       }

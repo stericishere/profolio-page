@@ -3,22 +3,65 @@
 import { motion } from 'framer-motion'
 import { useState, useEffect, useCallback } from 'react'
 import { SimpleNavbar } from '@/components/layout/SimpleNavbar'
-import { skillsData } from '@/data/portfolioData'
 import { LazySkillSection } from '@/components/ui/LazySkillSection'
+import { useDataPreload } from '@/contexts/DataPreloadContext'
+import type { PortfolioSection } from '@/data/portfolioData'
 
 interface SectionVisibilityState {
   [sectionId: string]: boolean
 }
 
 export default function SkillsPage() {
+  const { preloadedData, isDataReady, preloadError, retryPreload } = useDataPreload()
+  const [skillsData, setSkillsData] = useState<PortfolioSection[]>([])
+  const [isLoading, setIsLoading] = useState(true)
+  const [loadingError, setLoadingError] = useState<string | null>(null)
   const [loadedSections, setLoadedSections] = useState<SectionVisibilityState>({})
+
+  // Load skills data with preloading priority
+  useEffect(() => {
+    const loadData = async () => {
+      try {
+        setLoadingError(null)
+        console.log('🎯 Skills page: Starting data load...')
+        console.log('📊 Current preloadedData state:', preloadedData)
+        console.log('❓ Is skillsData ready?', isDataReady('skillsData'))
+        
+        if (isDataReady('skillsData') && preloadedData.skillsData) {
+          // Use preloaded data for instant loading
+          console.log('✅ Using preloaded skills data:', preloadedData.skillsData.length, 'sections')
+          setSkillsData(preloadedData.skillsData || [])
+          setIsLoading(false)
+        } else {
+          // Fallback: load data if not preloaded
+          console.log('⏳ Fallback: Loading skills data directly...')
+          const portfolioModule = await import('@/data/portfolioData')
+          console.log('📦 Imported portfolio module:', Object.keys(portfolioModule))
+          
+          if (!portfolioModule.skillsData) {
+            throw new Error('skillsData not found in portfolioData module')
+          }
+          
+          console.log('✅ Fallback skills data loaded:', portfolioModule.skillsData.length, 'sections')
+          setSkillsData(portfolioModule.skillsData)
+          setIsLoading(false)
+        }
+      } catch (error) {
+        console.error('❌ Skills data loading failed:', error)
+        setLoadingError(error instanceof Error ? error.message : 'Failed to load skills data')
+        setIsLoading(false)
+      }
+    }
+    
+    loadData()
+  }, [preloadedData, isDataReady])
 
   // Load first section immediately for better initial experience
   useEffect(() => {
     if (skillsData.length > 0) {
       setLoadedSections({ [skillsData[0].id]: true })
     }
-  }, [])
+  }, [skillsData])
 
   const handleSectionLoad = useCallback((sectionId: string) => {
     setLoadedSections(prev => ({
@@ -26,6 +69,61 @@ export default function SkillsPage() {
       [sectionId]: true
     }))
   }, [])
+
+  // Show error state if loading failed
+  if (loadingError) {
+    return (
+      <div className="min-h-screen bg-black text-white">
+        <SimpleNavbar />
+        <div className="flex items-center justify-center min-h-screen">
+          <div className="text-center max-w-md">
+            <div className="w-12 h-12 bg-red-600/20 rounded-full flex items-center justify-center mx-auto mb-4">
+              <svg className="w-6 h-6 text-red-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-2.5L13.732 4c-.77-.833-1.732-.833-2.5 0L4.732 15.5c-.77.833.192 2.5 1.732 2.5z" />
+              </svg>
+            </div>
+            <h2 className="text-xl font-semibold text-red-400 mb-2">Loading Error</h2>
+            <p className="text-gray-400 mb-4">{loadingError}</p>
+            {preloadError && (
+              <p className="text-sm text-gray-500 mb-4">Preload Error: {preloadError}</p>
+            )}
+            <button
+              onClick={() => {
+                setLoadingError(null)
+                setIsLoading(true)
+                if (preloadError) {
+                  retryPreload()
+                } else {
+                  // Retry local loading
+                  window.location.reload()
+                }
+              }}
+              className="px-4 py-2 bg-red-600 hover:bg-red-700 text-white rounded-lg transition-colors"
+            >
+              Retry
+            </button>
+          </div>
+        </div>
+      </div>
+    )
+  }
+
+  if (isLoading) {
+    return (
+      <div className="min-h-screen bg-black text-white">
+        <SimpleNavbar />
+        <div className="flex items-center justify-center min-h-screen">
+          <div className="text-center">
+            <div className="w-8 h-8 border-2 border-red-600 border-t-transparent rounded-full animate-spin mx-auto mb-4"></div>
+            <p className="text-gray-400">Loading skills...</p>
+            <p className="text-xs text-gray-500 mt-2">
+              {preloadError ? 'Using fallback loading...' : 'Checking preloaded data...'}
+            </p>
+          </div>
+        </div>
+      </div>
+    )
+  }
 
   return (
     <div className="min-h-screen bg-black text-white">

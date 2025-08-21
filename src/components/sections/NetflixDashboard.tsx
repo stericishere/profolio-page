@@ -7,6 +7,8 @@ import { HeroSection } from '@/components/sections/HeroSection'
 import { ScrollableRow } from '@/components/ui/ScrollableRow'
 import { ContentCard } from '@/components/ui/ContentCard'
 import { type Persona } from '@/components/sections/WhosWatching'
+import { topPicksData, skillsData, experienceData, projectsData } from '@/data/portfolioData'
+import { useRouter } from 'next/navigation'
 
 interface NetflixDashboardProps {
   selectedPersona: Persona
@@ -15,30 +17,49 @@ interface NetflixDashboardProps {
 
 export function NetflixDashboard({ selectedPersona, onBackToSelection }: NetflixDashboardProps) {
   const [activeSection, setActiveSection] = useState('Home')
+  const router = useRouter()
   
+  // Get real data from portfolio
+  const getPersonaData = () => {
+    // Find the appropriate top picks data for the selected persona
+    const personaTopPicks = topPicksData.find(section => 
+      section.id.toLowerCase().includes(selectedPersona.name.toLowerCase())
+    ) || topPicksData[0] // fallback to first section
+    
+    return {
+      topPicks: personaTopPicks.items,
+      projects: projectsData.flatMap(section => section.items).slice(0, 3),
+      skills: skillsData.slice(0, 2).flatMap(section => section.items.slice(0, 3)), // First few skills
+      experience: experienceData.flatMap(section => section.items).slice(0, 3) // First few experience items
+    }
+  }
+  
+  const { projects, skills, experience } = getPersonaData()
+  
+  // Handle click routing
+  const handleItemClick = (item: { id?: string; type: string; link?: string; title: string }) => {
+    if (item.link && item.link.startsWith('/')) {
+      // Internal link
+      router.push(item.link)
+    } else if (item.type === 'project') {
+      // Route to project blog post
+      router.push(`/projects/${item.id}`)
+    } else if (item.type === 'skill') {
+      // Route to skill detail
+      router.push(`/skills/${item.id}`)
+    } else if (item.type === 'experience') {
+      // Route to experience page
+      router.push('/experience')
+    } else if (item.link && item.link !== '#') {
+      // External link (but not placeholder)
+      window.open(item.link, '_blank')
+    }
+  }
+
   const getPersonaContent = () => {
-    const commonProjects = [
-      { title: "E-commerce Platform", subtitle: "Full-stack React & Node.js application", type: "project" as const },
-      { title: "Task Management App", subtitle: "React Native mobile application", type: "project" as const },
-      { title: "Analytics Dashboard", subtitle: "Data visualization with D3.js", type: "project" as const },
-      { title: "API Gateway Service", subtitle: "Microservices architecture", type: "project" as const },
-      { title: "Real-time Chat App", subtitle: "WebSocket implementation", type: "project" as const },
-    ]
-
-    const commonSkills = [
-      { title: "React & Next.js", subtitle: "Frontend development", type: "skill" as const },
-      { title: "Node.js & Express", subtitle: "Backend development", type: "skill" as const },
-      { title: "TypeScript", subtitle: "Type-safe programming", type: "skill" as const },
-      { title: "AWS & Cloud", subtitle: "Cloud infrastructure", type: "skill" as const },
-      { title: "Docker & K8s", subtitle: "Containerization", type: "skill" as const },
-    ]
-
-    const commonExperience = [
-      { title: "Senior Developer", subtitle: "Tech Corp (2021-2024)", type: "experience" as const },
-      { title: "Full-Stack Developer", subtitle: "StartupXYZ (2019-2021)", type: "experience" as const },
-      { title: "Frontend Developer", subtitle: "WebAgency (2018-2019)", type: "experience" as const },
-      { title: "Junior Developer", subtitle: "FirstJob Inc (2017-2018)", type: "experience" as const },
-    ]
+    const commonProjects = projects.slice(0, 5)
+    const commonSkills = skills.slice(0, 5)
+    const commonExperience = experience
 
     switch (selectedPersona.name) {
       case 'Recruiter':
@@ -61,9 +82,9 @@ export function NetflixDashboard({ selectedPersona, onBackToSelection }: Netflix
             { title: "Open Source Projects", items: commonProjects },
             { title: "Tech Stack", items: commonSkills },
             { title: "Code Contributions", items: [
-              { title: "React Library", subtitle: "1.2k stars on GitHub", type: "project" as const },
-              { title: "VS Code Extension", subtitle: "50k+ downloads", type: "project" as const },
-              { title: "API Documentation", subtitle: "Developer tools", type: "project" as const },
+              { id: "react-library", title: "React Library", subtitle: "1.2k stars on GitHub", type: "project" as const },
+              { id: "vscode-extension", title: "VS Code Extension", subtitle: "50k+ downloads", type: "project" as const },
+              { id: "api-documentation", title: "API Documentation", subtitle: "Developer tools", type: "project" as const },
             ]},
             { title: "Learning Path", items: [
               { title: "Machine Learning", subtitle: "Python & TensorFlow", type: "skill" as const },
@@ -77,9 +98,9 @@ export function NetflixDashboard({ selectedPersona, onBackToSelection }: Netflix
         return {
           sections: [
             { title: "Personal Projects", items: [
-              { title: "Photography Blog", subtitle: "Travel & nature photos", type: "project" as const },
-              { title: "Recipe App", subtitle: "Family recipe collection", type: "project" as const },
-              { title: "Fitness Tracker", subtitle: "Personal health dashboard", type: "project" as const },
+              { id: "photography-blog", title: "Photography Blog", subtitle: "Travel & nature photos", type: "project" as const },
+              { id: "recipe-app", title: "Recipe App", subtitle: "Family recipe collection", type: "project" as const },
+              { id: "fitness-tracker", title: "Fitness Tracker", subtitle: "Personal health dashboard", type: "project" as const },
             ]},
             { title: "Hobbies & Interests", items: [
               { title: "Photography", subtitle: "Landscape & portrait", type: "skill" as const },
@@ -205,7 +226,7 @@ export function NetflixDashboard({ selectedPersona, onBackToSelection }: Netflix
                   title={item.title}
                   subtitle={item.subtitle}
                   type={item.type}
-                  onClick={() => console.log(`Clicked: ${item.title}`)}
+                  onClick={() => handleItemClick(item)}
                 />
               ))}
             </ScrollableRow>

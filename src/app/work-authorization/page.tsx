@@ -201,7 +201,7 @@ export default function WorkAuthorizationPage() {
           </h2>
           <div className="bg-gray-800/50 rounded-lg p-8 border border-gray-700/30">
             <p className="text-lg text-gray-300 mb-6">
-              I'm ready to contribute to your team with my AI/ML expertise and fresh perspective.
+              I&apos;m ready to contribute to your team with my AI/ML expertise and fresh perspective.
             </p>
             <div className="flex flex-col sm:flex-row gap-4 justify-center">
               <Link href="/contact">

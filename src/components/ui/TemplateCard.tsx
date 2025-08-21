@@ -13,6 +13,10 @@ interface TemplateCardProps {
 
 export function TemplateCard({ item, index = 0, isInRow = false, linkTo }: TemplateCardProps) {
   const handleClick = () => {
+    if (linkTo) {
+      // Use Next.js router for internal links
+      return
+    }
     if (item.link) {
       if (item.link.startsWith('mailto:')) {
         window.location.href = item.link

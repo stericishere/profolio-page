@@ -1,6 +1,7 @@
 'use client'
 
 import { motion } from 'framer-motion'
+import { useState, useEffect } from 'react'
 import { SimpleNavbar } from '@/components/layout/SimpleNavbar'
 import { PortfolioItem } from '@/data/portfolioData'
 import { MarkdownRenderer } from '@/components/ui/MarkdownRenderer'
@@ -10,8 +11,51 @@ interface BlogPostClientProps {
 }
 
 export default function BlogPostClient({ project }: BlogPostClientProps) {
-  // Check if this project has rich blog content
-  const hasRichContent = project.blogContent && project.blogContent.includes('##')
+  const [markdownContent, setMarkdownContent] = useState<string>('')
+  const [isLoading, setIsLoading] = useState(true)
+  const [hasMarkdownFile, setHasMarkdownFile] = useState(false)
+
+  // Load markdown content for this project
+  useEffect(() => {
+    const loadMarkdownContent = async () => {
+      try {
+        setIsLoading(true)
+        
+        // Try to fetch markdown file for this project
+        const response = await fetch(`/api/content/projects/${project.id}`)
+        
+        if (response.ok) {
+          const content = await response.text()
+          setMarkdownContent(content)
+          setHasMarkdownFile(true)
+        } else {
+          // Fallback to existing blog content if available
+          if (project.blogContent && project.blogContent.trim().length > 0) {
+            setMarkdownContent(project.blogContent)
+            setHasMarkdownFile(true)
+          } else {
+            setHasMarkdownFile(false)
+          }
+        }
+      } catch (error) {
+        console.error('Error loading markdown content:', error)
+        // Fallback to existing blog content if available
+        if (project.blogContent && project.blogContent.trim().length > 0) {
+          setMarkdownContent(project.blogContent)
+          setHasMarkdownFile(true)
+        } else {
+          setHasMarkdownFile(false)
+        }
+      } finally {
+        setIsLoading(false)
+      }
+    }
+
+    loadMarkdownContent()
+  }, [project.id, project.blogContent])
+
+  // Check if this project has blog content to render as markdown
+  const hasBlogContent = hasMarkdownFile && markdownContent.trim().length > 0
   
   return (
     <div className="min-h-screen bg-black text-white">
@@ -68,9 +112,15 @@ export default function BlogPostClient({ project }: BlogPostClientProps) {
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8, delay: 0.2 }}
           >
-            {hasRichContent ? (
-              /* Rich Markdown Content */
-              <MarkdownRenderer content={project.blogContent || ''} />
+            {isLoading ? (
+              /* Loading state */
+              <div className="flex items-center justify-center py-12">
+                <div className="animate-spin rounded-full h-8 w-8 border-b-2 border-red-500"></div>
+                <span className="ml-3 text-gray-400">Loading content...</span>
+              </div>
+            ) : hasBlogContent ? (
+              /* Render markdown content */
+              <MarkdownRenderer content={markdownContent} />
             ) : (
               /* Standard Content */
               <>

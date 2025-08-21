@@ -1,6 +1,7 @@
 'use client'
 
 import { motion } from 'framer-motion'
+import { useDataPreload } from '@/contexts/DataPreloadContext'
 
 export interface Persona {
   id: string
@@ -51,6 +52,7 @@ const personas: Persona[] = [
 ]
 
 export function WhosWatching({ onPersonaSelect }: WhosWatchingProps) {
+  const { preloadingProgress, isPreloading } = useDataPreload()
 
   return (
     <div className="min-h-screen bg-black flex flex-col items-center justify-center px-4" data-testid="whos-watching">
@@ -157,6 +159,33 @@ export function WhosWatching({ onPersonaSelect }: WhosWatchingProps) {
       >
         Choose your viewing experience
       </motion.p>
+
+      {/* Subtle loading progress indicator */}
+      {isPreloading && (
+        <motion.div 
+          className="fixed bottom-8 right-8"
+          initial={{ opacity: 0, scale: 0.8 }}
+          animate={{ opacity: 1, scale: 1 }}
+          transition={{ duration: 0.3 }}
+        >
+          <div className="bg-gray-900/80 backdrop-blur-sm rounded-lg p-4 border border-gray-700/50">
+            <div className="flex items-center gap-3">
+              <div className="w-2 h-2 bg-red-600 rounded-full animate-pulse"></div>
+              <span className="text-xs text-gray-400">
+                Optimizing experience... {preloadingProgress}%
+              </span>
+            </div>
+            <div className="w-32 h-1 bg-gray-800 rounded-full mt-2 overflow-hidden">
+              <motion.div 
+                className="h-full bg-red-600 rounded-full"
+                initial={{ width: 0 }}
+                animate={{ width: `${preloadingProgress}%` }}
+                transition={{ duration: 0.3, ease: "easeOut" }}
+              />
+            </div>
+          </div>
+        </motion.div>
+      )}
     </div>
   )
 }

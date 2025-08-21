@@ -1,10 +1,49 @@
 'use client'
 
 import { motion } from 'framer-motion'
+import { useState, useEffect } from 'react'
 import { SimpleNavbar } from '@/components/layout/SimpleNavbar'
-import { experienceData } from '@/data/portfolioData'
+import { useDataPreload } from '@/contexts/DataPreloadContext'
+import type { PortfolioSection, PortfolioItem } from '@/data/portfolioData'
 
 export default function ExperiencePage() {
+  const { preloadedData, isDataReady } = useDataPreload()
+  const [experienceData, setExperienceData] = useState<PortfolioSection[]>([])
+  const [isLoading, setIsLoading] = useState(true)
+
+  useEffect(() => {
+    const loadData = async () => {
+      if (isDataReady('experienceData')) {
+        // Use preloaded data for instant loading
+        console.log('✅ Using preloaded experience data')
+        setExperienceData(preloadedData.experienceData || [])
+        setIsLoading(false)
+      } else {
+        // Fallback: load data if not preloaded
+        console.log('⏳ Fallback: Loading experience data...')
+        const { experienceData: fallbackData } = await import('@/data/portfolioData')
+        setExperienceData(fallbackData)
+        setIsLoading(false)
+      }
+    }
+    
+    loadData()
+  }, [preloadedData, isDataReady])
+
+  if (isLoading) {
+    return (
+      <div className="min-h-screen bg-black text-white">
+        <SimpleNavbar />
+        <div className="flex items-center justify-center min-h-screen">
+          <div className="text-center">
+            <div className="w-8 h-8 border-2 border-red-600 border-t-transparent rounded-full animate-spin mx-auto mb-4"></div>
+            <p className="text-gray-400">Loading experience...</p>
+          </div>
+        </div>
+      </div>
+    )
+  }
+
   const allExperience = experienceData.flatMap(section => section.items)
 
   return (

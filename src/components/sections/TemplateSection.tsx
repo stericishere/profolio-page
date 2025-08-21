@@ -33,6 +33,7 @@ export function TemplateSection({ section, index = 0 }: TemplateSectionProps) {
               key={item.id}
               item={item}
               index={itemIndex}
+              linkTo={item.type === 'project' ? `/projects/${item.id}` : undefined}
             />
           ))}
         </div>

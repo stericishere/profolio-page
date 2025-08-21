@@ -1,7 +1,7 @@
 'use client'
 
 import { motion } from 'framer-motion'
-import { forwardRef } from 'react'
+import { forwardRef, useEffect } from 'react'
 import { PortfolioSection } from '@/data/portfolioData'
 import { SkillCard } from './SkillCard'
 import { SkillsSectionSkeleton } from './SkillCardSkeleton'
@@ -23,9 +23,11 @@ export const LazySkillSection = forwardRef<HTMLDivElement, LazySkillSectionProps
     })
 
     // Trigger loading when section becomes visible
-    if (isVisible && !isLoaded) {
-      onLoad(section.id)
-    }
+    useEffect(() => {
+      if (isVisible && !isLoaded) {
+        onLoad(section.id)
+      }
+    }, [isVisible, isLoaded, section.id, onLoad])
 
     // Show skeleton while not loaded
     if (!isLoaded) {
@@ -34,8 +36,9 @@ export const LazySkillSection = forwardRef<HTMLDivElement, LazySkillSectionProps
           ref={(node) => {
             if (typeof ref === 'function') ref(node)
             else if (ref) ref.current = node
-            if (typeof intersectionRef === 'function') intersectionRef(node)
-            else if (intersectionRef) intersectionRef.current = node
+            if (intersectionRef) {
+              (intersectionRef as React.MutableRefObject<HTMLDivElement | null>).current = node
+            }
           }}
           title={section.title}
           itemCount={section.items.length}

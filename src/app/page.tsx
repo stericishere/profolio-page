@@ -6,7 +6,8 @@ import { NetflixOpening } from '@/components/animations/NetflixOpening'
 import { WhosWatching, type Persona } from '@/components/sections/WhosWatching'
 import { HorizontalSection } from '@/components/sections/HorizontalSection'
 import { SimpleNavbar } from '@/components/layout/SimpleNavbar'
-import { projectsData, experienceData, contactData, topPicksData } from '@/data/portfolioData'
+import { useDataPreload } from '@/contexts/DataPreloadContext'
+import type { PortfolioSection } from '@/data/portfolioData'
 
 // Typewriter effect hook
 function useTypewriter(words: string[], speed: 100) {
@@ -47,6 +48,47 @@ type AppState = 'opening' | 'persona-selection' | 'portfolio'
 export default function Home() {
   const [appState, setAppState] = useState<AppState>('opening')
   const [selectedPersona, setSelectedPersona] = useState<Persona | null>(null)
+  const { preloadedData, isDataReady } = useDataPreload()
+  const [portfolioData, setPortfolioData] = useState<{
+    projectsData: PortfolioSection[]
+    experienceData: PortfolioSection[]
+    contactData: PortfolioSection[]
+    topPicksData: PortfolioSection[]
+  }>({
+    projectsData: [],
+    experienceData: [],
+    contactData: [],
+    topPicksData: []
+  })
+
+  // Load portfolio data when preloading completes
+  useEffect(() => {
+    const loadData = async () => {
+      if (isDataReady('topPicksData') && isDataReady('projectsData') && 
+          isDataReady('experienceData') && isDataReady('contactData')) {
+        // Use preloaded data for instant rendering
+        console.log('✅ Using preloaded portfolio data')
+        setPortfolioData({
+          projectsData: preloadedData.projectsData || [],
+          experienceData: preloadedData.experienceData || [],
+          contactData: preloadedData.contactData || [],
+          topPicksData: preloadedData.topPicksData || []
+        })
+      } else if (appState === 'portfolio') {
+        // Fallback: load data if user reaches portfolio before preloading completes
+        console.log('⏳ Fallback: Loading portfolio data for home page...')
+        const [projectsData, experienceData, contactData, topPicksData] = await Promise.all([
+          import('@/data/portfolioData').then(m => m.projectsData),
+          import('@/data/portfolioData').then(m => m.experienceData),
+          import('@/data/portfolioData').then(m => m.contactData),
+          import('@/data/portfolioData').then(m => m.topPicksData)
+        ])
+        setPortfolioData({ projectsData, experienceData, contactData, topPicksData })
+      }
+    }
+    
+    loadData()
+  }, [preloadedData, isDataReady, appState])
 
   const handlePersonaSelect = (persona: Persona) => {
     setSelectedPersona(persona)
@@ -227,7 +269,7 @@ export default function Home() {
       {/* Today's Top Picks Section */}
       {selectedPersona && (
         <div id="top-picks">
-          {topPicksData
+          {portfolioData.topPicksData
             .filter(section => section.id === `top-picks-${selectedPersona.name.toLowerCase()}`)
             .map((section) => (
               <HorizontalSection 
@@ -244,7 +286,7 @@ export default function Home() {
 
       {/* Projects Section */}
       <div id="projects">
-        {projectsData.map((section, index) => (
+        {portfolioData.projectsData.map((section, index) => (
           <HorizontalSection 
             key={section.id} 
             section={section} 
@@ -257,7 +299,7 @@ export default function Home() {
 
       {/* Experience Section */}
       <div id="experience">
-        {experienceData.map((section, index) => (
+        {portfolioData.experienceData.map((section, index) => (
           <HorizontalSection 
             key={section.id} 
             section={section} 
@@ -270,7 +312,7 @@ export default function Home() {
 
       {/* Contact Section */}
       <div id="contact">
-        {contactData.map((section, index) => (
+        {portfolioData.contactData.map((section, index) => (
           <HorizontalSection 
             key={section.id} 
             section={section} 

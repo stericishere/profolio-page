@@ -1,7 +1,8 @@
 'use client'
 
-import { useState } from 'react'
+import { useState, useEffect } from 'react'
 import { motion } from 'framer-motion'
+import { useDataPreload } from '@/contexts/DataPreloadContext'
 
 interface NetflixOpeningProps {
   customName?: string
@@ -15,9 +16,14 @@ export function NetflixOpening({
   const [isVisible, setIsVisible] = useState(true)
   const [hasStarted, setHasStarted] = useState(false)
   const [isScalingUp, setIsScalingUp] = useState(false)
+  const { preloadAllData, preloadingProgress } = useDataPreload()
 
   const startSequence = () => {
     setHasStarted(true)
+    
+    // 🚀 Start background data preloading immediately
+    console.log('🎬 Netflix animation started - beginning data preload...')
+    preloadAllData()
     
     // Play audio with user gesture
     const audio = new Audio('/assets/audio/nouveau-jingle-netflix.mp3')
