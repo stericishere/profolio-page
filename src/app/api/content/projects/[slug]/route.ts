@@ -19,11 +19,15 @@ export async function GET(
     }
     
     // Return the markdown content as plain text
+    const cacheControl = process.env.NODE_ENV === 'development' 
+      ? 'no-cache, no-store, must-revalidate' // No caching in development
+      : 'public, max-age=3600' // Cache for 1 hour in production
+    
     return new NextResponse(markdownData.content, {
       status: 200,
       headers: {
         'Content-Type': 'text/plain; charset=utf-8',
-        'Cache-Control': 'public, max-age=3600', // Cache for 1 hour
+        'Cache-Control': cacheControl,
       },
     })
   } catch (error) {

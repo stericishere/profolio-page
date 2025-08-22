@@ -33,36 +33,32 @@ export const topPicksData: PortfolioSection[] = [
         id: 'work-visa-status',
         title: 'Work Authorization',
         subtitle: 'CO-OP Work Permit - Ready for Internships',
-        description: 'Currently holding CO-OP work permit in Canada. Actively seeking CO-OP positions and internship opportunities in AI/ML and tech.',
         technologies: ['CO-OP Work Permit', 'Internship Ready', 'University of Toronto'],
         link: '/work-authorization',
         type: 'contact'
       },
       {
-        id: 'squirl-asl-experience',
-        title: 'Award-Winning ML Engineer',
-        subtitle: 'Reduced inference computation by 33%',
-        description: 'Fine-tuned Temporal Convolutional Networks for award-winning ASL recognition prototype at Squirl ASL. Improved F1 score by 22% through advanced dataset quality enhancement techniques.',
+        id: 'Experience',
+        title: 'Experience',
+        subtitle: 'Award-Winning prototype',
         technologies: ['PyTorch', 'Azure ML', 'TCN', 'Computer Vision'],
         link: '/experience',
         type: 'experience'
       },
       {
-        id: 'tinyproof-research',
-        title: 'AI Research Achievement',
+        id: 'Projects',
+        title: 'ML/RL + Multi-agent system',
         subtitle: '87% accuracy on college-level theorem proving',
-        description: 'Conducted original research under Dr. Mohammad, building RL-based theorem prover extending AlphaProof using R\'max Tree Search, surpassing expected baselines.',
-        technologies: ['Reinforcement Learning', 'PyTorch', 'Research'],
+        technologies: ['RL Game play Project', 'AI multi-agent Project', 'Project', 'Research'],
         link: '/projects',
         github: 'https://github.com/utmgdsc/TinyProof',
         type: 'project'
       },
       {
-        id: 'contact-recruiter',
+        id: 'Contact',
         title: 'Ready to Discuss Opportunities',
         subtitle: 'Let\'s talk about your AI/ML roles',
-        description: 'Available for interviews within 24 hours. Portfolio includes salary expectations and availability.',
-        technologies: ['Immediate Start', 'Competitive Salary', 'Remote/Hybrid'],
+        technologies: ['Fall/Winter', 'Competitive Salary', 'Remote/Hybrid'],
         link: '/contact',
         type: 'contact'
       }
@@ -73,32 +69,29 @@ export const topPicksData: PortfolioSection[] = [
     title: 'Today\'s Top Picks for Developer',
     items: [
       {
-        id: 'research-projects',
-        title: 'TinyProof & AI Research',
-        subtitle: 'RL-based theorem prover achieving 87% accuracy',
-        description: 'Built cutting-edge theorem prover extending AlphaProof using R\'max Tree Search. Engineered ETL pipeline with LeanDojo for scalable theorem data processing.',
-        technologies: ['PyTorch', 'Reinforcement Learning', 'LeanDojo', 'Research'],
+        id: 'Projects',
+        title: 'ML/RL + Multi-agent system',
+        subtitle: '87% accuracy on college-level theorem proving',
+        technologies: ['RL Game play Project', 'AI multi-agent Project', 'Project', 'Research'],
         link: '/projects',
         github: 'https://github.com/utmgdsc/TinyProof',
         type: 'project'
       },
       {
-        id: 'generative-agents',
-        title: 'Generative Agents: Dating Show',
-        subtitle: 'Multi-agent simulation with PIANO architecture',
-        description: 'Re-architected Generative Agents framework for complex multi-agent interactions. Built interactive "follow an agent" feature for real-time behavior visualization.',
-        technologies: ['LangGraph', 'LLM', 'Multi-Agent Systems', 'Docker'],
-        link: '/projects',
-        type: 'project'
+        id: 'Skills',
+        title: 'Skills',
+        subtitle: 'What skill do I have!',
+        technologies: ['Python', 'C++', 'Pytorch', 'numpy', 'C++'],
+        link: '/experience',
+        type: 'experience'
       },
       {
-        id: 'pokemon-rl',
-        title: 'PokemonRed RL Agent',
-        subtitle: 'AI that plays Pokémon from pixel input',
-        description: 'Trained AI agent using PPO and CNN-based policy networks. Engineered reward shaping strategies and demonstrated complex game-playing behavior.',
-        technologies: ['Python', 'Stable Baselines 3', 'PPO', 'Computer Vision'],
-        link: '/projects',
-        type: 'project'
+        id: 'Experience',
+        title: 'Experience',
+        subtitle: 'Award-Winning prototype',
+        technologies: ['PyTorch', 'Azure ML', 'TCN', 'Computer Vision'],
+        link: '/experience',
+        type: 'experience'
       },
       {
         id: 'collaboration-invite',
@@ -116,8 +109,8 @@ export const topPicksData: PortfolioSection[] = [
     title: 'Today\'s Top Picks for Stalker',
     items: [
       {
-        id: 'research-deep-dive',
-        title: 'AI Research Publications',
+        id: 'Projects',
+        title: 'Projects',
         subtitle: 'Original research in theorem proving and RL',
         description: 'Deep dive into my TinyProof research extending AlphaProof, plus insights into R\'max Tree Search algorithms and formal theorem proving.',
         technologies: ['Research', 'Theorem Proving', 'RL', 'Academic Writing'],
@@ -206,8 +199,8 @@ export const projectsData: PortfolioSection[] = [
       {
         id: 'tinyproof',
         title: 'TinyProof',
-        subtitle: 'RL-based theorem prover extending AlphaProof',
-        description: 'Conducted original research under Dr. Mohammad to build an RL-based theorem prover using R\'max Tree Search, achieving 87% on college-level proofs. Engineered ETL pipeline leveraging LeanDojo for scalable data handling.',
+        subtitle: 'RL-based theorem prover extending from AlphaProof',
+        description: '',
         technologies: ['PyTorch', 'Google Cloud Platform', 'LeanDojo', 'Lean4', 'Docker', 'Reinforcement Learning'],
         link: '#',
         github: 'https://github.com/utmgdsc/TinyProof',
@@ -216,8 +209,7 @@ export const projectsData: PortfolioSection[] = [
       {
         id: 'adaptive-education-ml',
         title: 'Machine Learning Model for Adaptive Education',
-        subtitle: 'Predicting student performance with 75% accuracy',
-        description: 'Collaborated in a team of four to develop a machine learning model for predicting student performance and recommending question difficulty. Enhanced traditional Item Response Theory (IRT) to outperform baseline models.',
+        subtitle: '',
         technologies: ['PyTorch', 'NumPy', 'Machine Learning', 'Item Response Theory'],
         link: '#',
         github: '#',
@@ -248,138 +240,6 @@ export const projectsData: PortfolioSection[] = [
         title: 'Netflix-Style Portfolio',
         subtitle: 'Interactive persona-based portfolio with animations',
         description: 'A revolutionary portfolio website that reimagines professional presentation through Netflix\'s engaging interface paradigm. Features persona-based content delivery, advanced performance optimization, and scroll-based lazy loading. Built with Next.js 15, TypeScript, and Framer Motion for a smooth, responsive experience.',
-        blogContent: `A revolutionary portfolio website that reimagines professional presentation through Netflix's engaging interface paradigm. This project demonstrates advanced React patterns, performance optimization, and user experience design.
-
-## 🎯 Project Vision
-
-The goal was to create a portfolio that breaks away from traditional, static formats and instead provides an immersive, entertainment-style experience that adapts to different viewer types. By leveraging Netflix's proven UX patterns, the portfolio becomes an engaging narrative rather than a simple resume.
-
-## 🏗️ Technical Architecture
-
-### Core Technologies
-- **Next.js 15** with App Router for optimal performance and SEO
-- **TypeScript** for type safety and developer experience
-- **Tailwind CSS 4** for rapid, responsive styling
-- **Framer Motion** for sophisticated animations and micro-interactions
-
-### Advanced Features Implemented
-
-#### 1. Persona-Based Content Delivery
-The portfolio dynamically adapts content based on user type:
-- **Recruiter**: Focus on achievements, work authorization, and immediate impact
-- **Developer**: Technical deep-dives, code examples, and architectural decisions
-- **Stalker**: Personal insights, detailed project breakdowns, and thought processes
-- **Adventurer**: Creative projects, experiments, and unconventional content
-
-#### 2. Performance Optimization Suite
-- **Scroll-based Lazy Loading**: Implemented intersection observer pattern for loading sections only when they enter the viewport
-- **Dynamic Icon Loading**: Created custom DynamicIcon component to reduce initial bundle size by 30%
-- **Memoization Strategy**: Used React.memo and useMemo throughout for optimal re-render performance
-- **Animation Optimization**: Reduced animation delays from 2-3s to sub-300ms for immediate responsiveness
-
-#### 3. Netflix-Inspired UX Patterns
-- **"Who's Watching?" Selection**: Interactive persona selection with smooth transitions
-- **Horizontal Scrolling Rows**: Implemented smooth, momentum-based horizontal scroll for project categories
-- **Hover Preview Cards**: Advanced hover effects with content expansion and smooth scaling
-- **Continue Watching**: Persistent state management for user journey tracking
-
-#### 4. Advanced Component Architecture
-\`\`\`typescript
-// Example: Scroll-based lazy loading implementation
-const { ref: intersectionRef, isVisible } = useIntersectionObserver({
-  threshold: 0.1,
-  rootMargin: '100px 0px', // Load 100px before entering viewport
-  freezeOnceVisible: true
-})
-\`\`\`
-
-#### 5. Accessibility & Performance
-- **WCAG 2.1 AA Compliance**: Full keyboard navigation, screen reader support, and semantic HTML
-- **Core Web Vitals Optimization**: LCP < 2.5s, FID < 100ms, CLS < 0.1
-- **Progressive Enhancement**: Graceful degradation for users with reduced motion preferences
-- **Responsive Design**: Flawless experience across all device types and orientations
-
-## 💡 Innovation Highlights
-
-### Custom Hook System
-Created reusable hooks for common patterns:
-- \`useIntersectionObserver\`: For scroll-based loading and animations
-- \`useScrollDirection\`: For navbar hide/show behavior
-- \`useDeviceDetection\`: For optimal experience across devices
-
-### Performance Monitoring
-Implemented comprehensive performance tracking:
-- Bundle size analysis and optimization
-- Runtime performance monitoring
-- User interaction tracking
-- Load time optimization
-
-### Design System Integration
-Built a comprehensive design system with:
-- Consistent spacing and typography scales
-- Reusable animation presets
-- Color system with semantic naming
-- Component variants and composition patterns
-
-## 🚀 Results & Impact
-
-### Performance Metrics
-- **Lighthouse Score**: 98% Performance, 100% Accessibility, 95% SEO
-- **Bundle Size**: Reduced initial load by 35% through strategic code splitting
-- **Load Time**: Sub-1s on fast connections, sub-3s on 3G networks
-- **User Engagement**: 40% higher session duration compared to traditional portfolios
-
-### Technical Achievements
-- **Zero Layout Shift**: Achieved CLS score of 0.0 through careful image and content loading
-- **Smooth 60fps Animations**: Optimized all animations for consistent frame rates
-- **Cross-browser Compatibility**: Tested and optimized for all modern browsers
-- **SEO Optimization**: Dynamic meta tags and structured data for optimal search visibility
-
-## 🔧 Development Process
-
-### Iterative Performance Optimization
-1. **Initial Implementation**: Basic Netflix-style layout with standard loading
-2. **Performance Audit**: Identified artificial delays and bundle size issues
-3. **Optimization Phase**: Implemented lazy loading, memoization, and animation streamlining
-4. **Testing & Validation**: Comprehensive testing across devices and network conditions
-
-### Code Quality Standards
-- **TypeScript Strict Mode**: Zero any types, comprehensive interface definitions
-- **ESLint + Prettier**: Automated code formatting and error detection
-- **Git Hooks**: Pre-commit linting and testing to maintain code quality
-- **Component Testing**: Unit tests for critical components and user interactions
-
-## 🎨 Design Philosophy
-
-### Visual Hierarchy
-The design follows Netflix's proven information architecture:
-- Clear primary actions (persona selection)
-- Secondary content discovery (project browsing)
-- Tertiary detail exploration (individual project deep-dives)
-
-### Interaction Design
-Every interaction is designed to feel responsive and meaningful:
-- Hover states that provide immediate feedback
-- Loading states that communicate progress clearly
-- Transition animations that guide user attention
-- Error states that provide helpful guidance
-
-## 🔮 Future Enhancements
-
-### Planned Features
-- **Analytics Dashboard**: Real-time visitor insights and interaction tracking
-- **Dark/Light Mode**: Comprehensive theme system with user preference persistence
-- **Multi-language Support**: Internationalization for global accessibility
-- **Progressive Web App**: Offline functionality and app-like experience
-
-### Technical Roadmap
-- **Server-Side Caching**: Implement Redis for dynamic content caching
-- **CDN Integration**: Global content delivery for international users
-- **A/B Testing**: Framework for testing UX improvements
-- **Real-time Updates**: WebSocket integration for live content updates
-
-This project represents a convergence of modern web development practices, thoughtful user experience design, and performance engineering. It demonstrates not just technical capability, but also creative problem-solving and attention to detail that makes the difference between good and exceptional digital experiences.`,
-        technologies: ['Next.js 15', 'TypeScript', 'Tailwind CSS 4', 'Framer Motion', 'React Hooks', 'Intersection Observer API', 'Performance Optimization', 'Accessibility', 'Responsive Design'],
         link: '#',
         github: 'https://github.com/stericishere/netflix-portfolio',
         type: 'project'

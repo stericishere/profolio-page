@@ -22,7 +22,11 @@ export default function BlogPostClient({ project }: BlogPostClientProps) {
         setIsLoading(true)
         
         // Try to fetch markdown file for this project
-        const response = await fetch(`/api/content/projects/${project.id}`)
+        // Add cache busting in development
+        const cacheBuster = process.env.NODE_ENV === 'development' ? `?t=${Date.now()}` : ''
+        const response = await fetch(`/api/content/projects/${project.id}${cacheBuster}`, {
+          cache: process.env.NODE_ENV === 'development' ? 'no-store' : 'default'
+        })
         
         if (response.ok) {
           const content = await response.text()
