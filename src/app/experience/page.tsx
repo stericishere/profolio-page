@@ -44,7 +44,38 @@ export default function ExperiencePage() {
     )
   }
 
-  const allExperience = experienceData.flatMap(section => section.items)
+  // Sort experience by date (most recent first)
+  const allExperience = experienceData.flatMap(section => section.items).sort((a, b) => {
+    // Extract date from subtitle (format: "Company | Date")
+    const getDateFromSubtitle = (subtitle: string) => {
+      const datePart = subtitle.split(' | ')[1]
+      if (!datePart) return new Date(0)
+      
+      // Handle "Present" case
+      if (datePart.includes('Present')) {
+        return new Date() // Current date for ongoing positions
+      }
+      
+      // Extract start date from range (e.g., "Sep 2024 - April 2025" -> "Sep 2024")
+      const startDate = datePart.split(' - ')[0]
+      
+      // Parse month year format
+      const monthYear = startDate.trim()
+      const parts = monthYear.split(' ')
+      if (parts.length === 2) {
+        const [month, year] = parts
+        const monthIndex = new Date(Date.parse(month + " 1, 2000")).getMonth()
+        return new Date(parseInt(year), monthIndex)
+      }
+      
+      return new Date(0)
+    }
+    
+    const dateA = getDateFromSubtitle(a.subtitle)
+    const dateB = getDateFromSubtitle(b.subtitle)
+    
+    return dateB.getTime() - dateA.getTime() // Most recent first
+  })
 
   return (
     <div className="min-h-screen bg-black text-white">
@@ -83,7 +114,7 @@ export default function ExperiencePage() {
               transition={{ delay: 0.4, duration: 0.5 }}
               className="text-center p-6 bg-gradient-to-br from-green-900/20 to-green-800/10 rounded-lg border border-green-500/20"
             >
-              <div className="text-3xl font-bold text-green-400 mb-2">7+</div>
+              <div className="text-3xl font-bold text-green-400 mb-2">3+</div>
               <div className="text-gray-300">Years Experience</div>
             </motion.div>
             <motion.div
@@ -92,7 +123,7 @@ export default function ExperiencePage() {
               transition={{ delay: 0.5, duration: 0.5 }}
               className="text-center p-6 bg-gradient-to-br from-blue-900/20 to-blue-800/10 rounded-lg border border-blue-500/20"
             >
-              <div className="text-3xl font-bold text-blue-400 mb-2">4</div>
+              <div className="text-3xl font-bold text-blue-400 mb-2">1</div>
               <div className="text-gray-300">Companies</div>
             </motion.div>
             <motion.div
@@ -101,7 +132,7 @@ export default function ExperiencePage() {
               transition={{ delay: 0.6, duration: 0.5 }}
               className="text-center p-6 bg-gradient-to-br from-purple-900/20 to-purple-800/10 rounded-lg border border-purple-500/20"
             >
-              <div className="text-3xl font-bold text-purple-400 mb-2">50+</div>
+              <div className="text-3xl font-bold text-purple-400 mb-2">10+</div>
               <div className="text-gray-300">Projects Delivered</div>
             </motion.div>
           </div>

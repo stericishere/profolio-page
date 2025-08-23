@@ -32,7 +32,7 @@ export const topPicksData: PortfolioSection[] = [
       {
         id: 'work-visa-status',
         title: 'Work Authorization',
-        subtitle: 'CO-OP Work Permit - Ready for Internships',
+        subtitle: 'CO-OP Work Permit',
         technologies: ['CO-OP Work Permit', 'Internship Ready', 'University of Toronto'],
         link: '/work-authorization',
         type: 'contact'
@@ -41,14 +41,16 @@ export const topPicksData: PortfolioSection[] = [
         id: 'Experience',
         title: 'Experience',
         subtitle: 'Award-Winning prototype',
+        description: '',
         technologies: ['PyTorch', 'Azure ML', 'TCN', 'Computer Vision'],
         link: '/experience',
         type: 'experience'
       },
       {
         id: 'Projects',
-        title: 'ML/RL + Multi-agent system',
-        subtitle: '87% accuracy on college-level theorem proving',
+        title: 'Projects',
+        subtitle: 'ML/RL + Multi-agent system',
+        description: '',
         technologies: ['RL Game play Project', 'AI multi-agent Project', 'Project', 'Research'],
         link: '/projects',
         github: 'https://github.com/utmgdsc/TinyProof',
@@ -58,6 +60,7 @@ export const topPicksData: PortfolioSection[] = [
         id: 'Contact',
         title: 'Ready to Discuss Opportunities',
         subtitle: 'Let\'s talk about your AI/ML roles',
+        description: '',
         technologies: ['Fall/Winter', 'Competitive Salary', 'Remote/Hybrid'],
         link: '/contact',
         type: 'contact'
@@ -70,8 +73,9 @@ export const topPicksData: PortfolioSection[] = [
     items: [
       {
         id: 'Projects',
-        title: 'ML/RL + Multi-agent system',
-        subtitle: '87% accuracy on college-level theorem proving',
+        title: 'ProjectsML/RL + Multi-agent system',
+        subtitle: 'ML/RL + Multi-agent system',
+        description: '',
         technologies: ['RL Game play Project', 'AI multi-agent Project', 'Project', 'Research'],
         link: '/projects',
         github: 'https://github.com/utmgdsc/TinyProof',
@@ -80,8 +84,9 @@ export const topPicksData: PortfolioSection[] = [
       {
         id: 'Skills',
         title: 'Skills',
-        subtitle: 'What skill do I have!',
-        technologies: ['Python', 'C++', 'Pytorch', 'numpy', 'C++'],
+        subtitle: 'Skill I have',
+        description: '',
+        technologies: ['Python', 'C++', 'Pytorch', 'numpy', 'C++', 'Scikit-learn', 'LangChain'],
         link: '/experience',
         type: 'experience'
       },
@@ -89,12 +94,13 @@ export const topPicksData: PortfolioSection[] = [
         id: 'Experience',
         title: 'Experience',
         subtitle: 'Award-Winning prototype',
+        description: '',
         technologies: ['PyTorch', 'Azure ML', 'TCN', 'Computer Vision'],
         link: '/experience',
         type: 'experience'
       },
       {
-        id: 'collaboration-invite',
+        id: 'Collaboration!',
         title: 'Let\'s Work on Something Together',
         subtitle: 'Always excited about new technical challenges',
         description: 'Got an interesting problem to solve? Want to pair program or collaborate on an open source project? Let\'s build something awesome!',
@@ -110,34 +116,34 @@ export const topPicksData: PortfolioSection[] = [
     items: [
       {
         id: 'Projects',
-        title: 'Projects',
-        subtitle: 'Original research in theorem proving and RL',
-        description: 'Deep dive into my TinyProof research extending AlphaProof, plus insights into R\'max Tree Search algorithms and formal theorem proving.',
-        technologies: ['Research', 'Theorem Proving', 'RL', 'Academic Writing'],
+        title: 'ProjectsML/RL + Multi-agent system',
+        subtitle: 'ML/RL + Multi-agent system',
+        description: '',
+        technologies: ['RL Game play Project', 'AI multi-agent Project', 'Project', 'Research'],
         link: '/projects',
         github: 'https://github.com/utmgdsc/TinyProof',
         type: 'project'
       },
       {
-        id: 'technical-certifications',
-        title: 'Cloud & ML Certifications',
-        subtitle: 'AWS, Oracle, and Google Cloud credentials',
-        description: 'Certified in AWS Machine Learning Engineer-Associate, Oracle Cloud Foundations, and Google Cloud Essentials. Deep technical knowledge across platforms.',
-        technologies: ['AWS', 'Oracle Cloud', 'Google Cloud', 'MLOps'],
-        link: '/skills',
-        type: 'achievement'
-      },
-      {
-        id: 'conference-involvement',
-        title: 'UofT AI Conference Associate',
-        subtitle: 'AI community building and organization',
-        description: 'Contributing to AI conference organization at University of Toronto. Building bridges between academia and industry in the AI community.',
-        technologies: ['AI Community', 'Conference Planning', 'Networking'],
+        id: 'Skills',
+        title: 'Skills',
+        subtitle: 'Skill I have',
+        description: '',
+        technologies: ['Python', 'C++', 'Pytorch', 'numpy', 'C++'],
         link: '/experience',
         type: 'experience'
       },
       {
-        id: 'connect-stalker',
+        id: 'Experience',
+        title: 'Experience',
+        subtitle: 'Award-Winning prototype',
+        description: '',
+        technologies: ['PyTorch', 'Azure ML', 'TCN', 'Computer Vision'],
+        link: '/experience',
+        type: 'experience'
+      },
+      {
+        id: 'Connect',
         title: 'Let\'s Connect!',
         subtitle: 'For deeper conversations about AI and humanity',
         description: 'Interested in discussing AI consciousness, the singularity, or just want to share interesting articles? I love thoughtful conversations.',
@@ -152,38 +158,39 @@ export const topPicksData: PortfolioSection[] = [
     title: 'Today\'s Top Picks for Adventurer',
     items: [
       {
-        id: 'pokemon-rl-adventure',
-        title: 'PokemonRed RL Agent',
-        subtitle: 'Training AI to master retro games',
-        description: 'Built an AI agent that learns to play Pokémon Red from pixels using PPO and advanced reward shaping. Tackled complex exploration challenges and emergent behaviors.',
-        technologies: ['Reinforcement Learning', 'Game AI', 'PyBoy', 'PPO'],
+        id: 'Projects',
+        title: 'ProjectsML/RL + Multi-agent system',
+        subtitle: 'ML/RL + Multi-agent system',
+        description: '',
+        technologies: ['RL Game play Project', 'AI multi-agent Project', 'Project', 'Research'],
         link: '/projects',
+        github: 'https://github.com/utmgdsc/TinyProof',
         type: 'project'
       },
       {
-        id: 'adaptive-education-ml',
-        title: 'Adaptive Education ML Model',
-        subtitle: '75% accuracy in student performance prediction',
-        description: 'Enhanced traditional Item Response Theory (IRT) to create personalized learning experiences. Outperformed neural networks and ensemble methods in team collaboration.',
-        technologies: ['Machine Learning', 'Education Tech', 'IRT', 'PyTorch'],
-        link: '/projects',
-        type: 'project'
+        id: 'Skills',
+        title: 'Skills',
+        subtitle: 'Skill I have',
+        description: '',
+        technologies: ['Python', 'C++', 'Pytorch', 'numpy', 'C++'],
+        link: '/experience',
+        type: 'experience'
       },
       {
-        id: 'multi-agent-dating',
-        title: 'Generative Agents Dating Show',
-        subtitle: 'Complex social AI simulation',
-        description: 'Re-architected Generative Agents using PIANO architecture for realistic multi-agent social interactions. Built real-time agent behavior visualization system.',
-        technologies: ['LangGraph', 'Multi-Agent Systems', 'Social AI'],
-        link: '/projects',
-        type: 'project'
+        id: 'Experience',
+        title: 'Experience',
+        subtitle: 'Award-Winning prototype',
+        description: '',
+        technologies: ['PyTorch', 'Azure ML', 'TCN', 'Computer Vision'],
+        link: '/experience',
+        type: 'experience'
       },
       {
-        id: 'adventure-together',
-        title: 'Want to Go on an Adventure Together?',
-        subtitle: 'Let\'s explore uncharted technical territories',
-        description: 'Ready to tackle impossible problems, build something nobody has tried, or just embark on an intellectual adventure? I\'m in!',
-        technologies: ['Bold Ideas', 'Risk Taking', 'Innovation'],
+        id: 'Connect',
+        title: 'Let\'s Connect!',
+        subtitle: 'For deeper conversations about AI and humanity',
+        description: 'Interested in discussing AI consciousness, the singularity, or just want to share interesting articles? I love thoughtful conversations.',
+        technologies: ['Deep Conversations', 'AI Philosophy', 'Future Studies'],
         link: '/contact',
         type: 'contact'
       }
@@ -210,6 +217,7 @@ export const projectsData: PortfolioSection[] = [
         id: 'adaptive-education-ml',
         title: 'Machine Learning Model for Adaptive Education',
         subtitle: '',
+        description: '',
         technologies: ['PyTorch', 'NumPy', 'Machine Learning', 'Item Response Theory'],
         link: '#',
         github: '#',
@@ -219,28 +227,29 @@ export const projectsData: PortfolioSection[] = [
         id: 'pokemon-rl-agent',
         title: 'PokemonRed -- RL Game-Playing Agent',
         subtitle: 'AI agent trained to play Pokémon Red from pixels',
-        description: 'Applied RL to train an AI agent using PyBoy and Stable Baselines 3. Developed CNN-based policy network using PPO with frame stacking and auxiliary memory features. Engineered reward shaping strategies to guide learning.',
+        description: '',
         technologies: ['Python', 'PyBoy', 'Stable Baselines 3', 'PPO', 'Computer Vision'],
         link: '#',
         github: '#',
         type: 'project'
       },
       {
-        id: 'generative-agents-dating',
+        id: 'Generative-agents-simulation',
         title: 'Generative Agents: The Dating Show',
         subtitle: 'Multi-agent simulation using PIANO architecture',
-        description: 'Re-architected the original Generative Agents framework using PIANO architecture. Designed a novel "dating show" simulation demonstrating complex multi-agent interaction. Developed interactive "follow an agent" feature for real-time behavior visualization.',
+        description: 'Re-architected the original Generative Agents framework using PIANO architecture.',
         technologies: ['LangGraph', 'Docker', 'LLM', 'Multi-Agent Systems'],
         link: '#',
         github: '#',
         type: 'project'
       },
       {
-        id: 'netflix-portfolio',
+        id: 'Netflix-portfolio',
         title: 'Netflix-Style Portfolio',
         subtitle: 'Interactive persona-based portfolio with animations',
-        description: 'A revolutionary portfolio website that reimagines professional presentation through Netflix\'s engaging interface paradigm. Features persona-based content delivery, advanced performance optimization, and scroll-based lazy loading. Built with Next.js 15, TypeScript, and Framer Motion for a smooth, responsive experience.',
+        description: 'Portfolio blog',
         link: '#',
+        technologies: ['Next.js', 'Typescript', 'Javascript'],
         github: 'https://github.com/stericishere/netflix-portfolio',
         type: 'project'
       }

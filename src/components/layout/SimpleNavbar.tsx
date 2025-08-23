@@ -14,14 +14,14 @@ interface SimpleNavbarProps {
 export function SimpleNavbar({ selectedPersona, onBackToSelection }: SimpleNavbarProps = {}) {
   
   const navItems = [
-    { name: 'Home', href: '/', isRoute: true },
+    { name: 'Home', href: '/', isRoute: true, isHome: true },
     { name: 'Projects', href: '/projects', isRoute: true },
     { name: 'Experience', href: '/experience', isRoute: true },
     { name: 'Skills', href: '/skills', isRoute: true },
     { name: 'Contact', href: '/contact', isRoute: true }
   ]
 
-  const handleNavigation = (item: { name: string; href: string; isRoute?: boolean }) => {
+  const handleNavigation = (item: { name: string; href: string; isRoute?: boolean; isHome?: boolean }) => {
     if (item.isRoute) {
       // For route navigation, we'll use Next.js routing
       return

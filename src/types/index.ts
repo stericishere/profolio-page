@@ -26,3 +26,11 @@ export interface Experience {
   description: string;
   technologies: string[];
 }
+
+// Global window extensions for development utilities
+declare global {
+  interface Window {
+    resetNetflixOpening: () => void;
+    resetPersonaSelection: () => void;
+  }
+}

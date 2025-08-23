@@ -47,6 +47,7 @@ type AppState = 'opening' | 'persona-selection' | 'portfolio'
 
 export default function Home() {
   const [appState, setAppState] = useState<AppState>('opening')
+  const [isClient, setIsClient] = useState(false)
   const [selectedPersona, setSelectedPersona] = useState<Persona | null>(null)
   const { preloadedData, isDataReady } = useDataPreload()
   const [portfolioData, setPortfolioData] = useState<{
@@ -60,6 +61,35 @@ export default function Home() {
     contactData: [],
     topPicksData: []
   })
+
+  // Check session storage and restore previous state on client side
+  useEffect(() => {
+    setIsClient(true)
+    
+    // Check session storage for previous state
+    const hasSeenOpening = sessionStorage.getItem('netflix-opening-seen') === 'true'
+    const savedPersonaData = sessionStorage.getItem('selected-persona')
+    const portfolioReady = sessionStorage.getItem('portfolio-ready') === 'true'
+    
+    if (portfolioReady && savedPersonaData) {
+      // User has completed full onboarding - restore portfolio state
+      try {
+        const parsedPersona = JSON.parse(savedPersonaData)
+        setSelectedPersona(parsedPersona)
+        setAppState('portfolio')
+      } catch (error) {
+        console.error('Error parsing saved persona:', error)
+        // Fallback to persona selection if parsing fails
+        if (hasSeenOpening) {
+          setAppState('persona-selection')
+        }
+      }
+    } else if (hasSeenOpening) {
+      // User has seen opening but hasn't completed onboarding
+      setAppState('persona-selection')
+    }
+    // If neither flag is set, keep default 'opening' state
+  }, [])
 
   // Load portfolio data when preloading completes
   useEffect(() => {
@@ -93,10 +123,22 @@ export default function Home() {
   const handlePersonaSelect = (persona: Persona) => {
     setSelectedPersona(persona)
     setAppState('portfolio')
+    
+    // Save persona selection and mark portfolio as ready
+    if (typeof window !== 'undefined') {
+      sessionStorage.setItem('selected-persona', JSON.stringify(persona))
+      sessionStorage.setItem('portfolio-ready', 'true')
+    }
   }
 
   const handleBackToSelection = () => {
     setAppState('persona-selection')
+    // Clear portfolio ready flag when manually switching personas
+    if (typeof window !== 'undefined') {
+      sessionStorage.removeItem('portfolio-ready')
+      sessionStorage.removeItem('selected-persona')
+    }
+    setSelectedPersona(null)
   }
 
   const jobTitles = [
@@ -107,12 +149,50 @@ export default function Home() {
 
   const typewriterText = useTypewriter(jobTitles, 100)
 
+  // Mark opening as seen and proceed to persona selection
+  const handleOpeningComplete = () => {
+    if (typeof window !== 'undefined') {
+      sessionStorage.setItem('netflix-opening-seen', 'true')
+    }
+    setAppState('persona-selection')
+  }
+
+  // Development utilities (for testing)
+  // You can call these from browser console
+  useEffect(() => {
+    if (typeof window !== 'undefined') {
+      window.resetNetflixOpening = () => {
+        sessionStorage.removeItem('netflix-opening-seen')
+        sessionStorage.removeItem('selected-persona')
+        sessionStorage.removeItem('portfolio-ready')
+        setSelectedPersona(null)
+        setAppState('opening')
+      }
+      
+      window.resetPersonaSelection = () => {
+        sessionStorage.removeItem('selected-persona')
+        sessionStorage.removeItem('portfolio-ready')
+        setSelectedPersona(null)
+        setAppState('persona-selection')
+      }
+    }
+  }, [])
+
+  // Show nothing until client-side hydration is complete
+  if (!isClient) {
+    return (
+      <div className="min-h-screen bg-black flex items-center justify-center">
+        <div className="w-8 h-8 border-2 border-red-600 border-t-transparent rounded-full animate-spin"></div>
+      </div>
+    )
+  }
+
   // Netflix Opening Animation
   if (appState === 'opening') {
     return (
       <NetflixOpening 
         customName="STERIC TSUI"
-        onComplete={() => setAppState('persona-selection')}
+        onComplete={handleOpeningComplete}
       />
     )
   }

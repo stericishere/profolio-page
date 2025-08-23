@@ -73,10 +73,6 @@ export default function ContactPage() {
           <h1 className="text-5xl md:text-6xl font-bold mb-6 bg-gradient-to-r from-red-500 to-red-600 bg-clip-text text-transparent">
             Get In Touch
           </h1>
-          <div className="text-2xl md:text-3xl font-semibold mb-4 text-gray-300">
-            <span className="text-white">{currentRole}</span>
-            <span className="animate-pulse ml-1 text-red-500">|</span>
-          </div>
           <p className="text-xl text-gray-400 max-w-3xl mx-auto leading-relaxed">
             Ready to explore AI/ML solutions or discuss agent development? Let&apos;s connect and 
             collaborate on innovative AI projects that push the boundaries of technology.
