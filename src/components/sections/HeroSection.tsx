@@ -26,8 +26,8 @@ export function HeroSection({ selectedPersona }: HeroSectionProps) {
       case 'Recruiter':
         return {
           title: "Agentic AI Specialist",
-          subtitle: "5+ years building intelligent AI systems & scalable applications",
-          description: "Expert in machine learning, LLMs, and AI agent development. Specialized in creating autonomous systems that solve complex business problems with cutting-edge technology.",
+          subtitle: "3+ years building intelligent AI systems & scalable applications",
+          description: "Excel in machine learning, LLMs, and AI agent development. Specialized in creating autonomous systems that solve complex business problems with cutting-edge technology.",
           cta: "View Resume",
           featured: "Featured: AI-Powered Enterprise Solutions",
           backgroundImage: "/assets/recruiter.gif",

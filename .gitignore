@@ -39,3 +39,22 @@ yarn-error.log*
 # typescript
 *.tsbuildinfo
 next-env.d.ts
+
+# AI related
+.claude/
+.venv/
+
+# Testing
+/tests/
+
+# Documentation
+*.md
+!README.md
+
+# Screenshots
+Screenshot*.png
+gif-scaling-test.png
+
+# Other
+playwright-report/
+*.pdf

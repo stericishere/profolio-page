@@ -61,7 +61,7 @@ export const topPicksData: PortfolioSection[] = [
         title: 'Ready to Discuss Opportunities',
         subtitle: 'Let\'s talk about your AI/ML roles',
         description: '',
-        technologies: ['Fall/Winter', 'Competitive Salary', 'Remote/Hybrid'],
+        technologies: ['Summer Intern', 'CO-OP Intern', 'Remote/Hybrid', "Fall/Winter"],
         link: '/contact',
         type: 'contact'
       }
@@ -214,23 +214,23 @@ export const projectsData: PortfolioSection[] = [
         type: 'project'
       },
       {
-        id: 'adaptive-education-ml',
-        title: 'Machine Learning Model for Adaptive Education',
+        id: 'ML-adaptive-education',
+        title: 'Machine Learning for Adaptive Education',
         subtitle: '',
         description: '',
         technologies: ['PyTorch', 'NumPy', 'Machine Learning', 'Item Response Theory'],
         link: '#',
-        github: '#',
+        github: 'https://github.com/stericishere/ML-for-Adaptive-Education',
         type: 'project'
       },
       {
-        id: 'pokemon-rl-agent',
-        title: 'PokemonRed -- RL Game-Playing Agent',
+        id: 'RL-agent-play-Mini-Motorway',
+        title: 'RL agent play Mini-Motorway',
         subtitle: 'AI agent trained to play Pokémon Red from pixels',
         description: '',
         technologies: ['Python', 'PyBoy', 'Stable Baselines 3', 'PPO', 'Computer Vision'],
         link: '#',
-        github: '#',
+        github: 'https://github.com/stericishere/RL-agent-play-Mini-Motorway',
         type: 'project'
       },
       {
@@ -240,7 +240,7 @@ export const projectsData: PortfolioSection[] = [
         description: 'Re-architected the original Generative Agents framework using PIANO architecture.',
         technologies: ['LangGraph', 'Docker', 'LLM', 'Multi-Agent Systems'],
         link: '#',
-        github: '#',
+        github: 'https://github.com/stericishere/generative_agents',
         type: 'project'
       },
       {
@@ -266,7 +266,7 @@ export const experienceData: PortfolioSection[] = [
         id: 'ml-engineer-squirl',
         title: 'ML Engineer',
         subtitle: 'Squirl ASL | Sep 2024 - April 2025',
-        description: 'Fine-tuned Temporal Convolutional Networks (TCN) for award-winning ASL recognition prototype. Reduced inference computation by 33% using dynamic frame sampling in Azure ML. Improved F1 score by 22% through dataset quality enhancement.',
+        description: 'A startup that selected for the Microsoft Startup Club and funded by Alterna Savings to develop a B2B ASL translator',
         technologies: ['PyTorch', 'Azure ML', 'TCN', 'Pandas', 'NumPy', 'Computer Vision'],
         type: 'experience'
       },

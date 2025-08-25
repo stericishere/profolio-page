@@ -132,7 +132,7 @@ export default function ExperiencePage() {
               transition={{ delay: 0.6, duration: 0.5 }}
               className="text-center p-6 bg-gradient-to-br from-purple-900/20 to-purple-800/10 rounded-lg border border-purple-500/20"
             >
-              <div className="text-3xl font-bold text-purple-400 mb-2">10+</div>
+              <div className="text-3xl font-bold text-purple-400 mb-2">8+</div>
               <div className="text-gray-300">Projects Delivered</div>
             </motion.div>
           </div>
@@ -218,7 +218,7 @@ export default function ExperiencePage() {
                         <svg className="w-4 h-4 text-blue-400" fill="currentColor" viewBox="0 0 20 20">
                           <path fillRule="evenodd" d="M6 6V5a3 3 0 013-3h2a3 3 0 013 3v1h2a2 2 0 012 2v3.57A22.952 22.952 0 0110 13a22.95 22.95 0 01-8-1.43V8a2 2 0 012-2h2zm2-1a1 1 0 011-1h2a1 1 0 011 1v1H8V5zm1 5a1 1 0 011-1h.01a1 1 0 110 2H10a1 1 0 01-1-1z" clipRule="evenodd" />
                         </svg>
-                        <span>Remote</span>
+                        <span>On site</span>
                       </div>
                     </div>
                   </motion.div>

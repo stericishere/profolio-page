@@ -124,6 +124,6 @@ Rebuilding my portfolio as a streaming service was equal parts **overkill and jo
 
 If you give it a spin, I’d love feedback—PRs, GitHub issues, or just a note saying which persona you picked first on LinkedIn!
 
-Let’s keep making the **Portfolio** feel more like a **Real Person** and less like **your one page Resume**
+Let’s keep the **Portfolio** feel more like a **real person** and less like **your one page Resume**
 
 ---
