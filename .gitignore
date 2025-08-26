@@ -50,6 +50,7 @@ next-env.d.ts
 # Documentation
 *.md
 !README.md
+!content/projects/
 
 # Screenshots
 Screenshot*.png
