@@ -24,7 +24,7 @@ export default function BlogPostClient({ project }: BlogPostClientProps) {
         // Try to fetch markdown file for this project
         // Add cache busting in development
         const cacheBuster = process.env.NODE_ENV === 'development' ? `?t=${Date.now()}` : ''
-        const response = await fetch(`/api/content/projects/${project.id}${cacheBuster}`, {
+        const response = await fetch(`/api/content/projects/${project.slug}${cacheBuster}`, {
           cache: process.env.NODE_ENV === 'development' ? 'no-store' : 'default'
         })
         
@@ -56,7 +56,7 @@ export default function BlogPostClient({ project }: BlogPostClientProps) {
     }
 
     loadMarkdownContent()
-  }, [project.id, project.blogContent])
+  }, [project.slug, project.blogContent])
 
   // Check if this project has blog content to render as markdown
   const hasBlogContent = hasMarkdownFile && markdownContent.trim().length > 0
