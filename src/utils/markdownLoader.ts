@@ -18,8 +18,22 @@ export interface MarkdownContent {
  */
 export async function loadProjectMarkdown(slug: string): Promise<MarkdownContent> {
   try {
-    // Construct path to markdown file
-    const markdownPath = path.join(process.cwd(), 'src', 'content', 'projects', `${slug}.md`);
+    // First try exact match
+    let markdownPath = path.join(process.cwd(), 'src', 'content', 'projects', `${slug}.md`);
+    
+    // If exact match doesn't exist, try case-insensitive match
+    if (!fs.existsSync(markdownPath)) {
+      const contentDir = path.join(process.cwd(), 'src', 'content', 'projects');
+      if (fs.existsSync(contentDir)) {
+        const files = fs.readdirSync(contentDir);
+        const matchingFile = files.find(file => 
+          file.toLowerCase() === `${slug.toLowerCase()}.md`
+        );
+        if (matchingFile) {
+          markdownPath = path.join(contentDir, matchingFile);
+        }
+      }
+    }
     
     // Check if file exists
     if (!fs.existsSync(markdownPath)) {

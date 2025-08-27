@@ -225,7 +225,7 @@ export default function Home() {
         }
       case 'Stalker':
         return {
-          backgroundImage: "/assets/stalker.webp",
+          backgroundImage: "/assets/stalker.gif",
           heroTitle: "The Person Behind the Code",
           heroSubtitle: "More than just a developer",
           heroDescription: "Coffee enthusiast, weekend hiker, and problem solver. Believes in building meaningful connections through technology and continuous learning."
@@ -233,9 +233,9 @@ export default function Home() {
       case 'Adventurer':
         return {
           backgroundImage: "/assets/adven.gif",
-          heroTitle: "Digital Explorer & Innovation Seeker",
+          heroTitle: "I LOVE ADENTURERR",
           heroSubtitle: "Turning ideas into reality",
-          heroDescription: "Entrepreneur at heart with experience in startups and side projects. Always looking for the next challenge and opportunity to create something amazing."
+          heroDescription: "I just love building cool stuff bring effect to live and such"
         }
       default:
         return {
@@ -320,7 +320,8 @@ export default function Home() {
                   href="/resume.pdf"
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="flex items-center gap-2 px-8 py-3 bg-white text-black rounded font-bold hover:bg-gray-200 transition-colors"
+                  className="flex items-center gap-2 px-8 py-4 bg-white text-black rounded-md font-bold hover:bg-gray-200 transition-colors min-h-[48px]"
+                  style={{ backgroundColor: '#ffffff', color: '#000000' }}
                   whileHover={{ scale: 1.05 }}
                   whileTap={{ scale: 0.95 }}
                 >
@@ -330,7 +331,7 @@ export default function Home() {
                   View my Resume
                 </motion.a>
                 <motion.button
-                  className="flex items-center gap-2 px-8 py-3 bg-gray-600/70 text-white rounded font-bold hover:bg-gray-500/70 transition-colors"
+                  className="flex items-center gap-2 px-8 py-4 bg-gray-600/70 text-white rounded-md font-bold hover:bg-gray-500/70 transition-colors min-h-[48px]"
                   whileHover={{ scale: 1.05 }}
                   whileTap={{ scale: 0.95 }}
                   onClick={() => document.getElementById('contact')?.scrollIntoView({ behavior: 'smooth' })}
