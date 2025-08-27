@@ -11,7 +11,7 @@ interface TemplateCardProps {
   linkTo?: string
 }
 
-export function TemplateCard({ item, index = 0, isInRow = false, linkTo }: TemplateCardProps) {
+export function TemplateCard({ item, index = 0, linkTo }: TemplateCardProps) {
   const handleClick = () => {
     if (linkTo) {
       // Use Next.js router for internal links

@@ -16,7 +16,7 @@ export function NetflixOpening({
   const [isVisible, setIsVisible] = useState(true)
   const [hasStarted, setHasStarted] = useState(false)
   const [isScalingUp, setIsScalingUp] = useState(false)
-  const { preloadAllData, preloadingProgress } = useDataPreload()
+  const { preloadAllData } = useDataPreload()
 
   const startSequence = () => {
     setHasStarted(true)

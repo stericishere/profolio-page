@@ -20,13 +20,11 @@ export function ContentCard({
   image, 
   type, 
   onClick, 
-  className = '',
-  id = `${type}-${title.toLowerCase().replace(/\s+/g, '-')}`
+  className = ''
 }: ContentCardProps) {
   const cardRef = useRef<HTMLDivElement>(null)
   const [elementBounds, setElementBounds] = useState<DOMRect | null>(null)
   const [viewport, setViewport] = useState<{ width: number; height: number } | null>(null)
-  const [isHovered, setIsHovered] = useState(false)
 
   useEffect(() => {
     const updateBounds = () => {
@@ -111,8 +109,6 @@ export function ContentCard({
           }
         }}
         whileTap={{ scale: 0.95 }}
-        onHoverStart={() => setIsHovered(true)}
-        onHoverEnd={() => setIsHovered(false)}
         style={{ 
           transformOrigin: 'transformOrigin' in hoverConfig ? hoverConfig.transformOrigin : 'center',
           backfaceVisibility: "hidden",

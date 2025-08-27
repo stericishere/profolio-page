@@ -72,10 +72,6 @@ export function getSafeScaleFactor(
 ): number {
   const { x, y, width, height } = elementBounds
   
-  // Calculate how much the element would expand
-  const expandedWidth = width * desiredScale
-  const expandedHeight = height * desiredScale
-  
   // Check horizontal constraints
   const leftSpace = x - padding
   const rightSpace = viewport.width - (x + width) - padding
