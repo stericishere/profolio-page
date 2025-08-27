@@ -214,28 +214,28 @@ export default function Home() {
           backgroundImage: "/assets/recruiter.gif",
           heroTitle: null, // Will use typewriter effect instead
           heroSubtitle: "UofT Student | AI Agent Development & Machine Learning",
-          heroDescription: "Passionate AI researcher specializing in intelligent agent systems, deep learning, and automated reasoning. Focused on building AI solutions that can understand, learn, and adapt to complex environments."
+          heroDescription: "Passionate AI researcher specializing in intelligent agentic systems, Computer Vision, and RL. Focused on building AI solutions that can understand and adapt to complex environments."
         }
       case 'Developer':
         return {
           backgroundImage: "/assets/developer.gif",
-          heroTitle: "Code Craftsman & Tech Enthusiast", 
-          heroSubtitle: "Passionate about clean code and innovative solutions",
-          heroDescription: "Deep expertise in modern JavaScript, TypeScript, Python, and cloud technologies. Always exploring cutting-edge frameworks and best practices."
+          heroTitle: "Wanna TEAM UPPPP", 
+          heroSubtitle: "Passionate about building innovative solutions in a fast paced environment and iterate the product over time",
+          heroDescription: "Expertise in building modern Next.js Web-app, Agentic system, and RL agent. Always exploring cutting-edge frameworks for best practices."
         }
       case 'Stalker':
         return {
           backgroundImage: "/assets/stalker.gif",
           heroTitle: "The Person Behind the Code",
           heroSubtitle: "More than just a developer",
-          heroDescription: "Coffee enthusiast, weekend hiker, and problem solver. Believes in building meaningful connections through technology and continuous learning."
+          heroDescription: "Coffee enthusiast, weekend sleeper, and problem solver. Believes in building meaningful connections through meaningful conv and continuous learning."
         }
       case 'Adventurer':
         return {
           backgroundImage: "/assets/adven.gif",
-          heroTitle: "I LOVE ADENTURERR",
+          heroTitle: "JUST LOVE ADENTURERR",
           heroSubtitle: "Turning ideas into reality",
-          heroDescription: "I just love building cool stuff bring effect to live and such"
+          heroDescription: "I just love building cool stuff that bring impact to real-life and something fun that I can look back to"
         }
       default:
         return {
