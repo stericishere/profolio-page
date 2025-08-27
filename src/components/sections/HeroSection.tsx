@@ -1,7 +1,7 @@
 'use client'
 
 import { motion, useScroll, useTransform } from 'framer-motion'
-import { useRef, useEffect, useState } from 'react'
+import { useRef } from 'react'
 import { type Persona } from '@/components/sections/WhosWatching'
 
 interface HeroSectionProps {
@@ -18,85 +18,19 @@ export function HeroSection({ selectedPersona }: HeroSectionProps) {
   const y = useTransform(scrollYProgress, [0, 1], ["0%", "50%"])
   const opacity = useTransform(scrollYProgress, [0, 0.8], [1, 0])
   
-  const [titleText, setTitleText] = useState("")
-  const [showCursor, setShowCursor] = useState(true)
-
-  const getPersonaContent = () => {
-    switch (selectedPersona.name) {
-      case 'Recruiter':
-        return {
-          title: "Agentic AI Specialist",
-          subtitle: "3+ years building intelligent AI systems & scalable applications",
-          description: "Excel in machine learning, LLMs, and AI agent development. Specialized in creating autonomous systems that solve complex business problems with cutting-edge technology.",
-          cta: "View Resume",
-          featured: "Featured: AI-Powered Enterprise Solutions",
-          backgroundImage: "/assets/recruiter.gif",
-          skills: ["Machine Learning", "LLM Development", "AI Agents", "Python", "TensorFlow"]
-        }
-      case 'Developer':
-        return {
-          title: "AI Code Craftsman & Tech Innovator", 
-          subtitle: "Passionate about intelligent systems and cutting-edge AI",
-          description: "Deep expertise in AI/ML frameworks, agent architectures, and modern development practices. Always exploring the latest in artificial intelligence and autonomous systems.",
-          cta: "Explore Code",
-          featured: "Featured: Open Source AI Contributions",
-          backgroundImage: "/assets/developer.gif",
-          skills: ["PyTorch", "LangChain", "Autonomous Agents", "API Design", "Cloud ML"]
-        }
-      case 'Stalker':
-        return {
-          title: "The AI Engineer Behind the Magic",
-          subtitle: "More than just algorithms and models",
-          description: "Coffee-fueled AI researcher, weekend hiker, and problem solver. Believes in building meaningful AI that enhances human potential and drives positive change.",
-          cta: "Get to Know Me",
-          featured: "Featured: Personal Journey in AI",
-          backgroundImage: "/assets/stalker.gif",
-          skills: ["Research", "Ethics in AI", "Mentoring", "Innovation", "Leadership"]
-        }
-      case 'Adventurer':
-        return {
-          title: "AI Pioneer & Innovation Catalyst",
-          subtitle: "Transforming ideas into intelligent reality",
-          description: "Entrepreneur at heart with experience building AI startups and revolutionary products. Always seeking the next breakthrough in artificial intelligence and automation.",
-          cta: "See Adventures",
-          featured: "Featured: AI Startup Journey",
-          backgroundImage: "/assets/adven.gif",
-          skills: ["Entrepreneurship", "AI Product Development", "Team Building", "Vision", "Execution"]
-        }
-      default:
-        return {
-          title: "Agentic AI Developer",
-          subtitle: "Building the future with intelligent systems",
-          description: "Passionate AI engineer with expertise in autonomous agents and intelligent automation.",
-          cta: "Learn More",
-          featured: "Featured: Latest AI Work",
-          backgroundImage: null,
-          skills: ["AI", "Machine Learning", "Automation", "Innovation", "Development"]
-        }
-    }
+  // Simple Netflix-style hero without redundant persona content
+  const content = {
+    title: `Welcome, ${selectedPersona.name}`,
+    subtitle: "Your Personalized Netflix Experience",
+    description: "Discover curated content tailored just for you",
+    featured: "Featured Content",
+    cta: "Explore Content",
+    backgroundImage: selectedPersona.name === 'Recruiter' ? "/assets/recruiter.gif" :
+                     selectedPersona.name === 'Developer' ? "/assets/developer.gif" :
+                     selectedPersona.name === 'Stalker' ? "/assets/stalker.gif" :
+                     selectedPersona.name === 'Adventurer' ? "/assets/adven.gif" : null,
+    skills: ["AI", "ML", "Development", "Innovation"]
   }
-
-  const content = getPersonaContent()
-
-  // Typewriter effect for title
-  useEffect(() => {
-    setTitleText("")
-    let index = 0
-    const fullTitle = content.title
-    
-    const typeWriter = () => {
-      if (index < fullTitle.length) {
-        setTitleText(fullTitle.slice(0, index + 1))
-        index++
-        setTimeout(typeWriter, 100)
-      } else {
-        // Blink cursor for a bit then hide it
-        setTimeout(() => setShowCursor(false), 2000)
-      }
-    }
-    
-    setTimeout(typeWriter, 800)
-  }, [content.title])
 
   return (
     <div ref={containerRef} className="relative min-h-screen overflow-hidden">
@@ -195,17 +129,8 @@ export function HeroSection({ selectedPersona }: HeroSectionProps) {
             >
               <h1 className="text-3xl sm:text-4xl md:text-6xl lg:text-7xl xl:text-8xl font-black text-white leading-tight">
                 <span className="bg-gradient-to-r from-white to-gray-300 bg-clip-text text-transparent">
-                  {titleText}
+                  {content.title}
                 </span>
-                {showCursor && (
-                  <motion.span
-                    className="text-red-500"
-                    animate={{ opacity: [1, 0] }}
-                    transition={{ duration: 0.8, repeat: Infinity }}
-                  >
-                    |
-                  </motion.span>
-                )}
               </h1>
             </motion.div>
             
