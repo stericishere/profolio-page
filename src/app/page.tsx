@@ -277,13 +277,12 @@ export default function Home() {
           )}
         </div>
 
-        {/* Content overlay - Netflix style left alignment */}
+        {/* Content overlay - Netflix style left alignment on desktop, centered on mobile */}
         <div className="absolute inset-0 flex flex-col justify-center">
-          <div className="w-full px-36 pr-8 max-w-7xl 
-     px- w-full">
-            <div className="max-w-2xl">
+          <div className="w-full px-4 sm:px-8 md:px-16 lg:px-36 pr-4 sm:pr-8 max-w-7xl mx-auto">
+            <div className="max-w-2xl mx-auto md:mx-0">
               <motion.h1 
-                className="text-5xl md:text-7xl font-bold mb-4 text-white"
+                className="text-5xl md:text-7xl font-bold mb-4 text-white text-center md:text-left"
                 initial={{ opacity: 0, y: 20 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ delay: 0.2, duration: 0.8 }}
@@ -292,7 +291,7 @@ export default function Home() {
               </motion.h1>
               
               <motion.div 
-                className="text-2xl md:text-3xl text-white mb-6 font-black"
+                className="text-2xl md:text-3xl text-white mb-6 font-black text-center md:text-left"
                 initial={{ opacity: 0 }}
                 animate={{ opacity: 1 }}
                 transition={{ delay: 0.4, duration: 0.8 }}
@@ -302,7 +301,7 @@ export default function Home() {
               </motion.div>
               
               <motion.p 
-                className="text-lg text-gray-300 mb-8 leading-relaxed"
+                className="text-lg text-gray-300 mb-8 leading-relaxed text-center md:text-left"
                 initial={{ opacity: 0, y: 20 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ delay: 0.6, duration: 0.8 }}
@@ -311,7 +310,7 @@ export default function Home() {
               </motion.p>
               
               <motion.div
-                className="flex gap-4"
+                className="flex gap-4 justify-center md:justify-start"
                 initial={{ opacity: 0, y: 20 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ delay: 0.8, duration: 0.8 }}

@@ -95,7 +95,7 @@ export function ContentCard({
   return (
     <div 
       ref={cardRef}
-      className="relative p-4 flex-none w-48 md:w-64 transition-all duration-300"
+      className="relative p-2 sm:p-4 flex-none w-40 sm:w-48 md:w-64 transition-all duration-300"
     >
       <motion.div
         className={`relative cursor-pointer group ${className}`}
@@ -122,7 +122,7 @@ export function ContentCard({
       {/* Enhanced Card Container */}
       <div className="bg-gray-800 rounded-lg overflow-visible shadow-xl transition-all duration-300 group-hover:bg-gray-750 group-hover:shadow-[0_25px_50px_-12px_rgba(0,0,0,0.8),0_8px_16px_-8px_rgba(220,38,38,0.3)]">
         {/* Image/Icon Section */}
-        <div className={`h-32 md:h-40 ${getTypeColor()} flex items-center justify-center text-white relative transition-all duration-500 group-hover:brightness-125`}>
+        <div className={`h-24 sm:h-32 md:h-40 ${getTypeColor()} flex items-center justify-center text-white relative transition-all duration-500 group-hover:brightness-125`}>
           {image ? (
             <img 
               src={image} 
@@ -131,8 +131,10 @@ export function ContentCard({
             />
           ) : (
             <div className="flex flex-col items-center transition-all duration-500 group-hover:scale-125">
-              {getTypeIcon()}
-              <span className="text-xs uppercase tracking-wide mt-2 font-semibold">{type}</span>
+              <div className="w-4 h-4 sm:w-6 sm:h-6">
+                {getTypeIcon()}
+              </div>
+              <span className="text-xs uppercase tracking-wide mt-1 sm:mt-2 font-semibold hidden sm:block">{type}</span>
             </div>
           )}
           
@@ -151,12 +153,12 @@ export function ContentCard({
         
         {/* Enhanced Content Section */}
         <motion.div 
-          className="p-4 transition-all duration-300 group-hover:bg-gray-700/50 relative"
+          className="p-2 sm:p-4 transition-all duration-300 group-hover:bg-gray-700/50 relative"
           initial={{ height: "auto" }}
           whileHover={{ height: "auto" }}
         >
           <motion.h3 
-            className="text-white font-bold text-sm md:text-base line-clamp-2 mb-2 transition-all duration-300 group-hover:text-red-200 group-hover:text-lg"
+            className="text-white font-bold text-xs sm:text-sm md:text-base line-clamp-2 mb-1 sm:mb-2 transition-all duration-300 group-hover:text-red-200 group-hover:text-lg"
             initial={{ y: 0 }}
             whileHover={{ y: -2 }}
             transition={{ delay: 0.1 }}
@@ -166,7 +168,7 @@ export function ContentCard({
           
           {subtitle && (
             <motion.p 
-              className="text-gray-400 text-xs md:text-sm line-clamp-2 mb-3 transition-all duration-300 group-hover:text-gray-200"
+              className="text-gray-400 text-xs line-clamp-2 mb-2 sm:mb-3 transition-all duration-300 group-hover:text-gray-200 hidden sm:block"
               initial={{ opacity: 0.8, y: 0 }}
               whileHover={{ opacity: 1, y: -1 }}
               transition={{ delay: 0.15 }}
@@ -175,9 +177,9 @@ export function ContentCard({
             </motion.p>
           )}
           
-          {/* Enhanced action buttons on hover */}
+          {/* Enhanced action buttons on hover - Hidden on mobile for cleaner design */}
           <motion.div 
-            className="opacity-0 group-hover:opacity-100 transition-all duration-400 transform translate-y-4 group-hover:translate-y-0 space-y-2"
+            className="opacity-0 group-hover:opacity-100 transition-all duration-400 transform translate-y-4 group-hover:translate-y-0 space-y-2 hidden sm:block"
             initial={{ height: 0 }}
             whileHover={{ height: "auto" }}
             transition={{ delay: 0.2 }}

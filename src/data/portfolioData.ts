@@ -279,6 +279,44 @@ export const experienceData: PortfolioSection[] = [
         type: 'experience'
       }
     ]
+  },
+  {
+    id: 'core-technologies',
+    title: 'Core Technologies & Skills',
+    items: [
+      {
+        id: 'programming-languages-exp',
+        title: 'Programming Languages',
+        subtitle: 'Expert-level proficiency across multiple languages',
+        description: 'Primary languages used in development and research projects',
+        technologies: ['Python', 'C++', 'Java', 'JavaScript', 'HTML/CSS'],
+        type: 'skill'
+      },
+      {
+        id: 'ml-ai-frameworks-exp',
+        title: 'ML/AI Frameworks',
+        subtitle: 'Production-ready machine learning expertise',
+        description: 'Deep learning and AI frameworks for research and deployment',
+        technologies: ['PyTorch', 'Pandas', 'NumPy', 'Scikit-learn', 'LangChain'],
+        type: 'skill'
+      },
+      {
+        id: 'cloud-devops-exp',
+        title: 'Cloud & DevOps',
+        subtitle: 'Certified cloud platform experience',
+        description: 'Scalable cloud infrastructure and containerization',
+        technologies: ['GCP', 'Azure', 'AWS', 'Docker', 'Jupyter'],
+        type: 'skill'
+      },
+      {
+        id: 'databases-exp',
+        title: 'Database Systems',
+        subtitle: 'Relational database design and optimization',
+        description: 'Database management and SQL query optimization',
+        technologies: ['PostgreSQL', 'MySQL'],
+        type: 'skill'
+      }
+    ]
   }
 ]
 

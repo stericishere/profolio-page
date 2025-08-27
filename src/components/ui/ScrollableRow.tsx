@@ -40,7 +40,7 @@ export function ScrollableRow({ title, children, className = '' }: ScrollableRow
     <div className={`mb-8 ${className}`}>
       {/* Section Title */}
       <motion.h2
-        className="text-xl md:text-2xl font-semibold text-white mb-4 px-6 cursor-default"
+        className="text-lg sm:text-xl md:text-2xl font-semibold text-white mb-3 sm:mb-4 px-4 sm:px-6 cursor-default"
         whileHover={{
           scale: 1.02,
           color: "#f87171",
@@ -52,10 +52,10 @@ export function ScrollableRow({ title, children, className = '' }: ScrollableRow
 
       {/* Scrollable Container */}
       <div className="relative z-10">
-        {/* Left Arrow */}
+        {/* Left Arrow - Hidden on mobile for touch scrolling */}
         {canScrollLeft && (
           <motion.button
-            className="absolute left-2 top-1/2 -translate-y-1/2 z-30 w-12 h-12 bg-black/50 rounded-full flex items-center justify-center text-white"
+            className="absolute left-1 sm:left-2 top-1/2 -translate-y-1/2 z-30 w-8 h-8 sm:w-12 sm:h-12 bg-black/50 rounded-full flex items-center justify-center text-white hidden sm:flex"
             onClick={() => scroll('left')}
             whileHover={{
               scale: 1.1,
@@ -64,16 +64,16 @@ export function ScrollableRow({ title, children, className = '' }: ScrollableRow
             }}
             whileTap={{ scale: 0.95 }}
           >
-            <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <svg className="w-4 h-4 sm:w-6 sm:h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
               <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 19l-7-7 7-7" />
             </svg>
           </motion.button>
         )}
 
-        {/* Right Arrow */}
+        {/* Right Arrow - Hidden on mobile for touch scrolling */}
         {canScrollRight && (
           <motion.button
-            className="absolute right-2 top-1/2 -translate-y-1/2 z-30 w-12 h-12 bg-black/50 rounded-full flex items-center justify-center text-white"
+            className="absolute right-1 sm:right-2 top-1/2 -translate-y-1/2 z-30 w-8 h-8 sm:w-12 sm:h-12 bg-black/50 rounded-full flex items-center justify-center text-white hidden sm:flex"
             onClick={() => scroll('right')}
             whileHover={{
               scale: 1.1,
@@ -82,7 +82,7 @@ export function ScrollableRow({ title, children, className = '' }: ScrollableRow
             }}
             whileTap={{ scale: 0.95 }}
           >
-            <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <svg className="w-4 h-4 sm:w-6 sm:h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
               <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
             </svg>
           </motion.button>
@@ -101,7 +101,7 @@ export function ScrollableRow({ title, children, className = '' }: ScrollableRow
           onScroll={checkScrollability}
         >
           {/* Content Container */}
-          <div className="flex gap-4 px-6 py-8" >
+          <div className="flex gap-2 sm:gap-4 px-4 sm:px-6 py-6 sm:py-8" >
             {children}
           </div>
         </div>

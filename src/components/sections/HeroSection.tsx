@@ -165,17 +165,17 @@ export function HeroSection({ selectedPersona }: HeroSectionProps) {
         className="relative z-40 min-h-screen flex items-center"
         style={{ opacity }}
       >
-        <div className="w-full px-6 md:px-12 lg:px-20 py-20">
+        <div className="w-full px-4 sm:px-6 md:px-12 lg:px-20 py-16 sm:py-20">
           <div className="max-w-4xl">
             {/* Enhanced Featured badge */}
             <motion.div
-              className="inline-block mb-6"
+              className="inline-block mb-4 sm:mb-6"
               initial={{ opacity: 0, x: -30 }}
               animate={{ opacity: 1, x: 0 }}
               transition={{ delay: 0.2, duration: 0.6 }}
             >
               <div className="relative">
-                <span className="px-4 py-2 bg-gradient-to-r from-red-600 to-red-500 text-white text-sm font-bold rounded-full uppercase tracking-wider shadow-lg">
+                <span className="px-3 sm:px-4 py-1.5 sm:py-2 bg-gradient-to-r from-red-600 to-red-500 text-white text-xs sm:text-sm font-bold rounded-full uppercase tracking-wider shadow-lg">
                   {content.featured}
                 </span>
                 <motion.div
@@ -188,12 +188,12 @@ export function HeroSection({ selectedPersona }: HeroSectionProps) {
             
             {/* Enhanced Title with Typewriter Effect */}
             <motion.div
-              className="mb-6"
+              className="mb-4 sm:mb-6"
               initial={{ opacity: 0, y: 30 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ delay: 0.3, duration: 0.8 }}
             >
-              <h1 className="text-5xl md:text-7xl lg:text-8xl font-black text-white leading-tight">
+              <h1 className="text-3xl sm:text-4xl md:text-6xl lg:text-7xl xl:text-8xl font-black text-white leading-tight">
                 <span className="bg-gradient-to-r from-white to-gray-300 bg-clip-text text-transparent">
                   {titleText}
                 </span>
@@ -211,7 +211,7 @@ export function HeroSection({ selectedPersona }: HeroSectionProps) {
             
             {/* Enhanced Subtitle */}
             <motion.h2
-              className="text-2xl md:text-3xl text-gray-300 mb-8 font-light max-w-3xl"
+              className="text-lg sm:text-xl md:text-2xl lg:text-3xl text-gray-300 mb-6 sm:mb-8 font-light max-w-3xl"
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ delay: 0.6, duration: 0.6 }}
@@ -221,7 +221,7 @@ export function HeroSection({ selectedPersona }: HeroSectionProps) {
             
             {/* Skills Tags */}
             <motion.div
-              className="flex flex-wrap gap-3 mb-8"
+              className="flex flex-wrap gap-2 sm:gap-3 mb-6 sm:mb-8"
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ delay: 0.8, duration: 0.6 }}
@@ -229,7 +229,7 @@ export function HeroSection({ selectedPersona }: HeroSectionProps) {
               {content.skills.map((skill, index) => (
                 <motion.span
                   key={skill}
-                  className="px-3 py-1 bg-white/10 backdrop-blur-sm border border-white/20 text-white text-sm rounded-full"
+                  className="px-2 sm:px-3 py-1 bg-white/10 backdrop-blur-sm border border-white/20 text-white text-xs sm:text-sm rounded-full"
                   initial={{ opacity: 0, scale: 0.8 }}
                   animate={{ opacity: 1, scale: 1 }}
                   transition={{ delay: 0.8 + index * 0.1 }}
@@ -242,7 +242,7 @@ export function HeroSection({ selectedPersona }: HeroSectionProps) {
             
             {/* Enhanced Description */}
             <motion.p
-              className="text-xl text-gray-200 mb-10 leading-relaxed max-w-2xl"
+              className="text-base sm:text-lg md:text-xl text-gray-200 mb-8 sm:mb-10 leading-relaxed max-w-2xl"
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ delay: 1.0, duration: 0.6 }}
@@ -252,37 +252,37 @@ export function HeroSection({ selectedPersona }: HeroSectionProps) {
             
             {/* Enhanced CTA Buttons */}
             <motion.div
-              className="flex flex-col sm:flex-row gap-4"
+              className="flex flex-col sm:flex-row gap-3 sm:gap-4"
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ delay: 1.2, duration: 0.6 }}
             >
               <motion.button
-                className="relative overflow-hidden group flex items-center justify-center px-10 py-4 bg-white text-black font-bold rounded-lg shadow-xl"
+                className="relative overflow-hidden group flex items-center justify-center px-6 sm:px-8 md:px-10 py-3 sm:py-4 bg-white text-black font-bold rounded-lg shadow-xl"
                 whileHover={{ scale: 1.02 }}
                 whileTap={{ scale: 0.98 }}
               >
                 <motion.div
                   className="absolute inset-0 bg-gradient-to-r from-red-500 to-red-600 opacity-0 group-hover:opacity-100 transition-opacity duration-300"
                 />
-                <svg className="w-5 h-5 mr-3 z-10 group-hover:text-white transition-colors" fill="currentColor" viewBox="0 0 20 20">
+                <svg className="w-4 h-4 sm:w-5 sm:h-5 mr-2 sm:mr-3 z-10 group-hover:text-white transition-colors" fill="currentColor" viewBox="0 0 20 20">
                   <path fillRule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zM9.555 7.168A1 1 0 008 8v4a1 1 0 001.555.832l3-2a1 1 0 000-1.664l-3-2z" clipRule="evenodd" />
                 </svg>
-                <span className="z-10 group-hover:text-white transition-colors">{content.cta}</span>
+                <span className="z-10 group-hover:text-white transition-colors text-sm sm:text-base">{content.cta}</span>
               </motion.button>
               
               <motion.button
-                className="relative overflow-hidden group flex items-center justify-center px-10 py-4 border-2 border-white/30 text-white font-bold rounded-lg backdrop-blur-sm"
+                className="relative overflow-hidden group flex items-center justify-center px-6 sm:px-8 md:px-10 py-3 sm:py-4 border-2 border-white/30 text-white font-bold rounded-lg backdrop-blur-sm"
                 whileHover={{ scale: 1.02, borderColor: "rgba(255,255,255,0.8)" }}
                 whileTap={{ scale: 0.98 }}
               >
                 <motion.div
                   className="absolute inset-0 bg-white/10 opacity-0 group-hover:opacity-100 transition-opacity duration-300"
                 />
-                <svg className="w-5 h-5 mr-3 z-10" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <svg className="w-4 h-4 sm:w-5 sm:h-5 mr-2 sm:mr-3 z-10" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
                 </svg>
-                <span className="z-10">More Info</span>
+                <span className="z-10 text-sm sm:text-base">More Info</span>
               </motion.button>
             </motion.div>
 

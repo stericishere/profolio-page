@@ -32,9 +32,12 @@ body {
   font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+  overflow-x: hidden; /* Prevent horizontal scroll */
 }
 
+/* Prevent horizontal scrolling globally */
 html {
+  overflow-x: hidden;
   scroll-behavior: smooth;
 }
 
@@ -69,4 +72,35 @@ html {
 /* Smooth card transformations */
 .group {
   transform-style: preserve-3d;
+}
+
+/* Mobile-specific optimizations */
+@media (max-width: 640px) {
+  /* Reduce motion for better mobile performance */
+  * {
+    animation-duration: 0.3s !important;
+    animation-delay: 0.1s !important;
+    transition-duration: 0.3s !important;
+  }
+  
+  /* Improve touch targets */
+  button, a {
+    min-height: 44px;
+    min-width: 44px;
+  }
+  
+  /* Better mobile typography */
+  h1 {
+    line-height: 1.1;
+  }
+  
+  h2, h3 {
+    line-height: 1.3;
+  }
+  
+  /* Mobile-specific scroll improvements */
+  .overflow-x-auto {
+    -webkit-overflow-scrolling: touch;
+    scroll-snap-type: x mandatory;
+  }
 }
