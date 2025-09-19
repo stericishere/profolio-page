@@ -7,16 +7,16 @@ import Link from 'next/link';
 type ResumeType = 'swe' | 'ml';
 
 export default function ResumePage() {
-  const [resumeType, setResumeType] = useState<ResumeType>('swe');
+  const [resumeType, setResumeType] = useState<ResumeType>('ml');
 
   const resumeFiles = {
-    swe: '/resume-swe.pdf',
-    ml: '/resume-ml.pdf'
+    ml: '/resume-ml.pdf',
+    swe: '/resume-swe.pdf'
   };
 
   const resumeLabels = {
-    swe: 'Software Engineer',
-    ml: 'Machine Learning'
+    ml: 'ML Engineer',
+    swe: 'SWE'
   };
 
   return (
@@ -79,20 +79,6 @@ export default function ResumePage() {
 
       {/* Fixed action buttons */}
       <div className="fixed bottom-6 right-6 flex flex-col gap-3">
-        {/* Home button */}
-        <Link href="/">
-          <motion.div
-            className="flex items-center justify-center w-14 h-14 bg-gray-700 text-white rounded-full font-medium hover:bg-gray-600 transition-colors shadow-lg"
-            whileHover={{ scale: 1.05 }}
-            whileTap={{ scale: 0.95 }}
-            title="Back to Home"
-          >
-            <svg className="w-6 h-6" fill="currentColor" viewBox="0 0 20 20">
-              <path d="M10.707 2.293a1 1 0 00-1.414 0l-7 7a1 1 0 001.414 1.414L4 10.414V17a1 1 0 001 1h2a1 1 0 001-1v-2a1 1 0 011-1h2a1 1 0 011 1v2a1 1 0 001 1h2a1 1 0 001-1v-6.586l.293.293a1 1 0 001.414-1.414l-7-7z" />
-            </svg>
-          </motion.div>
-        </Link>
-
         {/* Download button */}
         <motion.a
           href={resumeFiles[resumeType]}
