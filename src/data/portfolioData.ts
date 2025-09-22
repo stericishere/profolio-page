@@ -8,8 +8,13 @@ export interface PortfolioItem {
   link?: string
   github?: string
   image?: string
+  projectImg?: string // Project image filename in public/assets/projects/
   type: 'project' | 'experience' | 'skill' | 'achievement' | 'contact'
+  category?: 'Full Stack' | 'AI/ML' | 'Research' // Project category
+  // Experience-specific properties
+  experienceType?: 'internship' | 'research' | 'engineering' | 'professional'
   // Skill-specific properties
+  date?: string
   proficiencyLevel?: 'Beginner' | 'Intermediate' | 'Advanced' | 'Expert'
   yearsOfExperience?: number
   relatedProjects?: string[] // Project IDs that use this skill
@@ -27,7 +32,7 @@ export interface PortfolioSection {
 export const topPicksData: PortfolioSection[] = [
   {
     id: 'top-picks-recruiter',
-    title: 'Today\'s Top Picks for Recruiter',
+    title: "Today's Top Picks for Recruiter",
     items: [
       {
         id: 'work-visa-status',
@@ -59,7 +64,7 @@ export const topPicksData: PortfolioSection[] = [
       {
         id: 'Contact',
         title: 'Ready to Discuss Opportunities',
-        subtitle: 'Let\'s talk about your AI/ML roles',
+        subtitle: "Let's talk about your AI/ML roles",
         description: '',
         technologies: ['Summer Intern', 'CO-OP Intern', 'Remote/Hybrid', "Fall/Winter"],
         link: '/contact',
@@ -101,7 +106,7 @@ export const topPicksData: PortfolioSection[] = [
       },
       {
         id: 'Collaboration!',
-        title: 'Let\'s Work on Something Together',
+        title: "Let's Work on Something Together",
         subtitle: 'Always excited about new technical challenges',
         description: 'Got an interesting problem to solve? Want to pair program or collaborate on an open source project? Let\'s build something awesome!',
         technologies: ['Collaboration', 'Pair Programming', 'Innovation'],
@@ -144,7 +149,7 @@ export const topPicksData: PortfolioSection[] = [
       },
       {
         id: 'Connect',
-        title: 'Let\'s Connect!',
+        title: "Let's Connect!",
         subtitle: 'For deeper conversations about AI and humanity',
         description: 'Interested in discussing AI consciousness, the singularity, or just want to share interesting articles? I love thoughtful conversations.',
         technologies: ['Deep Conversations', 'AI Philosophy', 'Future Studies'],
@@ -187,7 +192,7 @@ export const topPicksData: PortfolioSection[] = [
       },
       {
         id: 'Connect',
-        title: 'Let\'s Connect!',
+        title: "Let's Connect!",
         subtitle: 'For deeper conversations about AI and humanity',
         description: 'Interested in discussing AI consciousness, the singularity, or just want to share interesting articles? I love thoughtful conversations.',
         technologies: ['Deep Conversations', 'AI Philosophy', 'Future Studies'],
@@ -211,7 +216,9 @@ export const projectsData: PortfolioSection[] = [
         technologies: ['PyTorch', 'Google Cloud Platform', 'LeanDojo', 'Lean4', 'Docker', 'Reinforcement Learning'],
         link: '#',
         github: 'https://github.com/utmgdsc/TinyProof',
-        type: 'project'
+        projectImg: 'tinyproof.png',
+        type: 'project',
+        category: 'Research'
       },
       {
         id: 'ML-adaptive-education',
@@ -221,17 +228,21 @@ export const projectsData: PortfolioSection[] = [
         technologies: ['PyTorch', 'NumPy', 'Machine Learning', 'Item Response Theory'],
         link: '#',
         github: 'https://github.com/stericishere/ML-for-Adaptive-Education',
-        type: 'project'
+        projectImg: 'adaptive-education.png',
+        type: 'project',
+        category: 'AI/ML'
       },
       {
         id: 'RL-agent-play-Mini-Motorway',
         title: 'RL agent play Mini-Motorway',
-        subtitle: 'AI agent trained to play Pokémon Red from pixels',
+        subtitle: 'AI agent trained to play Mini-Motorway from pixels using Deep Q Learning',
         description: '',
         technologies: ['Python', 'PyBoy', 'Stable Baselines 3', 'PPO', 'Computer Vision'],
         link: '#',
         github: 'https://github.com/stericishere/RL-agent-play-Mini-Motorway',
-        type: 'project'
+        projectImg: 'mini-motorway.png',
+        type: 'project',
+        category: 'AI/ML'
       },
       {
         id: 'Generative-agents-simulation',
@@ -241,7 +252,9 @@ export const projectsData: PortfolioSection[] = [
         technologies: ['LangGraph', 'Docker', 'LLM', 'Multi-Agent Systems'],
         link: '#',
         github: 'https://github.com/stericishere/generative_agents',
-        type: 'project'
+        projectImg: 'generative-agents.png',
+        type: 'project',
+        category: 'AI/ML'
       },
       {
         id: 'Netflix-portfolio',
@@ -251,7 +264,9 @@ export const projectsData: PortfolioSection[] = [
         link: '#',
         technologies: ['Next.js', 'Typescript', 'Javascript'],
         github: 'https://github.com/stericishere/netflix-portfolio',
-        type: 'project'
+        projectImg: 'netflix-portfolio.png',
+        type: 'project',
+        category: 'Full Stack'
       }
     ]
   }
@@ -263,58 +278,48 @@ export const experienceData: PortfolioSection[] = [
     title: 'Professional Experience',
     items: [
       {
+        id: 'researcher-utmist',
+        title: 'Researcher',
+        subtitle: 'UTMIST – University of Toronto Machine Intelligence Student Team',
+        date: "Aug 2025 – Present",
+        description: 'Improved real-time video quality by 50% in the Real-ESRGAN research by refining frame reconstruction algorithms and reducing visual artifacts\n• Achieved an 18% PSNR gain by optimizing GAN-based super-resolution models in PyTorch, through advanced loss function tuning (perceptual, SSIM) and architectural modifications\n• Exploring GPU acceleration and low-latency inference techniques to enable practical deployment in real-world applications',
+        technologies: ['PyTorch', 'SciPy', 'Scikit-learn', 'Matplotlib', 'GCP', 'CUDA'],
+        link: 'https://utmist.gitlab.io/',
+        type: 'experience',
+        experienceType: 'research'
+      },
+      {
+        id: 'software-engineer-flymingos',
+        title: 'Software Engineer Intern',
+        subtitle: 'Flymingos',
+        date: 'May 2025 – Aug 2025',
+        description: 'Boosted lead match accuracy by 35% by architecting a semantic matching pipeline leveraging OpenAI embeddings and Chroma vector search, enabled intelligent pairing through real-time vector similarity scoring\n• Scaled backend infrastructure to support 500+ concurrent users by deploying a fully serverless architecture using Node.js Cloud Functions and Firebase, streamlined authentication and event-driven data workflows\n• Automated high-volume product data collection by building a robust Python scraping system with BeautifulSoup and custom parsing logic, reducing manual input by 40% and improving data accuracy across seller platforms',
+        technologies: ['Node.js', 'Cloud Functions', 'Firebase', 'Python', 'BeautifulSoup'],
+        link: 'https://munafah.ai/',
+        type: 'experience',
+        experienceType: 'internship'
+      },
+      {
         id: 'ml-engineer-squirl',
         title: 'ML Engineer',
-        subtitle: 'Squirl ASL | Sep 2024 - April 2025',
-        description: 'A startup that selected for the Microsoft Startup Club and funded by Alterna Savings to develop a B2B ASL translator',
+        subtitle: 'Squirl Signs',
+        date: 'Sep 2024 – April 2025',
+        description: 'Reduced inference computation by 33% using a post-training dynamic frame sampling technique in Azure ML, prioritizing real-time smooth user experience without compromising model accuracy\n• Optimized to a Temporal Convolutional Network (TCN) by performing a grid search over key hyperparameters and implementing a Cosine Annealing scheduler, resulting in an award-winning prototype\n• Selected for the Microsoft Startup Club and funded by Alterna Savings to develop a B2B ASL translator',
         technologies: ['PyTorch', 'Azure ML', 'TCN', 'Pandas', 'NumPy', 'Computer Vision'],
-        type: 'experience'
+        link: 'https://www.squirlsigns.com/',
+        type: 'experience',
+        experienceType: 'professional'
       },
       {
-        id: 'conference-associate',
-        title: 'Conference Associate',
-        subtitle: 'UofT AI | Jun 2024 - Present',
-        description: 'Contributing to AI conference organization and community building at University of Toronto. Supporting AI research and networking initiatives.',
-        technologies: ['Event Planning', 'AI Community', 'Research Support'],
-        type: 'experience'
-      }
-    ]
-  },
-  {
-    id: 'core-technologies',
-    title: 'Core Technologies & Skills',
-    items: [
-      {
-        id: 'programming-languages-exp',
-        title: 'Programming Languages',
-        subtitle: 'Expert-level proficiency across multiple languages',
-        description: 'Primary languages used in development and research projects',
-        technologies: ['Python', 'C++', 'Java', 'JavaScript', 'HTML/CSS'],
-        type: 'skill'
-      },
-      {
-        id: 'ml-ai-frameworks-exp',
-        title: 'ML/AI Frameworks',
-        subtitle: 'Production-ready machine learning expertise',
-        description: 'Deep learning and AI frameworks for research and deployment',
-        technologies: ['PyTorch', 'Pandas', 'NumPy', 'Scikit-learn', 'LangChain'],
-        type: 'skill'
-      },
-      {
-        id: 'cloud-devops-exp',
-        title: 'Cloud & DevOps',
-        subtitle: 'Certified cloud platform experience',
-        description: 'Scalable cloud infrastructure and containerization',
-        technologies: ['GCP', 'Azure', 'AWS', 'Docker', 'Jupyter'],
-        type: 'skill'
-      },
-      {
-        id: 'databases-exp',
-        title: 'Database Systems',
-        subtitle: 'Relational database design and optimization',
-        description: 'Database management and SQL query optimization',
-        technologies: ['PostgreSQL', 'MySQL'],
-        type: 'skill'
+        id: 'research-assistant-uoft',
+        title: 'Research Assistant',
+        date: 'Jan 2024 – April 2025',
+        subtitle: 'University of Toronto',
+        description: 'Conducted original research under Dr. Mohammad to build an RL-based theorem prover extending AlphaProof using R\'max Tree Search, achieving 87% on college-level proofs surpassing expected baselines\n• Extract over 100k+ proof data by engineered a scalable ETL data pipeline in GCP, leveraging LeanDojo to transform data into usable structured datasets from different repositories for downstream training\n• Containerized workflows with Docker and coordinated iterations via Jira, ensuring reproducibility across research',
+        technologies: ['PyTorch', 'Google Cloud Platform', 'LeanDojo', 'Lean4', 'Docker', 'Jira'],
+        link: 'https://github.com/utmgdsc/TinyProof',
+        type: 'experience',
+        experienceType: 'research'
       }
     ]
   }

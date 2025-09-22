@@ -4,6 +4,7 @@ import { motion } from 'framer-motion'
 import { useState, useEffect } from 'react'
 import { SimpleNavbar } from '@/components/layout/SimpleNavbar'
 import { useDataPreload } from '@/contexts/DataPreloadContext'
+import { MarkdownRenderer } from '@/components/ui/MarkdownRenderer'
 import type { PortfolioSection, PortfolioItem } from '@/data/portfolioData'
 
 export default function ExperiencePage() {
@@ -46,36 +47,32 @@ export default function ExperiencePage() {
 
   // Sort experience by date (most recent first)
   const allExperience = experienceData.flatMap(section => section.items).sort((a, b) => {
-    // Extract date from subtitle (format: "Company | Date")
-    const getDateFromSubtitle = (subtitle: string) => {
-      const datePart = subtitle.split(' | ')[1]
-      if (!datePart) return new Date(0)
-      
-      // Handle "Present" case
-      if (datePart.includes('Present')) {
-        return new Date() // Current date for ongoing positions
+    // Parses the date string (e.g., "May 2025 – Aug 2025", "Aug 2025 – Present")
+    // and returns a Date object for sorting.
+    const getDate = (dateString: string): Date => {
+      // Check for "Present" and use the current date to sort it as most recent
+      if (dateString.includes('Present')) {
+        return new Date();
       }
+
+      // Extract the end date from a range "Start Date – End Date"
+      const parts = dateString.split('–');
+      const endDateString = parts[parts.length - 1].trim();
+
+      // Create a date object from the end date string (e.g., "Aug 2025")
+      const date = new Date(endDateString);
       
-      // Extract start date from range (e.g., "Sep 2024 - April 2025" -> "Sep 2024")
-      const startDate = datePart.split(' - ')[0]
-      
-      // Parse month year format
-      const monthYear = startDate.trim()
-      const parts = monthYear.split(' ')
-      if (parts.length === 2) {
-        const [month, year] = parts
-        const monthIndex = new Date(Date.parse(month + " 1, 2000")).getMonth()
-        return new Date(parseInt(year), monthIndex)
-      }
-      
-      return new Date(0)
-    }
-    
-    const dateA = getDateFromSubtitle(a.subtitle)
-    const dateB = getDateFromSubtitle(b.subtitle)
-    
-    return dateB.getTime() - dateA.getTime() // Most recent first
-  })
+      // If parsing fails, return an old date to sort it last
+      return isNaN(date.getTime()) ? new Date(0) : date;
+    };
+
+    // We use a non-null assertion (!) because we are sure `date` exists on these items.
+    const dateA = getDate(a.date!);
+    const dateB = getDate(b.date!);
+
+    // Sort by most recent date first
+    return dateB.getTime() - dateA.getTime();
+  });
 
   return (
     <div className="min-h-screen bg-black text-white">
@@ -175,10 +172,10 @@ export default function ExperiencePage() {
                     {/* Company & Duration */}
                     <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between mb-4">
                       <div className="text-green-400 font-semibold text-lg">
-                        {experience.subtitle.split(' | ')[0]}
+                        {experience.subtitle}
                       </div>
                       <div className="text-gray-400 text-sm">
-                        {experience.subtitle.split(' | ')[1]}
+                        {experience.date}
                       </div>
                     </div>
                     
@@ -188,9 +185,11 @@ export default function ExperiencePage() {
                     </h3>
                     
                     {/* Description */}
-                    <p className="text-gray-300 mb-4 leading-relaxed">
-                      {experience.description}
-                    </p>
+                    <ul className="list-disc list-inside text-gray-300 mb-4 leading-relaxed space-y-2">
+                      {(experience.description || '').split('\n•').map((point, index) => (
+                        point.trim() && <li key={index}>{point.trim()}</li>
+                      ))}
+                    </ul>
                     
                     {/* Technologies */}
                     {experience.technologies && (

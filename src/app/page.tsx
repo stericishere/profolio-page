@@ -8,6 +8,11 @@ import { HorizontalSection } from '@/components/sections/HorizontalSection'
 import { SimpleNavbar } from '@/components/layout/SimpleNavbar'
 import { useDataPreload } from '@/contexts/DataPreloadContext'
 import type { PortfolioSection } from '@/data/portfolioData'
+import { AboutSection } from '@/components/sections/AboutSection'
+import { SkillsSection } from '@/components/sections/SkillsSection'
+import { ExperienceSection } from '@/components/sections/ExperienceSection'
+import { ProjectsSection } from '@/components/sections/ProjectsSection'
+import { ContactSection } from '@/components/sections/ContactSection'
 
 // Typewriter effect hook
 function useTypewriter(words: string[], speed: 100) {
@@ -346,15 +351,15 @@ export default function Home() {
         </div>
       </section>
 
-      {/* Today's Top Picks Section */}
+      {/* Today's Top Picks Section - Preserve Netflix GIF Style */}
       {selectedPersona && (
         <div id="top-picks">
           {portfolioData.topPicksData
             .filter(section => section.id === `top-picks-${selectedPersona.name.toLowerCase()}`)
             .map((section) => (
-              <HorizontalSection 
-                key={section.id} 
-                section={section} 
+              <HorizontalSection
+                key={section.id}
+                section={section}
                 index={0}
                 maxItems={3}
                 seeAllLink="/projects"
@@ -364,44 +369,20 @@ export default function Home() {
         </div>
       )}
 
-      {/* Projects Section */}
-      <div id="projects">
-        {portfolioData.projectsData.map((section, index) => (
-          <HorizontalSection 
-            key={section.id} 
-            section={section} 
-            index={selectedPersona ? index + 1 : index}
-            maxItems={3}
-            seeAllLink="/projects"
-          />
-        ))}
-      </div>
+      {/* About Me Section - New Clean Design */}
+      <AboutSection />
 
-      {/* Experience Section */}
-      <div id="experience">
-        {portfolioData.experienceData.map((section, index) => (
-          <HorizontalSection 
-            key={section.id} 
-            section={section} 
-            index={index + 1}
-            maxItems={3}
-            seeAllLink="/experience"
-          />
-        ))}
-      </div>
+      {/* Skills Section - New Clean Design */}
+      <SkillsSection />
 
-      {/* Contact Section */}
-      <div id="contact">
-        {portfolioData.contactData.map((section, index) => (
-          <HorizontalSection 
-            key={section.id} 
-            section={section} 
-            index={index + 2}
-            maxItems={3}
-            seeAllLink="/contact"
-          />
-        ))}
-      </div>
+      {/* Experience Section - New Clean Design */}
+      <ExperienceSection />
+
+      {/* Projects Section - New Clean Design */}
+      <ProjectsSection />
+
+      {/* Contact Section - New Clean Design */}
+      <ContactSection />
 
       {/* Footer */}
       <footer className="py-12 text-center text-gray-400 border-t border-gray-800">

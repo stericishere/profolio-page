@@ -61,7 +61,7 @@ export function NetflixOpening({
           whileHover={{ scale: 1.05 }}
           whileTap={{ scale: 0.95 }}
         >
-          Click to start my Portfoilo!
+          Welcome to my portfoilo! Click to start...
         </motion.button>
       </div>
     )

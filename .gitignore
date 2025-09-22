@@ -59,3 +59,5 @@ gif-scaling-test.png
 # Other
 playwright-report/
 tests/
+.playwright-mcp/
+.serena/
