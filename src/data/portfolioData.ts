@@ -267,6 +267,18 @@ export const projectsData: PortfolioSection[] = [
         projectImg: 'netflix-portfolio.png',
         type: 'project',
         category: 'Full Stack'
+      },
+      {
+        id: 'fault-tolerant-system',
+        title: 'Fault Tolerant Order Processing System',
+        subtitle: 'Distributed microservices system with event-driven architecture',
+        description: 'A fault-tolerant e-commerce backend with Order → Payment → Inventory → Shipping pipeline. Features RabbitMQ messaging, PostgreSQL databases, Docker deployment, and AWS CloudWatch monitoring.',
+        technologies: ['Python', 'FastAPI', 'RabbitMQ', 'PostgreSQL', 'Docker', 'AWS EC2', 'CloudWatch'],
+        link: 'http://3.80.195.219:8000/docs',
+        github: 'https://github.com/stericishere/fault-tolerant-order-system',
+        projectImg: 'fault-tolerant-system.png',
+        type: 'project',
+        category: 'Full Stack'
       }
     ]
   }
@@ -302,7 +314,7 @@ export const experienceData: PortfolioSection[] = [
       {
         id: 'ml-engineer-squirl',
         title: 'ML Engineer',
-        subtitle: 'Squirl Signs',
+        subtitle: 'Squirl Signs - Microsoft Startup Club and Backed by Alterna',
         date: 'Sep 2024 – April 2025',
         description: 'Reduced inference computation by 33% using a post-training dynamic frame sampling technique in Azure ML, prioritizing real-time smooth user experience without compromising model accuracy\n• Optimized to a Temporal Convolutional Network (TCN) by performing a grid search over key hyperparameters and implementing a Cosine Annealing scheduler, resulting in an award-winning prototype\n• Selected for the Microsoft Startup Club and funded by Alterna Savings to develop a B2B ASL translator',
         technologies: ['PyTorch', 'Azure ML', 'TCN', 'Pandas', 'NumPy', 'Computer Vision'],

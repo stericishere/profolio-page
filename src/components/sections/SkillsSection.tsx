@@ -6,7 +6,7 @@ import { useEffect, useState } from 'react';
 interface Skill {
   name: string;
   level: number;
-  category: 'Languages' | 'Frameworks' | 'AI/ML' | 'Cloud & DevOps' | "DataBase";
+  category: 'Languages' | 'Frameworks' | 'AI/ML' | 'Cloud & DevOps' | "Database";
 }
 
 const skills: Skill[] = [
@@ -17,11 +17,12 @@ const skills: Skill[] = [
   { name: 'JavaScript', level: 82, category: 'Languages' },
   { name: 'HTML/CSS', level: 82, category: 'Languages' },
   { name: 'SQL', level: 85, category: 'Languages' },
+  { name: 'React', level: 88, category: 'Languages' },
+
 
   // Frameworks
   { name: 'LangChain', level: 92, category: 'Frameworks' },
   { name: 'FastAPI', level: 90, category: 'Frameworks' },
-  { name: 'React', level: 88, category: 'Frameworks' },
   { name: 'Next.js', level: 85, category: 'Frameworks' },
   { name: 'Django', level: 83, category: 'Frameworks' },
   { name: 'Express', level: 82, category: 'Frameworks' },
@@ -43,12 +44,12 @@ const skills: Skill[] = [
   { name: 'Docker', level: 83, category: 'Cloud & DevOps' },
   { name: 'Git', level: 90, category: 'Cloud & DevOps' },
   { name: 'CI/CD', level: 80, category: 'Cloud & DevOps' },
-  { name: 'Redis', level: 78, category: 'Cloud & DevOps' },
 
   //DataBase
-  { name: 'PostgreSQL', level: 85, category: 'Cloud & DevOps' },
-  { name: 'NoSQL', level: 82, category: 'Cloud & DevOps' },
-  { name: 'MongoDB', level: 82, category: 'Cloud & DevOps' }
+  { name: 'PostgreSQL', level:90, category: 'Database' },
+  { name: 'NoSQL', level: 82, category: 'Database' },
+  { name: 'MongoDB', level: 82, category: 'Database' },
+  { name: 'Redis', level: 78, category: 'Database' }
 ];
 
 function SkillBar({ skill, index }: { skill: Skill; index: number }) {
@@ -108,11 +109,11 @@ function SkillBar({ skill, index }: { skill: Skill; index: number }) {
 }
 
 export function SkillsSection() {
-  const categories = ['Languages', 'Frameworks', 'AI/ML', 'Cloud & DevOps'] as const;
+  const categories = ['Languages', 'Frameworks', 'AI/ML', 'Cloud & DevOps', 'Database'] as const;
 
   return (
     <section className="py-20 bg-gray-900 text-white" id="skills">
-      <div className="max-w-7xl mx-auto px-4">
+      <div className="max-w-[90rem] mx-auto px-4">
         {/* Skills Header */}
         <motion.div
           initial={{ opacity: 0, y: 20 }}
@@ -149,7 +150,7 @@ export function SkillsSection() {
         </motion.div>
 
         {/* Skills Grid */}
-        <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-8">
+        <div className="grid md:grid-cols-2 lg:grid-cols-5 gap-8">
           {categories.map((category, categoryIndex) => (
             <motion.div
               key={category}

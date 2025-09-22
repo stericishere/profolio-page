@@ -4,12 +4,85 @@ import ReactMarkdown from 'react-markdown'
 import remarkGfm from 'remark-gfm'
 import { Prism as SyntaxHighlighter } from 'react-syntax-highlighter'
 import { vscDarkPlus } from 'react-syntax-highlighter/dist/esm/styles/prism'
-import { memo } from 'react'
+import { memo, useEffect, useRef } from 'react'
+import mermaid from 'mermaid'
 
 interface MarkdownRendererProps {
   content: string
   className?: string
 }
+
+// Mermaid component for rendering diagrams
+const MermaidDiagram = memo(({ chart }: { chart: string }) => {
+  const ref = useRef<HTMLDivElement>(null)
+
+  useEffect(() => {
+    if (ref.current) {
+      // Initialize mermaid with dark theme
+      mermaid.initialize({
+        startOnLoad: true,
+        theme: 'dark',
+        themeVariables: {
+          primaryColor: '#ef4444',
+          primaryTextColor: '#ffffff',
+          primaryBorderColor: '#ef4444',
+          lineColor: '#6b7280',
+          secondaryColor: '#374151',
+          tertiaryColor: '#111827',
+          background: '#000000',
+          mainBkg: '#111827',
+          secondBkg: '#1f2937',
+          tertiaryBkg: '#374151'
+        },
+        flowchart: {
+          htmlLabels: true,
+          curve: 'linear',
+          useMaxWidth: true,
+          padding: 20
+        },
+        gantt: {
+          useMaxWidth: true
+        },
+        sequence: {
+          useMaxWidth: true
+        },
+        journey: {
+          useMaxWidth: true
+        }
+      })
+
+      // Generate unique ID for this diagram
+      const id = `mermaid-${Math.random().toString(36).substr(2, 9)}`
+
+      // Render the diagram
+      mermaid.render(id, chart).then(({ svg }) => {
+        if (ref.current) {
+          ref.current.innerHTML = svg
+        }
+      }).catch((error) => {
+        console.error('Mermaid rendering error:', error)
+        if (ref.current) {
+          ref.current.innerHTML = `<div class="text-red-400 p-4 border border-red-600/30 rounded bg-red-600/10">
+            <p><strong>Mermaid Diagram Error:</strong></p>
+            <pre class="text-sm mt-2">${error.message}</pre>
+          </div>`
+        }
+      })
+    }
+  }, [chart])
+
+  return (
+    <div className="my-6 w-full">
+      <div
+        ref={ref}
+        className="bg-gray-900 border border-gray-700 rounded-lg p-6 overflow-x-auto w-full"
+        style={{ minHeight: '400px' }}
+      />
+    </div>
+  )
+})
+
+MermaidDiagram.displayName = 'MermaidDiagram'
 
 export const MarkdownRenderer = memo(({ content, className = "" }: MarkdownRendererProps) => {
   return (
@@ -88,20 +161,28 @@ export const MarkdownRenderer = memo(({ content, className = "" }: MarkdownRende
             </a>
           ),
           
-          // Code styling
+          // Code styling with Mermaid support
           // eslint-disable-next-line @typescript-eslint/no-explicit-any
           code: (props: any) => {
             const { inline, className, children, ...restProps } = props
             const match = /language-(\w+)/.exec(className || '')
-            
+
             if (!inline && match) {
+              const language = match[1]
+              const codeContent = String(children).replace(/\n$/, '')
+
+              // Handle Mermaid diagrams
+              if (language === 'mermaid') {
+                return <MermaidDiagram chart={codeContent} />
+              }
+
               return (
                 <div className="my-6">
                   <div className="bg-gray-900 border border-gray-800 rounded-lg overflow-hidden shadow-lg">
                     <div className="px-4 py-2 bg-gray-800 text-gray-400 text-sm font-mono flex items-center justify-between">
-                      <span className="capitalize">{match[1]}</span>
-                      <button 
-                        onClick={() => navigator.clipboard.writeText(String(children))}
+                      <span className="capitalize">{language}</span>
+                      <button
+                        onClick={() => navigator.clipboard.writeText(codeContent)}
                         className="text-gray-500 hover:text-gray-300 transition-colors text-xs"
                         title="Copy to clipboard"
                       >
@@ -110,7 +191,7 @@ export const MarkdownRenderer = memo(({ content, className = "" }: MarkdownRende
                     </div>
                     <SyntaxHighlighter
                       style={vscDarkPlus}
-                      language={match[1]}
+                      language={language}
                       PreTag="div"
                       className="!bg-gray-900 !m-0"
                       customStyle={{
@@ -121,15 +202,15 @@ export const MarkdownRenderer = memo(({ content, className = "" }: MarkdownRende
                       }}
                       {...restProps}
                     >
-                      {String(children).replace(/\n$/, '')}
+                      {codeContent}
                     </SyntaxHighlighter>
                   </div>
                 </div>
               )
             }
-            
+
             return (
-              <code 
+              <code
                 className="bg-gray-800 text-red-400 px-2 py-1 rounded text-sm font-mono"
                 {...restProps}
               >
