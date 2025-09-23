@@ -4,8 +4,7 @@ import { motion } from 'framer-motion'
 import { useState, useEffect } from 'react'
 import { SimpleNavbar } from '@/components/layout/SimpleNavbar'
 import { useDataPreload } from '@/contexts/DataPreloadContext'
-import { MarkdownRenderer } from '@/components/ui/MarkdownRenderer'
-import type { PortfolioSection, PortfolioItem } from '@/data/portfolioData'
+import type { PortfolioSection } from '@/data/portfolioData'
 
 export default function ExperiencePage() {
   const { preloadedData, isDataReady } = useDataPreload()

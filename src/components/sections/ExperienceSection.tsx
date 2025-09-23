@@ -64,9 +64,9 @@ function ExperienceCard({ experience, index, isLast }: { experience: PortfolioIt
         whileHover={{
           scale: 1.05,
           boxShadow: '0 20px 40px rgba(0,0,0,0.3)',
-          borderColor: 'rgba(239, 68, 68, 0.5)'
+          borderColor: 'rgba(239, 68, 68, 0.5)',
+          transition: { duration: 0.3 }
         }}
-        transition={{ duration: 0 }}
         className="flex-1 max-w-4xl bg-black/50 border border-gray-800 rounded-lg p-6 hover:border-red-600/30 transition-all duration-300 cursor-pointer group"
       >
         <div className="flex gap-4">
@@ -81,8 +81,7 @@ function ExperienceCard({ experience, index, isLast }: { experience: PortfolioIt
                 whileInView={{ scale: 1, opacity: 1 }}
                 viewport={{ once: true }}
                 transition={{ duration: 0.6, delay: index * 0.2 + 0.1 }}
-                whileHover={{ scale: 1.1 }}
-                transition={{ duration: 0 }}
+                whileHover={{ scale: 1.1, transition: { duration: 0.2 } }}
                 onClick={(e) => e.stopPropagation()}
               >
                 <div className="w-12 h-12 bg-red-600 rounded-lg flex items-center justify-center text-white font-bold text-lg">
@@ -96,8 +95,7 @@ function ExperienceCard({ experience, index, isLast }: { experience: PortfolioIt
                 whileInView={{ scale: 1, opacity: 1 }}
                 viewport={{ once: true }}
                 transition={{ duration: 0.6, delay: index * 0.2 + 0.1 }}
-                whileHover={{ scale: 1.1 }}
-                transition={{ duration: 0 }}
+                whileHover={{ scale: 1.1, transition: { duration: 0.2 } }}
               >
                 <div className="w-12 h-12 bg-red-600 rounded-lg flex items-center justify-center text-white font-bold text-lg">
                   {experience.subtitle?.charAt(0) || experience.title.charAt(0)}
@@ -123,8 +121,7 @@ function ExperienceCard({ experience, index, isLast }: { experience: PortfolioIt
                     whileInView={{ opacity: 1, y: 0 }}
                     viewport={{ once: true }}
                     transition={{ duration: 0.6, delay: index * 0.2 + 0.3 }}
-                    whileHover={{ x: 3 }}
-                    transition={{ duration: 0 }}
+                    whileHover={{ x: 3, transition: { duration: 0.2 } }}
                   >
                     <a
                       href={experience.link}
@@ -142,8 +139,7 @@ function ExperienceCard({ experience, index, isLast }: { experience: PortfolioIt
                     whileInView={{ opacity: 1, y: 0 }}
                     viewport={{ once: true }}
                     transition={{ duration: 0.6, delay: index * 0.2 + 0.3 }}
-                    whileHover={{ x: 3 }}
-                    transition={{ duration: 0 }}
+                    whileHover={{ x: 3, transition: { duration: 0.2 } }}
                   >
                     {experience.title}
                   </motion.h3>
@@ -212,8 +208,7 @@ function ExperienceCard({ experience, index, isLast }: { experience: PortfolioIt
                     whileInView={{ opacity: 1, scale: 1 }}
                     viewport={{ once: true }}
                     transition={{ duration: 0.4, delay: index * 0.2 + 0.9 + techIndex * 0.05 }}
-                    whileHover={{ scale: 1.1, backgroundColor: 'rgba(239, 68, 68, 0.1)' }}
-                    transition={{ duration: 0 }}
+                    whileHover={{ scale: 1.1, backgroundColor: 'rgba(239, 68, 68, 0.1)', transition: { duration: 0.2 } }}
                   >
                     {tech}
                   </motion.span>

@@ -2,6 +2,7 @@
 
 import { motion, useScroll, useTransform } from 'framer-motion'
 import { useRef } from 'react'
+import Image from 'next/image'
 import { type Persona } from '@/components/sections/WhosWatching'
 
 interface HeroSectionProps {
@@ -45,10 +46,12 @@ export function HeroSection({ selectedPersona }: HeroSectionProps) {
             <div className="absolute inset-0 bg-gradient-to-r from-black/70 via-black/40 to-transparent z-10" />
             <div className="absolute inset-0 bg-gradient-to-t from-black via-transparent to-transparent z-10" />
             
-            <img 
-              src={content.backgroundImage} 
+            <Image
+              src={content.backgroundImage}
               alt={`${selectedPersona.name} background`}
-              className="w-full h-full object-cover filter brightness-75"
+              fill
+              className="object-cover filter brightness-75"
+              priority
             />
             
             {/* Animated particles overlay */}

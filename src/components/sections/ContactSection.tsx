@@ -76,7 +76,7 @@ export function ContactSection() {
       await new Promise(resolve => setTimeout(resolve, 1000));
       setSubmitMessage('Thank you! Your message has been sent successfully.');
       setFormData({ name: '', email: '', subject: '', message: '' });
-    } catch (error) {
+    } catch {
       setSubmitMessage('Sorry, there was an error sending your message. Please try again.');
     } finally {
       setIsSubmitting(false);
@@ -109,7 +109,7 @@ export function ContactSection() {
             whileInView={{ opacity: 1, y: 0 }}
             transition={{ delay: 0.3, duration: 0.6 }}
           >
-            Let's build something great together!
+            Let&apos;s build something great together!
           </motion.h2>
           <motion.p
             className="text-gray-400 max-w-2xl mx-auto"

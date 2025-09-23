@@ -2,6 +2,7 @@
 
 import { motion } from 'framer-motion'
 import { useState, useEffect } from 'react'
+import Image from 'next/image'
 import { NetflixOpening } from '@/components/animations/NetflixOpening'
 import { WhosWatching, type Persona } from '@/components/sections/WhosWatching'
 import { HorizontalSection } from '@/components/sections/HorizontalSection'
@@ -264,10 +265,11 @@ export default function Home() {
         <div className="absolute inset-0">
           {personaContent?.backgroundImage ? (
             <div className="relative w-full h-full">
-              <img 
-                src={personaContent.backgroundImage} 
+              <Image
+                src={personaContent.backgroundImage}
                 alt={`${selectedPersona?.name} background`}
-                className="w-full h-full object-contain"
+                fill
+                className="object-contain"
               />
               {/* Dark overlay for text readability */}
               <div className="absolute inset-0 bg-gradient-to-r from-black/80 via-black/40 to-transparent" />

@@ -2,6 +2,7 @@
 
 import { motion } from 'framer-motion'
 import { useEffect, useRef, useState } from 'react'
+import Image from 'next/image'
 import { getResponsiveHoverConfig } from '@/utils/hoverUtils'
 
 interface ContentCardProps {
@@ -120,10 +121,11 @@ export function ContentCard({
         {/* Image/Icon Section */}
         <div className={`h-24 sm:h-32 md:h-40 ${getTypeColor()} flex items-center justify-center text-white relative transition-all duration-500 group-hover:brightness-125`}>
           {image ? (
-            <img 
-              src={image} 
-              alt={title} 
-              className="w-full h-full object-cover transition-all duration-500 group-hover:scale-125 group-hover:brightness-110" 
+            <Image
+              src={image}
+              alt={title}
+              fill
+              className="object-cover transition-all duration-500 group-hover:scale-125 group-hover:brightness-110"
             />
           ) : (
             <div className="flex flex-col items-center transition-all duration-500 group-hover:scale-125">

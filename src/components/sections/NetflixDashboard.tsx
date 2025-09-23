@@ -2,7 +2,7 @@
 
 import { useState } from 'react'
 import { motion } from 'framer-motion'
-import { NetflixNavbar } from '@/components/layout/NetflixNavbar'
+import { SimpleNavbar } from '@/components/layout/SimpleNavbar'
 import { HeroSection } from '@/components/sections/HeroSection'
 import { ScrollableRow } from '@/components/ui/ScrollableRow'
 import { ContentCard } from '@/components/ui/ContentCard'
@@ -12,11 +12,10 @@ import { useRouter } from 'next/navigation'
 
 interface NetflixDashboardProps {
   selectedPersona: Persona
-  onBackToSelection: () => void
 }
 
-export function NetflixDashboard({ selectedPersona, onBackToSelection }: NetflixDashboardProps) {
-  const [activeSection, setActiveSection] = useState('Home')
+export function NetflixDashboard({ selectedPersona }: NetflixDashboardProps) {
+  const [activeSection] = useState('Home')
   const router = useRouter()
   
   // Get real data from portfolio
@@ -200,12 +199,7 @@ export function NetflixDashboard({ selectedPersona, onBackToSelection }: Netflix
       transition={{ duration: 0.5 }}
     >
       {/* Navigation */}
-      <NetflixNavbar 
-        selectedPersona={selectedPersona} 
-        onBackToSelection={onBackToSelection}
-        activeSection={activeSection}
-        onSectionChange={setActiveSection}
-      />
+      <SimpleNavbar />
       
       {/* Hero Section */}
       <HeroSection selectedPersona={selectedPersona} />

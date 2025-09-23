@@ -4,17 +4,8 @@ import { motion } from 'framer-motion'
 import { SimpleNavbar } from '@/components/layout/SimpleNavbar'
 import { TemplateSection } from '@/components/sections/TemplateSection'
 import { contactData } from '@/data/portfolioData'
-import { useTypewriter } from '@/lib/useTypewriter'
 
 export default function ContactPage() {
-  const roles = ['ML Engineer', 'AI Engineer', 'AI Agent Specialist']
-  const { text: currentRole } = useTypewriter({
-    words: roles,
-    typeSpeed: 150,
-    deleteSpeed: 100,
-    delayBetweenWords: 2000,
-    loop: true
-  })
 
   const contactMethods = [
     {

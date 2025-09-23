@@ -2,7 +2,6 @@
 
 import { motion } from 'framer-motion';
 import { useState } from 'react';
-import Link from 'next/link';
 import Image from 'next/image';
 import { projectsData } from '@/data/portfolioData';
 import type { PortfolioItem } from '@/data/portfolioData';
@@ -31,9 +30,9 @@ function ProjectCard({ project, index }: { project: PortfolioItem; index: number
         scale: 1.05,
         boxShadow: '0 25px 50px rgba(0,0,0,0.4)',
         borderColor: 'rgba(239, 68, 68, 0.5)',
-        y: -5
+        y: -5,
+        transition: { duration: 0.3 }
       }}
-      transition={{ duration: 0 }}
       className="bg-black/50 border border-gray-800 rounded-lg overflow-hidden hover:border-red-600/30 transition-all duration-300 group cursor-pointer"
       onClick={handleCardClick}
     >
@@ -49,8 +48,9 @@ function ProjectCard({ project, index }: { project: PortfolioItem; index: number
             onError={(e) => {
               // Fallback to gradient background if image fails to load
               e.currentTarget.style.display = 'none';
-              if (e.currentTarget.nextElementSibling) {
-                e.currentTarget.nextElementSibling.style.display = 'block';
+              const nextElement = e.currentTarget.nextElementSibling as HTMLElement;
+              if (nextElement) {
+                nextElement.style.display = 'block';
               }
             }}
           />

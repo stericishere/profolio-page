@@ -5,6 +5,7 @@ import remarkGfm from 'remark-gfm'
 import { Prism as SyntaxHighlighter } from 'react-syntax-highlighter'
 import { vscDarkPlus } from 'react-syntax-highlighter/dist/esm/styles/prism'
 import { memo, useEffect, useRef } from 'react'
+import Image from 'next/image'
 import mermaid from 'mermaid'
 
 interface MarkdownRendererProps {
@@ -267,9 +268,11 @@ export const MarkdownRenderer = memo(({ content, className = "" }: MarkdownRende
           // Image styling
           img: ({ src, alt }) => (
             <div className="my-6">
-              <img 
-                src={src} 
-                alt={alt} 
+              <Image
+                src={typeof src === 'string' ? src : ''}
+                alt={alt || ''}
+                width={800}
+                height={600}
                 className="rounded-lg max-w-full h-auto mx-auto shadow-lg"
               />
               {alt && (

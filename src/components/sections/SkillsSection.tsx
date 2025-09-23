@@ -76,8 +76,7 @@ function SkillBar({ skill, index }: { skill: Skill; index: number }) {
       whileInView={{ opacity: 1, y: 0 }}
       viewport={{ once: true }}
       transition={{ duration: 0.6, delay: index * 0.05 }}
-      whileHover={{ x: 5 }}
-      transition={{ duration: 0.5 }}
+      whileHover={{ x: 5, transition: { duration: 0.3 } }}
       className="space-y-2 group cursor-pointer"
     >
       <div className="flex justify-between items-center">
@@ -161,9 +160,9 @@ export function SkillsSection() {
               whileHover={{
                 scale: 1.02,
                 boxShadow: '0 20px 40px rgba(0,0,0,0.3)',
-                borderColor: 'rgba(239, 68, 68, 0.5)'
+                borderColor: 'rgba(239, 68, 68, 0.5)',
+                transition: { duration: 0.15 }
               }}
-              transition={{ duration: 0.15 }}
               className="bg-black/50 rounded-lg p-6 border border-gray-800 hover:border-red-600/30 transition-all duration-300 cursor-pointer group"
             >
               <motion.h3
@@ -194,8 +193,7 @@ export function SkillsSection() {
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           transition={{ duration: 0.6, delay: 0.8 }}
-          whileHover={{ scale: 1.02, boxShadow: '0 25px 50px rgba(0,0,0,0.4)' }}
-          transition={{ duration: 0.15 }}
+          whileHover={{ scale: 1.02, boxShadow: '0 25px 50px rgba(0,0,0,0.4)', transition: { duration: 0.15 } }}
           className="mt-16 max-w-2xl mx-auto cursor-pointer"
         >
           <div className="bg-black border border-gray-800 rounded-lg p-6 font-mono text-sm hover:border-red-600/30 transition-all duration-300">
@@ -241,7 +239,7 @@ export function SkillsSection() {
                 animate={{ opacity: 1, x: 0 }}
                 transition={{ delay: 1.3, duration: 0.3 }}
               >
-                skills: <span className="text-yellow-300">["AI/ML", "Full-Stack", "Systems"]</span>,
+                skills: <span className="text-yellow-300">[&quot;AI/ML&quot;, &quot;Full-Stack&quot;, &quot;Systems&quot;]</span>,
               </motion.div>
               <motion.div
                 className="ml-4 text-green-400"
@@ -249,7 +247,7 @@ export function SkillsSection() {
                 animate={{ opacity: 1, x: 0 }}
                 transition={{ delay: 1.4, duration: 0.3 }}
               >
-                passion: <span className="text-yellow-300">"Building impactful solutions"</span>,
+                passion: <span className="text-yellow-300">&quot;Building impactful solutions&quot;</span>,
               </motion.div>
               <motion.div
                 className="ml-4 text-green-400"
@@ -257,7 +255,7 @@ export function SkillsSection() {
                 animate={{ opacity: 1, x: 0 }}
                 transition={{ delay: 1.5, duration: 0.3 }}
               >
-                focus: <span className="text-yellow-300">"AI + Software Engineering"</span>
+                focus: <span className="text-yellow-300">&quot;AI + Software Engineering&quot;</span>
               </motion.div>
               <motion.div
                 className="text-blue-400"
