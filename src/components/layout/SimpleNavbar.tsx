@@ -238,7 +238,7 @@ export function SimpleNavbar({ selectedPersona, onBackToSelection }: SimpleNavba
                           onClick={() => setIsMobileMenuOpen(false)}
                           initial={{ opacity: 0, x: 20 }}
                           animate={{ opacity: 1, x: 0 }}
-                          transition={{ delay: 0.1 + index * 0.05 }}
+                          transition={{ delay: 0.1}}
                           whileHover={{ x: 8 }}
                           whileTap={{ scale: 0.95 }}
                         >
@@ -253,7 +253,7 @@ export function SimpleNavbar({ selectedPersona, onBackToSelection }: SimpleNavba
                         onClick={() => handleMobileNavigation(item)}
                         initial={{ opacity: 0, x: 20 }}
                         animate={{ opacity: 1, x: 0 }}
-                        transition={{ delay: 0.1 + index * 0.05 }}
+                        transition={{ delay: 0.1}}
                         whileHover={{ x: 8 }}
                         whileTap={{ scale: 0.95 }}
                       >

@@ -136,7 +136,7 @@ export function NetflixOpening({
         initial={{ opacity: 0, scaleY: 0.5 }} // start squished & invisible
         animate={{ opacity: 1, scaleY: scale }} // fade in + stretch
         transition={{ 
-          delay: 0.3 + index * 0.05, // stagger
+          delay: 0.3, // stagger
           duration: 0.6,
           ease: "easeOut"
         }}

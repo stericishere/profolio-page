@@ -25,15 +25,15 @@ function ProjectCard({ project, index }: { project: PortfolioItem; index: number
       initial={{ opacity: 0, y: 15 }}
       whileInView={{ opacity: 1, y: 0 }}
       viewport={{ once: true }}
-      transition={{ duration: 0.6, delay: index * 0.1 }}
+      transition={{duration: 0.1 }}
       whileHover={{
         scale: 1.05,
         boxShadow: '0 25px 50px rgba(0,0,0,0.4)',
         borderColor: 'rgba(239, 68, 68, 0.5)',
         y: -5,
-        transition: { duration: 0.3 }
+        transition: { duration: 0.05 }
       }}
-      className="bg-black/50 border border-gray-800 rounded-lg overflow-hidden hover:border-red-600/30 transition-all duration-300 group cursor-pointer"
+      className="bg-black/50 border border-gray-800 rounded-lg overflow-hidden hover:border-red-600/30 transition-all duration-150 group cursor-pointer"
       onClick={handleCardClick}
     >
       {/* Project Image */}
@@ -90,12 +90,11 @@ function ProjectCard({ project, index }: { project: PortfolioItem; index: number
 
       {/* Project Content */}
       <div className="p-6">
-        <motion.h3
-          className="text-xl font-bold text-white mb-2 group-hover:text-red-400 transition-colors"
-          whileHover={{ x: 5 }}
-          transition={{ duration: 0 }}
-        >
-          {project.title}
+                  <motion.h3
+                    className="text-xl font-bold text-white mb-2 group-hover:text-red-400 transition-colors"
+                    whileHover={{ x: 5 }}
+                    transition={{ duration: 0.05 }}
+                  >          {project.title}
         </motion.h3>
         <p className="text-gray-300 text-sm mb-4 leading-relaxed">
           {project.subtitle || project.description}
@@ -115,7 +114,7 @@ function ProjectCard({ project, index }: { project: PortfolioItem; index: number
               key={techIndex}
               className="px-2 py-1 bg-gray-800 text-gray-300 rounded text-xs border border-gray-700 group-hover:border-red-600/20 transition-colors"
               whileHover={{ scale: 1.1, backgroundColor: 'rgba(239, 68, 68, 0.1)' }}
-              transition={{ duration: 0 }}
+              transition={{ duration: 0.05 }}
             >
               {tech}
             </motion.span>
@@ -134,7 +133,7 @@ function ProjectCard({ project, index }: { project: PortfolioItem; index: number
               onClick={handleGithubClick}
               className="flex items-center gap-2 px-4 py-2 bg-gray-800 hover:bg-gray-700 text-white rounded-lg text-sm font-medium transition-colors z-10 relative"
               whileHover={{ scale: 1.1 }}
-              transition={{ duration: 0 }}
+              transition={{ duration: 0.05 }}
               whileTap={{ scale: 0.95 }}
             >
               <svg className="w-4 h-4" fill="currentColor" viewBox="0 0 24 24">
@@ -146,7 +145,7 @@ function ProjectCard({ project, index }: { project: PortfolioItem; index: number
           <motion.div
             className="flex items-center gap-2 px-4 py-2 bg-red-600 hover:bg-red-700 text-white rounded-lg text-sm font-medium transition-colors"
             whileHover={{ scale: 1.1 }}
-            transition={{ duration: 0 }}
+            transition={{ duration: 0.05 }}
             whileTap={{ scale: 0.95 }}
           >
             <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -209,7 +208,7 @@ export function ProjectsSection() {
                     : 'text-gray-400 hover:text-white hover:bg-gray-800'
                 }`}
                 whileHover={{ scale: 1.1 }}
-              transition={{ duration: 0 }}
+              transition={{ duration: 0.05 }}
                 whileTap={{ scale: 0.95 }}
               >
                 {category}

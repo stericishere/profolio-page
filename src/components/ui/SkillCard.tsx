@@ -18,7 +18,7 @@ export const SkillCard = memo(({ skill, index }: SkillCardProps) => {
       initial={{ opacity: 0, scale: 0.9, y: 20 }}
       animate={{ opacity: 1, scale: 1, y: 0 }}
       transition={{ 
-        delay: 0.05 + index * 0.02, // Reduced delay and stagger
+        delay: 0.05, // Reduced delay and stagger
         duration: 0.3, // Faster animation
         type: "spring",
         stiffness: 150 // Snappier animation
@@ -36,7 +36,7 @@ export const SkillCard = memo(({ skill, index }: SkillCardProps) => {
                 className="w-16 h-16 flex items-center justify-center group-hover:scale-110 transition-transform duration-300"
                 initial={{ scale: 0 }}
                 animate={{ scale: 1 }}
-                transition={{ delay: 0.1 + index * 0.02, duration: 0.2 }}
+                transition={{ delay: 0.1, duration: 0.2 }}
               >
                 <DynamicIcon skillId={skill.id} />
               </motion.div>

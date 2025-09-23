@@ -114,7 +114,7 @@ export default function ContactPage() {
                 rel={method.link.startsWith('http') ? 'noopener noreferrer' : ''}
                 initial={{ opacity: 0, y: 30 }}
                 animate={{ opacity: 1, y: 0 }}
-                transition={{ delay: 0.7 + index * 0.1, duration: 0.5 }}
+                transition={{ delay: 0.7, duration: 0.5 }}
                 className="p-8 bg-gray-800/30 rounded-lg border border-gray-700/30 hover:border-gray-600/50 transition-all duration-300 hover:scale-105 group cursor-pointer"
                 whileHover={{ scale: 1.02 }}
                 whileTap={{ scale: 0.98 }}
@@ -215,7 +215,7 @@ export default function ContactPage() {
                 key={index}
                 initial={{ opacity: 0, y: 20 }}
                 animate={{ opacity: 1, y: 0 }}
-                transition={{ delay: 1.3 + index * 0.1, duration: 0.4 }}
+                transition={{ delay: 1.3, duration: 0.4 }}
                 className="bg-gray-800/30 rounded-lg p-6 border border-gray-700/30"
               >
                 <h3 className="text-lg font-semibold text-white mb-3">

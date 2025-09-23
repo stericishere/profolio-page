@@ -155,7 +155,7 @@ export function ContactSection() {
                     initial={{ opacity: 0, y: 20 }}
                     whileInView={{ opacity: 1, y: 0 }}
                     viewport={{ once: true }}
-                    transition={{ duration: 0.6, delay: 0.4 + index * 0.1 }}
+                    transition={{ duration: 0.6, delay: 0.4 }}
                     className="flex items-center gap-3 p-4 bg-gray-900/50 rounded-lg border border-gray-800 hover:border-red-600/30 transition-all duration-300 group cursor-pointer"
                   >
                     <motion.div

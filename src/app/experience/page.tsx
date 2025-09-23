@@ -154,7 +154,7 @@ export default function ExperiencePage() {
                 key={experience.id}
                 initial={{ opacity: 0, y: 50 }}
                 animate={{ opacity: 1, y: 0 }}
-                transition={{ delay: 0.8 + index * 0.2, duration: 0.6 }}
+                transition={{ delay: 0.8 , duration: 0.6 }}
                 className={`relative flex items-center mb-16 ${
                   index % 2 === 0 ? 'md:flex-row' : 'md:flex-row-reverse'
                 }`}
@@ -244,7 +244,7 @@ export default function ExperiencePage() {
                 key={tech}
                 initial={{ opacity: 0, y: 20 }}
                 animate={{ opacity: 1, y: 0 }}
-                transition={{ delay: 1.6 + index * 0.05, duration: 0.4 }}
+                transition={{ delay: 1.6, duration: 0.4 }}
                 className="text-center p-4 bg-gray-800/50 rounded-lg hover:bg-gray-700/50 transition-colors group"
                 whileHover={{ scale: 1.05 }}
               >

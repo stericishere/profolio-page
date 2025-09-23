@@ -98,8 +98,8 @@ export function AboutSection() {
                   className="flex items-start gap-3"
                   initial={{ opacity: 0, x: -20 }}
                   whileInView={{ opacity: 1, x: 0 }}
-                  transition={{ delay: 0.5, duration: 0.6 }}
-                  whileHover={{ x: 10, transition: { duration: 0.15 } }}
+                  transition={{ duration: 0.1, delay: 0.5 }}
+                  whileHover={{ x: 10, transition: { duration: 0.05 } }}
                 >
                   <motion.div
                     className="w-2 h-2 bg-red-600 rounded-full mt-2 flex-shrink-0"
@@ -117,7 +117,7 @@ export function AboutSection() {
                   initial={{ opacity: 0, x: -20 }}
                   whileInView={{ opacity: 1, x: 0 }}
                   transition={{ delay: 0.6, duration: 0.6 }}
-                  whileHover={{ x: 10, transition: { duration: 0.15 } }}
+                  whileHover={{ x: 10, transition: { duration: 0.05 } }}
                 >
                   <motion.div
                     className="w-2 h-2 bg-red-600 rounded-full mt-2 flex-shrink-0"
@@ -150,13 +150,13 @@ export function AboutSection() {
               >
                 <motion.div
                   className="flex items-center gap-3"
-                  whileHover={{ x: 10, transition: { duration: 0.15 } }}
+                  whileHover={{ x: 10, transition: { duration: 0.05 } }}
                 >
                   <motion.svg
                     className="w-4 h-4 text-green-500 flex-shrink-0"
                     fill="currentColor"
                     viewBox="0 0 20 20"
-                    whileHover={{ scale: 1.2, rotate: 5, transition: { duration: 0.15 } }}
+                    whileHover={{ scale: 1.2, rotate: 5, transition: { duration: 0.05 } }}
                   >
                     <path fillRule="evenodd" d="M5.05 4.05a7 7 0 119.9 9.9L10 18.9l-4.95-4.95a7 7 0 010-9.9zM10 11a2 2 0 100-4 2 2 0 000 4z" clipRule="evenodd" />
                   </motion.svg>
@@ -164,11 +164,11 @@ export function AboutSection() {
                 </motion.div>
                 <motion.div
                   className="flex items-center gap-3"
-                  whileHover={{ x: 10, transition: { duration: 0.15 } }}
+                  whileHover={{ x: 10, transition: { duration: 0.05 } }}
                 >
                   <motion.div
                     className="w-4 h-4 bg-green-500 rounded-full animate-pulse flex-shrink-0"
-                    whileHover={{ scale: 1.3, transition: { duration: 0.15 } }}
+                    whileHover={{ scale: 1.3, transition: { duration: 0.05 } }}
                   />
                   <span className="text-gray-300">Available for CO-OP opportunities</span>
                 </motion.div>

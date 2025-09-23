@@ -25,7 +25,7 @@ export function HorizontalSection({
     <motion.section
       initial={{ opacity: 0, y: 50 }}
       animate={{ opacity: 1, y: 0 }}
-      transition={{ duration: 0.8, delay: index * 0.2 }}
+      transition={{ duration: 0.8}}
       className="py-10 pl-10 pr-8 border-t border-gray-800/50"
     >
       <div className="w-full">
@@ -34,7 +34,7 @@ export function HorizontalSection({
           <motion.h2
             initial={{ opacity: 0, x: -20 }}
             animate={{ opacity: 1, x: 0 }}
-            transition={{ delay: index * 0.2 + 0.3, duration: 0.6 }}
+            transition={{ delay: 0.3, duration: 0.6 }}
             className="text-3xl md:text-4xl font-bold text-white"
           >
             {section.title}
@@ -44,7 +44,7 @@ export function HorizontalSection({
             <motion.div
               initial={{ opacity: 0, x: 20 }}
               animate={{ opacity: 1, x: 0 }}
-              transition={{ delay: index * 0.2 + 0.4, duration: 0.6 }}
+              transition={{ delay: 0.4, duration: 0.6 }}
             >
               <Link href={seeAllLink}>
                 <button className="flex items-center gap-2 px-4 py-2 text-gray-300 hover:text-white transition-colors group">

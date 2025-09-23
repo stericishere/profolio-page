@@ -99,6 +99,7 @@ export function ContentCard({
       <motion.div
         className={`relative cursor-pointer group ${className}`}
         onClick={onClick}
+        transition={{ duration: 0.1 }}
         initial={{ scale: 1, y: 0, transform: 'translateZ(0)' }}
         whileHover={{ 
           scale: hoverConfig.scale,
@@ -137,15 +138,15 @@ export function ContentCard({
           )}
           
           {/* Multi-layered hover overlays */}
-          <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-black/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
-          <div className="absolute inset-0 bg-gradient-to-r from-red-600/20 via-transparent to-red-600/20 opacity-0 group-hover:opacity-100 transition-opacity duration-700 delay-100" />
+          <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-black/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
+          <div className="absolute inset-0 bg-gradient-to-r from-red-600/20 via-transparent to-red-600/20 opacity-0 group-hover:opacity-100 transition-opacity duration-400 delay-100" />
           
           {/* Enhanced shine effect */}
-          <div className="absolute inset-0 bg-gradient-to-r from-transparent via-white/30 to-transparent transform -skew-x-12 -translate-x-full group-hover:translate-x-full transition-transform duration-1000 ease-out delay-200" />
+          <div className="absolute inset-0 bg-gradient-to-r from-transparent via-white/30 to-transparent transform -skew-x-12 -translate-x-full group-hover:translate-x-full transition-transform duration-500 ease-out delay-200" />
           
           {/* Pulsing border effect */}
-          <div className="absolute inset-0 border-2 border-red-500/0 group-hover:border-red-500/60 transition-all duration-500 rounded-lg">
-            <div className="absolute inset-0 border-2 border-red-400/0 group-hover:border-red-400/40 transition-all duration-700 delay-100 rounded-lg animate-pulse" />
+          <div className="absolute inset-0 border-2 border-red-500/0 group-hover:border-red-500/60 transition-all duration-300 rounded-lg">
+            <div className="absolute inset-0 border-2 border-red-400/0 group-hover:border-red-400/40 transition-all duration-400 delay-100 rounded-lg animate-pulse" />
           </div>
         </div>
         

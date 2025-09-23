@@ -30,7 +30,7 @@ function ExperienceCard({ experience, index, isLast }: { experience: PortfolioIt
           initial={{ scale: 0 }}
           whileInView={{ scale: 1 }}
           viewport={{ once: true }}
-          transition={{ duration: 0.4, delay: index * 0.2 + 0.1, type: "spring", stiffness: 300 }}
+          transition={{ duration: 0.4, type: "spring", stiffness: 300 }}
         />
 
         {/* Timeline Line */}
@@ -40,7 +40,7 @@ function ExperienceCard({ experience, index, isLast }: { experience: PortfolioIt
             initial={{ scaleY: 0 }}
             whileInView={{ scaleY: 1 }}
             viewport={{ once: true }}
-            transition={{ duration: 0.8, delay: index * 0.2 + 0.3 }}
+            transition={{ duration: 0.8, delay: 0.3 }}
             style={{ transformOrigin: 'top' }}
           />
         )}
@@ -57,17 +57,16 @@ function ExperienceCard({ experience, index, isLast }: { experience: PortfolioIt
         whileInView={{ opacity: 1, x: 0 }}
         viewport={{ once: true, amount: 0.3 }}
         transition={{
-          duration: 0.8,
-          delay: index * 0.2,
+          duration: 0.1,
           ease: [0.25, 0.1, 0.25, 1]
         }}
         whileHover={{
           scale: 1.05,
           boxShadow: '0 20px 40px rgba(0,0,0,0.3)',
           borderColor: 'rgba(239, 68, 68, 0.5)',
-          transition: { duration: 0.3 }
+          transition: { duration: 0.1 }
         }}
-        className="flex-1 max-w-4xl bg-black/50 border border-gray-800 rounded-lg p-6 hover:border-red-600/30 transition-all duration-300 cursor-pointer group"
+        className="flex-1 max-w-4xl bg-black/50 border border-gray-800 rounded-lg p-6 hover:border-red-600/30 transition-all duration-150 cursor-pointer group"
       >
         <div className="flex gap-4">
           {/* Company Logo */}
@@ -80,8 +79,8 @@ function ExperienceCard({ experience, index, isLast }: { experience: PortfolioIt
                 initial={{ scale: 0.8, opacity: 0 }}
                 whileInView={{ scale: 1, opacity: 1 }}
                 viewport={{ once: true }}
-                transition={{ duration: 0.6, delay: index * 0.2 + 0.1 }}
-                whileHover={{ scale: 1.1, transition: { duration: 0.2 } }}
+                transition={{ duration: 0.6, delay: 0.1 }}
+                whileHover={{ scale: 1.1, transition: { duration: 0.05 } }}
                 onClick={(e) => e.stopPropagation()}
               >
                 <div className="w-12 h-12 bg-red-600 rounded-lg flex items-center justify-center text-white font-bold text-lg">
@@ -94,8 +93,8 @@ function ExperienceCard({ experience, index, isLast }: { experience: PortfolioIt
                 initial={{ scale: 0.8, opacity: 0 }}
                 whileInView={{ scale: 1, opacity: 1 }}
                 viewport={{ once: true }}
-                transition={{ duration: 0.6, delay: index * 0.2 + 0.1 }}
-                whileHover={{ scale: 1.1, transition: { duration: 0.2 } }}
+                transition={{ duration: 0.6, delay: 0.1 }}
+                whileHover={{ scale: 1.1, transition: { duration: 0.05 } }}
               >
                 <div className="w-12 h-12 bg-red-600 rounded-lg flex items-center justify-center text-white font-bold text-lg">
                   {experience.subtitle?.charAt(0) || experience.title.charAt(0)}
@@ -110,7 +109,7 @@ function ExperienceCard({ experience, index, isLast }: { experience: PortfolioIt
             initial={{ opacity: 0, x: 20 }}
             whileInView={{ opacity: 1, x: 0 }}
             viewport={{ once: true }}
-            transition={{ duration: 0.8, delay: index * 0.2 + 0.2 }}
+            transition={{ duration: 0.8, delay: 0.2 }}
           >
             <div className="flex flex-col md:flex-row md:items-start md:justify-between mb-4">
               <div className="flex-1">
@@ -120,8 +119,8 @@ function ExperienceCard({ experience, index, isLast }: { experience: PortfolioIt
                     initial={{ opacity: 0, y: 10 }}
                     whileInView={{ opacity: 1, y: 0 }}
                     viewport={{ once: true }}
-                    transition={{ duration: 0.6, delay: index * 0.2 + 0.3 }}
-                    whileHover={{ x: 3, transition: { duration: 0.2 } }}
+                    transition={{ duration: 0.6, delay: 0.3 }}
+                    whileHover={{ x: 3, transition: { duration: 0.05 } }}
                   >
                     <a
                       href={experience.link}
@@ -138,8 +137,8 @@ function ExperienceCard({ experience, index, isLast }: { experience: PortfolioIt
                     initial={{ opacity: 0, y: 10 }}
                     whileInView={{ opacity: 1, y: 0 }}
                     viewport={{ once: true }}
-                    transition={{ duration: 0.6, delay: index * 0.2 + 0.3 }}
-                    whileHover={{ x: 3, transition: { duration: 0.2 } }}
+                    transition={{ duration: 0.6, delay: 0.3 }}
+                    whileHover={{ x: 3, transition: { duration: 0.05 } }}
                   >
                     {experience.title}
                   </motion.h3>
@@ -149,7 +148,7 @@ function ExperienceCard({ experience, index, isLast }: { experience: PortfolioIt
                   initial={{ opacity: 0, y: 10 }}
                   whileInView={{ opacity: 1, y: 0 }}
                   viewport={{ once: true }}
-                  transition={{ duration: 0.6, delay: index * 0.2 + 0.4 }}
+                  transition={{ duration: 0.6, delay: 0.4 }}
                 >
                   {experience.subtitle}
                 </motion.p>
@@ -159,7 +158,7 @@ function ExperienceCard({ experience, index, isLast }: { experience: PortfolioIt
                 initial={{ opacity: 0, x: 10 }}
                 whileInView={{ opacity: 1, x: 0 }}
                 viewport={{ once: true }}
-                transition={{ duration: 0.6, delay: index * 0.2 + 0.5 }}
+                transition={{ duration: 0.6, delay: 0.5 }}
               >
                 <time className="text-gray-400 text-sm font-medium">
                   {extractDateFromSubtitle(experience.date || "Present")}
@@ -181,7 +180,7 @@ function ExperienceCard({ experience, index, isLast }: { experience: PortfolioIt
                             initial={{ opacity: 0, x: -10 }}
                             whileInView={{ opacity: 1, x: 0 }}
                             viewport={{ once: true }}
-                            transition={{ duration: 0.6, delay: index * 0.2 + 0.7 + pointIndex * 0.1 }}
+                            transition={{ duration: 0.3, delay: index * 0.2 + 0.7 + pointIndex * 0.1 }}
                         >
                             <div className="w-1.5 h-1.5 bg-red-600 rounded-full mt-2 flex-shrink-0"></div>
                             <span className="text-gray-300 text-sm leading-relaxed">{point.trim().replace(/^•\s*/, '')}</span>
@@ -198,7 +197,7 @@ function ExperienceCard({ experience, index, isLast }: { experience: PortfolioIt
                 initial={{ opacity: 0, y: 20 }}
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
-                transition={{ duration: 0.8, delay: index * 0.2 + 0.8 }}
+                transition={{ duration: 0.8, delay: 0.8 }}
               >
                 {experience.technologies.map((tech, techIndex) => (
                   <motion.span
@@ -208,7 +207,7 @@ function ExperienceCard({ experience, index, isLast }: { experience: PortfolioIt
                     whileInView={{ opacity: 1, scale: 1 }}
                     viewport={{ once: true }}
                     transition={{ duration: 0.4, delay: index * 0.2 + 0.9 + techIndex * 0.05 }}
-                    whileHover={{ scale: 1.1, backgroundColor: 'rgba(239, 68, 68, 0.1)', transition: { duration: 0.2 } }}
+                    whileHover={{ scale: 1.1, backgroundColor: 'rgba(239, 68, 68, 0.1)', transition: { duration: 0.05 } }}
                   >
                     {tech}
                   </motion.span>

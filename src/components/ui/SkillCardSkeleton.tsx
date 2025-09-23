@@ -75,7 +75,7 @@ export const SkillsSectionSkeleton = forwardRef<HTMLDivElement, SkillsSectionSke
               key={index}
               initial={{ opacity: 0, scale: 0.9 }}
               animate={{ opacity: 1, scale: 1 }}
-              transition={{ delay: index * 0.05, duration: 0.3 }}
+              transition={{ duration: 0.3 }}
             >
               <SkillCardSkeleton />
             </motion.div>

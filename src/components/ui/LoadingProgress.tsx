@@ -44,7 +44,7 @@ export function LoadingProgress({ steps, currentStep, className = "" }: LoadingP
                 }`}
                 initial={{ scale: 0 }}
                 animate={{ scale: 1 }}
-                transition={{ delay: index * 0.1, duration: 0.3 }}
+                transition={{ duration: 0.3 }}
               />
               <span className={`text-xs mt-1 ${
                 index <= currentStep ? 'text-red-400' : 'text-gray-500'

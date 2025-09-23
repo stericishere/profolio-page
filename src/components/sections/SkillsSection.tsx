@@ -75,22 +75,25 @@ function SkillBar({ skill, index }: { skill: Skill; index: number }) {
       initial={{ opacity: 0, y: 20 }}
       whileInView={{ opacity: 1, y: 0 }}
       viewport={{ once: true }}
-      transition={{ duration: 0.6, delay: index * 0.05 }}
-      whileHover={{ x: 5, transition: { duration: 0.3 } }}
+      transition={{
+        opacity: { duration: 0.6, delay: index * 0.05 },
+        y: { duration: 0.6, delay: index * 0.05 },
+        default: { duration: 0.1 }
+      }}
+      whileHover={{ x: 5, transition: { duration: 0.05 } }}
       className="space-y-2 group cursor-pointer"
     >
       <div className="flex justify-between items-center">
         <motion.span
           className="text-white font-medium group-hover:text-red-400 transition-colors"
-          whileHover={{ scale: 1.05 }}
-          transition={{ duration: 0.5 }}
+          whileHover={{ scale: 1.05, transition: { duration: 0.05 } }}
         >
           {skill.name}
         </motion.span>
         <motion.span
           className="text-gray-400 text-sm group-hover:text-white transition-colors"
-          whileHover={{ scale: 1.1, fontWeight: 'bold' }}
-          transition={{ duration: 0.5 }}
+          whileHover={{ scale: 1.1, fontWeight: 'bold', transition: { duration: 0.05 } }}
+          transition={{ duration: 0.1 }}
         >
           {skill.level}%
         </motion.span>
@@ -100,7 +103,7 @@ function SkillBar({ skill, index }: { skill: Skill; index: number }) {
           className={`h-2 rounded-full transition-all duration-1000 ease-out ${getBarColor(skill.level)}`}
           style={{ width: `${width}%` }}
           whileHover={{ scale: 1.02, boxShadow: '0 0 10px rgba(239, 68, 68, 0.5)' }}
-          transition={{ duration: 0.5 }}
+          transition={{ duration: 0.1 }}
         />
       </div>
     </motion.div>
@@ -156,14 +159,18 @@ export function SkillsSection() {
               initial={{ opacity: 0, x: -20 }}
               whileInView={{ opacity: 1, x: 0 }}
               viewport={{ once: true }}
-              transition={{ duration: 0.6, delay: categoryIndex * 0.1 }}
+              transition={{
+                opacity: { duration: 0.6, delay: categoryIndex * 0.1 },
+                x: { duration: 0.6, delay: categoryIndex * 0.1 },
+                default: { duration: 0.1 }
+              }}
               whileHover={{
                 scale: 1.02,
                 boxShadow: '0 20px 40px rgba(0,0,0,0.3)',
                 borderColor: 'rgba(239, 68, 68, 0.5)',
-                transition: { duration: 0.15 }
+                transition: { duration: 0.05 }
               }}
-              className="bg-black/50 rounded-lg p-6 border border-gray-800 hover:border-red-600/30 transition-all duration-300 cursor-pointer group"
+              className="bg-black/50 rounded-lg p-6 border border-gray-800 hover:border-red-600/30 transition-all duration-150 cursor-pointer group"
             >
               <motion.h3
                 className="text-xl font-bold mb-6 text-red-600 group-hover:text-red-400 transition-colors"
@@ -193,10 +200,10 @@ export function SkillsSection() {
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           transition={{ duration: 0.6, delay: 0.8 }}
-          whileHover={{ scale: 1.02, boxShadow: '0 25px 50px rgba(0,0,0,0.4)', transition: { duration: 0.15 } }}
+          whileHover={{ scale: 1.02, boxShadow: '0 25px 50px rgba(0,0,0,0.4)', transition: { duration: 0.05 } }}
           className="mt-16 max-w-2xl mx-auto cursor-pointer"
         >
-          <div className="bg-black border border-gray-800 rounded-lg p-6 font-mono text-sm hover:border-red-600/30 transition-all duration-300">
+          <div className="bg-black border border-gray-800 rounded-lg p-6 font-mono text-sm hover:border-red-600/30 transition-all duration-150">
             <div className="flex items-center gap-2 mb-4">
               <motion.div
                 className="w-3 h-3 bg-red-500 rounded-full"

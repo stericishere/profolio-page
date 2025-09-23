@@ -211,7 +211,7 @@ export function NetflixDashboard({ selectedPersona }: NetflixDashboardProps) {
             key={section.title}
             initial={{ opacity: 0, y: 50 }}
             animate={{ opacity: 1, y: 0 }}
-            transition={{ delay: index * 0.1, duration: 0.5 }}
+            transition={{ duration: 0.5 }}
           >
             <ScrollableRow title={section.title}>
               {section.items.map((item, itemIndex) => (
