@@ -38,8 +38,8 @@ export function NavigationStateProvider({ children }: { children: React.ReactNod
     lastVisitedSection: null,
     visitHistory: []
   })
-  const scrollTimeoutRef = useRef<NodeJS.Timeout>()
-  const isRestoringRef = useRef(false)
+  const scrollTimeoutRef = useRef<NodeJS.Timeout | undefined>(undefined)
+  const isRestoringRef = useRef<boolean>(false)
 
   // Load navigation state from sessionStorage on mount
   useEffect(() => {

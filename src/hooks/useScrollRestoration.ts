@@ -68,7 +68,7 @@ export function useScrollRestoration(options: UseScrollRestorationOptions = {}) 
   } = useNavigationState()
 
   const hasRestoredRef = useRef(false)
-  const sectionObserverRef = useRef<IntersectionObserver>()
+  const sectionObserverRef = useRef<IntersectionObserver | undefined>(undefined)
 
   // Restore scroll position on mount
   useEffect(() => {

@@ -126,15 +126,17 @@ export const MarkdownRenderer = memo(({ content, className = "" }: MarkdownRende
           // Paragraph styling - handle block-level children
           p: ({ children, node }) => {
             // Flatten and check if any child or nested child contains an img tag
-            const hasBlockContent = (nodeToCheck: any): boolean => {
-              if (!nodeToCheck) return false
+            const hasBlockContent = (nodeToCheck: unknown): boolean => {
+              if (!nodeToCheck || typeof nodeToCheck !== 'object') return false
+
+              const element = nodeToCheck as { tagName?: string; children?: unknown[] }
 
               // Check if this node is an img
-              if (nodeToCheck.tagName === 'img') return true
+              if (element.tagName === 'img') return true
 
               // Check children recursively
-              if (nodeToCheck.children && Array.isArray(nodeToCheck.children)) {
-                return nodeToCheck.children.some((child: any) => hasBlockContent(child))
+              if (element.children && Array.isArray(element.children)) {
+                return element.children.some((child) => hasBlockContent(child))
               }
 
               return false
@@ -185,9 +187,13 @@ export const MarkdownRenderer = memo(({ content, className = "" }: MarkdownRende
           ),
           
           // Code styling with Mermaid support
-          // eslint-disable-next-line @typescript-eslint/no-explicit-any
-          code: (props: any) => {
-            const { inline, className, children, ...restProps } = props
+          code: (props) => {
+            const { inline, className, children, ...restProps } = props as {
+              inline?: boolean;
+              className?: string;
+              children?: React.ReactNode;
+              [key: string]: unknown;
+            }
             const match = /language-(\w+)/.exec(className || '')
 
             if (!inline && match) {
