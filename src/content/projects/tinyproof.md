@@ -1,9 +1,6 @@
 # TinyProof
 
-[![GitHub](https://img.shields.io/badge/GitHub-TinyProof-blue?logo=github)](https://github.com/utmgdsc/TinyProof)
-
-![tinyproof](https://github.com/user-attachments/assets/40fa9a65-bced-4e15-8aa1-35ac7e082dd2)
-
+[![TinyProof Cover](/assets/projects/tinyproof.png)](https://github.com/utmgdsc/TinyProof)
 
 An RL-based theorem prover extending AlphaProof using R'max Tree Search, achieving 87% accuracy on college-level mathematical proofs.
 

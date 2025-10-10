@@ -1,10 +1,6 @@
-Here’s a polished rewrite of your README that makes it **cleaner, more professional, and visually appealing**, while keeping all the details intact:
-
----
-
 # ML for Adaptive Education
 
-[![GitHub](https://img.shields.io/badge/GitHub-AdaptiveEducation-blue?logo=github)](https://github.com/utmgdsc/adaptive-education)
+[![Adaptive Education Cover](/assets/projects/adaptive-education.png)](https://github.com/utmgdsc/adaptive-education)
 
 A collection of machine learning models for **adaptive education**, designed to predict student performance on questions. The project implements and evaluates several approaches — including **KNN, Item Response Theory (IRT), Neural Networks**, and an **ensemble model** — to achieve robust predictions.
 

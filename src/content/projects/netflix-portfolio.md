@@ -1,7 +1,9 @@
-# Building My Netflix-Style Portfolio:
+# Building My Netflix-Style Portfolio
 
-When I finally sat down to rebuild my personal site (I didnt like my previous one), I asked myself a dangerous question: **what if going thro my website feels like watching a Netflix show?**  
-That single thought turned my weekend into a “refresh my portfolio” week. Here’s how the idea became a reality and what I learned along the way.
+[![Netflix Portfolio Cover](/assets/projects/netflix-portfolio.png)](https://github.com/stericishere/profolio-page)
+
+When I finally sat down to rebuild my personal site (I didnt like my previous one), I asked myself a dangerous question: **what if going thro my website feels like watching a Netflix show?**
+That single thought turned my weekend into a "refresh my portfolio" week. Here's how the idea became a reality and what I learned along the way.
 
 ---
 

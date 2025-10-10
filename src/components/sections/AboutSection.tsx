@@ -37,7 +37,7 @@ export function AboutSection() {
             whileInView={{ opacity: 1, y: 0 }}
             transition={{ delay: 0.4, duration: 0.6 }}
           >
-            Passionate AI researcher and software engineer, building the future through innovative technology.
+            Passionate AI researcher and software engineer, building the future through technology.
           </motion.p>
         </motion.div>
 
@@ -146,30 +146,20 @@ export function AboutSection() {
                 whileInView={{ opacity: 1, y: 0 }}
                 transition={{ delay: 0.8, duration: 0.6 }}
               >
-                <motion.div
-                  className="flex items-center gap-3"
-                  whileHover={{ x: 10, transition: { duration: 0.05 } }}
-                >
-                  <motion.svg
+                <div className="flex items-center gap-3">
+                  <svg
                     className="w-4 h-4 text-green-500 flex-shrink-0"
                     fill="currentColor"
                     viewBox="0 0 20 20"
-                    whileHover={{ scale: 1.2, rotate: 5, transition: { duration: 0.05 } }}
                   >
                     <path fillRule="evenodd" d="M5.05 4.05a7 7 0 119.9 9.9L10 18.9l-4.95-4.95a7 7 0 010-9.9zM10 11a2 2 0 100-4 2 2 0 000 4z" clipRule="evenodd" />
-                  </motion.svg>
+                  </svg>
                   <span className="text-gray-300">Toronto, ON</span>
-                </motion.div>
-                <motion.div
-                  className="flex items-center gap-3"
-                  whileHover={{ x: 10, transition: { duration: 0.05 } }}
-                >
-                  <motion.div
-                    className="w-4 h-4 bg-green-500 rounded-full animate-pulse flex-shrink-0"
-                    whileHover={{ scale: 1.3, transition: { duration: 0.05 } }}
-                  />
+                </div>
+                <div className="flex items-center gap-3">
+                  <div className="w-4 h-4 bg-green-500 rounded-full animate-pulse flex-shrink-0" />
                   <span className="text-gray-300">Available for CO-OP opportunities</span>
-                </motion.div>
+                </div>
               </motion.div>
             </div>
           </motion.div>
@@ -208,6 +198,88 @@ export function AboutSection() {
                   </svg>
                 </div>
               </div>
+
+              {/* Code Snippet - Left Bottom */}
+              <motion.div
+                initial={{ opacity: 0, y: 20 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                transition={{ duration: 0.6, delay: 0.8 }}
+                whileHover={{ scale: 1.02, boxShadow: '0 25px 50px rgba(0,0,0,0.4)', transition: { duration: 0.05 } }}
+                className="absolute -bottom-32 -left-6 w-80 cursor-pointer z-10"
+              >
+                <div className="bg-black border border-gray-800 rounded-lg p-4 font-mono text-xs hover:border-red-600/30 transition-all duration-150 shadow-2xl">
+                  <div className="flex items-center gap-2 mb-3">
+                    <motion.div
+                      className="w-2 h-2 bg-red-500 rounded-full"
+                      whileHover={{ scale: 1.3, boxShadow: '0 0 10px rgba(239, 68, 68, 0.7)' }}
+                    ></motion.div>
+                    <motion.div
+                      className="w-2 h-2 bg-yellow-500 rounded-full"
+                      whileHover={{ scale: 1.3, boxShadow: '0 0 10px rgba(234, 179, 8, 0.7)' }}
+                    ></motion.div>
+                    <motion.div
+                      className="w-2 h-2 bg-green-500 rounded-full"
+                      whileHover={{ scale: 1.3, boxShadow: '0 0 10px rgba(34, 197, 94, 0.7)' }}
+                    ></motion.div>
+                  </div>
+                  <motion.div
+                    className="space-y-0.5"
+                    initial={{ opacity: 0 }}
+                    animate={{ opacity: 1 }}
+                    transition={{ delay: 1, duration: 0.5 }}
+                  >
+                    <motion.div
+                      className="text-blue-400"
+                      initial={{ opacity: 0, x: -10 }}
+                      animate={{ opacity: 1, x: 0 }}
+                      transition={{ delay: 1.1, duration: 0.3 }}
+                    >
+                      const <span className="text-white">developer</span> = {'{'}
+                    </motion.div>
+                    <motion.div
+                      className="ml-3 text-green-400"
+                      initial={{ opacity: 0, x: -10 }}
+                      animate={{ opacity: 1, x: 0 }}
+                      transition={{ delay: 1.2, duration: 0.3 }}
+                    >
+                      name: <span className="text-yellow-300">&quot;Steric Tsui&quot;</span>,
+                    </motion.div>
+                    <motion.div
+                      className="ml-3 text-green-400"
+                      initial={{ opacity: 0, x: -10 }}
+                      animate={{ opacity: 1, x: 0 }}
+                      transition={{ delay: 1.3, duration: 0.3 }}
+                    >
+                      skills: <span className="text-yellow-300">[&quot;AI/ML&quot;, &quot;Full-Stack&quot;, &quot;Systems&quot;]</span>,
+                    </motion.div>
+                    <motion.div
+                      className="ml-3 text-green-400"
+                      initial={{ opacity: 0, x: -10 }}
+                      animate={{ opacity: 1, x: 0 }}
+                      transition={{ delay: 1.4, duration: 0.3 }}
+                    >
+                      passion: <span className="text-yellow-300">&quot;Building impactful solutions&quot;</span>,
+                    </motion.div>
+                    <motion.div
+                      className="ml-3 text-green-400"
+                      initial={{ opacity: 0, x: -10 }}
+                      animate={{ opacity: 1, x: 0 }}
+                      transition={{ delay: 1.5, duration: 0.3 }}
+                    >
+                      focus: <span className="text-yellow-300">&quot;AI + Software Engineering&quot;</span>
+                    </motion.div>
+                    <motion.div
+                      className="text-blue-400"
+                      initial={{ opacity: 0, x: -10 }}
+                      animate={{ opacity: 1, x: 0 }}
+                      transition={{ delay: 1.6, duration: 0.3 }}
+                    >
+                      {'};'}
+                    </motion.div>
+                  </motion.div>
+                </div>
+              </motion.div>
 
               {/* University Background Image */}
               <div className="absolute -bottom-6 -right-6 w-64 h-40 rounded-xl overflow-hidden border-2 border-gray-700 shadow-2xl">

@@ -1,6 +1,7 @@
 'use client';
 
 import { motion } from 'framer-motion';
+import Image from 'next/image';
 import { experienceData } from '@/data/portfolioData';
 import type { PortfolioItem } from '@/data/portfolioData';
 
@@ -73,9 +74,10 @@ function ExperienceCard({ experience, index, isLast }: { experience: PortfolioIt
           <div className="flex-shrink-0">
             {experience.link ? (
               <motion.a
+                href={experience.link}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="block w-16 h-16 bg-gray-800 rounded-lg flex items-center justify-center border border-gray-700 group-hover:border-red-600/30 transition-colors"
+                className="block w-16 h-16 bg-gray-800 rounded-lg overflow-hidden border border-gray-700 group-hover:border-red-600/30 transition-colors"
                 initial={{ scale: 0.8, opacity: 0 }}
                 whileInView={{ scale: 1, opacity: 1 }}
                 viewport={{ once: true }}
@@ -83,22 +85,44 @@ function ExperienceCard({ experience, index, isLast }: { experience: PortfolioIt
                 whileHover={{ scale: 1.1, transition: { duration: 0.05 } }}
                 onClick={(e) => e.stopPropagation()}
               >
-                <div className="w-12 h-12 bg-red-600 rounded-lg flex items-center justify-center text-white font-bold text-lg">
-                  {experience.subtitle?.charAt(0) || experience.title.charAt(0)}
-                </div>
+                {experience.logo ? (
+                  <div className="relative w-full h-full bg-white flex items-center justify-center p-2">
+                    <Image
+                      src={`/assets/logos/${experience.logo}`}
+                      alt={experience.subtitle || experience.title}
+                      fill
+                      className="object-contain p-1"
+                    />
+                  </div>
+                ) : (
+                  <div className="w-full h-full bg-red-600 flex items-center justify-center text-white font-bold text-lg">
+                    {experience.subtitle?.charAt(0) || experience.title.charAt(0)}
+                  </div>
+                )}
               </motion.a>
             ) : (
               <motion.div
-                className="w-16 h-16 bg-gray-800 rounded-lg flex items-center justify-center border border-gray-700 group-hover:border-red-600/30 transition-colors"
+                className="w-16 h-16 bg-gray-800 rounded-lg overflow-hidden border border-gray-700 group-hover:border-red-600/30 transition-colors"
                 initial={{ scale: 0.8, opacity: 0 }}
                 whileInView={{ scale: 1, opacity: 1 }}
                 viewport={{ once: true }}
                 transition={{ duration: 0.6, delay: 0.1 }}
                 whileHover={{ scale: 1.1, transition: { duration: 0.05 } }}
               >
-                <div className="w-12 h-12 bg-red-600 rounded-lg flex items-center justify-center text-white font-bold text-lg">
-                  {experience.subtitle?.charAt(0) || experience.title.charAt(0)}
-                </div>
+                {experience.logo ? (
+                  <div className="relative w-full h-full bg-white flex items-center justify-center p-2">
+                    <Image
+                      src={`/assets/logos/${experience.logo}`}
+                      alt={experience.subtitle || experience.title}
+                      fill
+                      className="object-contain p-1"
+                    />
+                  </div>
+                ) : (
+                  <div className="w-full h-full bg-red-600 flex items-center justify-center text-white font-bold text-lg">
+                    {experience.subtitle?.charAt(0) || experience.title.charAt(0)}
+                  </div>
+                )}
               </motion.div>
             )}
           </div>

@@ -5,6 +5,7 @@ import { useState, useEffect } from 'react'
 import { SimpleNavbar } from '@/components/layout/SimpleNavbar'
 import { PortfolioItem } from '@/data/portfolioData'
 import { MarkdownRenderer } from '@/components/ui/MarkdownRenderer'
+import { useScrollRestoration } from '@/hooks/useScrollRestoration'
 
 interface BlogPostClientProps {
   project: PortfolioItem
@@ -14,6 +15,14 @@ export default function BlogPostClient({ project }: BlogPostClientProps) {
   const [markdownContent, setMarkdownContent] = useState<string>('')
   const [isLoading, setIsLoading] = useState(true)
   const [hasMarkdownFile, setHasMarkdownFile] = useState(false)
+
+  // Enable scroll restoration for this page
+  useScrollRestoration({
+    restoreOnMount: true,
+    saveOnUnmount: true,
+    trackSections: false,
+    restoreDelay: 500 // Wait for markdown to load
+  })
 
   // Load markdown content for this project
   useEffect(() => {

@@ -1,7 +1,7 @@
 'use client';
 
 import { motion } from 'framer-motion';
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import Image from 'next/image';
 import { projectsData } from '@/data/portfolioData';
 import type { PortfolioItem } from '@/data/portfolioData';
@@ -171,8 +171,47 @@ export function ProjectsSection() {
     ? allProjects
     : allProjects.filter(project => project.category === selectedCategory);
 
+  // Preload all project blog content in the background
+  useEffect(() => {
+    const preloadProjectContent = async () => {
+      // Get all unique project IDs
+      const projectIds = allProjects.map(project => project.id);
+
+      // Preload each project's markdown content in the background
+      // Using Promise.allSettled to avoid blocking on failures
+      await Promise.allSettled(
+        projectIds.map(async (projectId) => {
+          try {
+            const response = await fetch(`/api/content/projects/${projectId}`, {
+              cache: 'force-cache', // Cache the preloaded content
+              priority: 'low' // Low priority background fetch
+            } as RequestInit);
+
+            if (response.ok) {
+              // Read the content to populate the cache
+              await response.text();
+              console.log(`✅ Preloaded: ${projectId}`);
+            }
+          } catch (error) {
+            // Silently fail - not critical if preload fails
+            console.debug(`⚠️ Preload failed for ${projectId}:`, error);
+          }
+        })
+      );
+
+      console.log('🚀 Background preloading complete for all projects');
+    };
+
+    // Start preloading after a short delay to not interfere with initial page load
+    const timeoutId = setTimeout(() => {
+      preloadProjectContent();
+    }, 1000);
+
+    return () => clearTimeout(timeoutId);
+  }, []); // Empty dependency array - only run once on mount
+
   return (
-    <section className="py-20 bg-gray-900 text-white" id="projects">
+    <section className="py-20 text-white" id="projects" style={{ backgroundColor: '#111a596' }}>
       <div className="max-w-7xl mx-auto px-4">
         {/* Projects Header */}
         <motion.div

@@ -1,6 +1,8 @@
 # Fault Tolerant Order Processing System
 
-A distributed, fault tolerant microservices system for order processing built with **Python, FastAPI, RabbitMQ, and PostgreSQL**. It’s designed to handle orders through events, keep working even if a service fails, and scale like a real distributed system.
+[![Fault Tolerant System Cover](/assets/projects/fault-tolerant-system.png)](https://github.com/tusharra0/Fault-Tolerant-Order-System)
+
+A distributed, fault tolerant microservices system for order processing built with **Python, FastAPI, RabbitMQ, and PostgreSQL**. It's designed to handle orders through events, keep working even if a service fails, and scale like a real distributed system.
 
 ---
 

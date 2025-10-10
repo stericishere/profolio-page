@@ -1,7 +1,7 @@
 # An RL Agent that play Mini Motorways
 
-[![GitHub](https://img.shields.io/badge/GitHub-MotorwaysRL-blue?logo=github)](https://github.com/stericishere/RL-agent-play-Mini-Motorways)
-[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
+[![Mini Motorway Cover](/assets/projects/mini-motorway.png)](https://github.com/stericishere/RL-agent-play-Mini-Motorway)
+
 **Motorways** is a complete framework for developing and running reinforcement learning agents that play Mini Motorways on macOS. It bridges the gap between simulation and real-world application by enabling agents to perceive the game through screen capture and act using native mouse inputs.
 
 ## Introduction

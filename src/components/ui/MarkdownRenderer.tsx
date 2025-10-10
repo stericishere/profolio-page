@@ -123,12 +123,34 @@ export const MarkdownRenderer = memo(({ content, className = "" }: MarkdownRende
             </h6>
           ),
           
-          // Paragraph styling
-          p: ({ children }) => (
-            <p className="text-gray-300 leading-relaxed mb-4">
-              {children}
-            </p>
-          ),
+          // Paragraph styling - handle block-level children
+          p: ({ children, node }) => {
+            // Flatten and check if any child or nested child contains an img tag
+            const hasBlockContent = (nodeToCheck: any): boolean => {
+              if (!nodeToCheck) return false
+
+              // Check if this node is an img
+              if (nodeToCheck.tagName === 'img') return true
+
+              // Check children recursively
+              if (nodeToCheck.children && Array.isArray(nodeToCheck.children)) {
+                return nodeToCheck.children.some((child: any) => hasBlockContent(child))
+              }
+
+              return false
+            }
+
+            // If the paragraph contains images (even nested in links), render as div
+            if (node && hasBlockContent(node)) {
+              return <div className="my-4">{children}</div>
+            }
+
+            return (
+              <p className="text-gray-300 leading-relaxed mb-4">
+                {children}
+              </p>
+            )
+          },
           
           // List styling
           ul: ({ children }) => (
@@ -276,9 +298,9 @@ export const MarkdownRenderer = memo(({ content, className = "" }: MarkdownRende
                 className="rounded-lg max-w-full h-auto mx-auto shadow-lg"
               />
               {alt && (
-                <p className="text-center text-gray-400 text-sm mt-2 italic">
+                <div className="text-center text-gray-400 text-sm mt-2 italic">
                   {alt}
-                </p>
+                </div>
               )}
             </div>
           )

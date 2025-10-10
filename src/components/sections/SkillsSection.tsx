@@ -112,9 +112,66 @@ function SkillBar({ skill, index }: { skill: Skill; index: number }) {
 
 export function SkillsSection() {
   const categories = ['Languages', 'Frameworks', 'AI/ML', 'Cloud & DevOps', 'Database'] as const;
+  const [expandedCategories, setExpandedCategories] = useState<Record<string, boolean>>({
+    'Languages': false,
+    'Frameworks': false,
+    'AI/ML': false,
+    'Cloud & DevOps': false,
+    'Database': false
+  });
+  const [windowWidth, setWindowWidth] = useState(typeof window !== 'undefined' ? window.innerWidth : 1024);
+
+  useEffect(() => {
+    const handleResize = () => setWindowWidth(window.innerWidth);
+    window.addEventListener('resize', handleResize);
+    return () => window.removeEventListener('resize', handleResize);
+  }, []);
+
+  const getColumnsPerRow = () => {
+    if (windowWidth >= 1024) return 5; // lg breakpoint
+    if (windowWidth >= 768) return 2; // md breakpoint
+    return 1; // mobile
+  };
+
+  const getRowIndex = (categoryIndex: number) => {
+    const cols = getColumnsPerRow();
+    return Math.floor(categoryIndex / cols);
+  };
+
+  const getCategoriesInSameRow = (categoryIndex: number) => {
+    const rowIndex = getRowIndex(categoryIndex);
+    const cols = getColumnsPerRow();
+    const startIndex = rowIndex * cols;
+    const endIndex = Math.min(startIndex + cols, categories.length);
+    return categories.slice(startIndex, endIndex);
+  };
+
+  const toggleCategory = (category: string) => {
+    const categoryIndex = categories.indexOf(category as typeof categories[number]);
+    const categoriesInRow = getCategoriesInSameRow(categoryIndex);
+    const isCurrentlyExpanded = expandedCategories[category];
+
+    setExpandedCategories(prev => {
+      const newState = { ...prev };
+
+      // If we're expanding, expand all in the row
+      if (!isCurrentlyExpanded) {
+        categoriesInRow.forEach(cat => {
+          newState[cat] = true;
+        });
+      } else {
+        // If we're collapsing, collapse all in the row
+        categoriesInRow.forEach(cat => {
+          newState[cat] = false;
+        });
+      }
+
+      return newState;
+    });
+  };
 
   return (
-    <section className="py-20 bg-gray-900 text-white" id="skills">
+    <section className="py-20 text-white" id="skills" style={{ backgroundColor: '#111a596' }}>
       <div className="max-w-[90rem] mx-auto px-4">
         {/* Skills Header */}
         <motion.div
@@ -152,7 +209,7 @@ export function SkillsSection() {
         </motion.div>
 
         {/* Skills Grid */}
-        <div className="grid md:grid-cols-2 lg:grid-cols-5 gap-8">
+        <div className="grid md:grid-cols-2 lg:grid-cols-5 gap-8 auto-rows-fr">
           {categories.map((category, categoryIndex) => (
             <motion.div
               key={category}
@@ -170,111 +227,58 @@ export function SkillsSection() {
                 borderColor: 'rgba(239, 68, 68, 0.5)',
                 transition: { duration: 0.05 }
               }}
-              className="bg-black/50 rounded-lg p-6 border border-gray-800 hover:border-red-600/30 transition-all duration-150 cursor-pointer group"
+              onClick={() => toggleCategory(category)}
+              className="bg-black/50 rounded-lg border border-gray-800 hover:border-red-600/30 transition-all duration-150 group cursor-pointer flex flex-col"
+              style={{
+                padding: expandedCategories[category] ? '1.5rem' : '1rem'
+              }}
             >
-              <motion.h3
-                className="text-xl font-bold mb-6 text-red-600 group-hover:text-red-400 transition-colors"
+              <motion.div
+                className="flex items-center justify-between"
+                style={{
+                  marginBottom: expandedCategories[category] ? '1.5rem' : '0'
+                }}
                 whileHover={{ x: 5 }}
               >
-                {category}
-              </motion.h3>
-              <div className="space-y-4">
-                {skills
-                  .filter(skill => skill.category === category)
-                  .sort((a, b) => b.level - a.level)
-                  .map((skill, index) => (
-                    <SkillBar
-                      key={skill.name}
-                      skill={skill}
-                      index={categoryIndex * 10 + index}
-                    />
-                  ))}
-              </div>
+                <h3 className="text-xl font-bold text-red-600 group-hover:text-red-400 transition-colors">
+                  {category}
+                </h3>
+                <motion.svg
+                  className="w-5 h-5 text-red-600 group-hover:text-red-400 transition-colors"
+                  fill="none"
+                  stroke="currentColor"
+                  viewBox="0 0 24 24"
+                  animate={{ rotate: expandedCategories[category] ? 180 : 0 }}
+                  transition={{ duration: 0.3 }}
+                >
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
+                </motion.svg>
+              </motion.div>
+              <motion.div
+                initial={false}
+                animate={{
+                  height: expandedCategories[category] ? 'auto' : 0,
+                  opacity: expandedCategories[category] ? 1 : 0
+                }}
+                transition={{ duration: 0.3 }}
+                className="overflow-hidden"
+              >
+                <div className="space-y-4">
+                  {skills
+                    .filter(skill => skill.category === category)
+                    .sort((a, b) => b.level - a.level)
+                    .map((skill, index) => (
+                      <SkillBar
+                        key={skill.name}
+                        skill={skill}
+                        index={categoryIndex * 10 + index}
+                      />
+                    ))}
+                </div>
+              </motion.div>
             </motion.div>
           ))}
         </div>
-
-        {/* Code Snippet Visual Element */}
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          transition={{ duration: 0.6, delay: 0.8 }}
-          whileHover={{ scale: 1.02, boxShadow: '0 25px 50px rgba(0,0,0,0.4)', transition: { duration: 0.05 } }}
-          className="mt-16 max-w-2xl mx-auto cursor-pointer"
-        >
-          <div className="bg-black border border-gray-800 rounded-lg p-6 font-mono text-sm hover:border-red-600/30 transition-all duration-150">
-            <div className="flex items-center gap-2 mb-4">
-              <motion.div
-                className="w-3 h-3 bg-red-500 rounded-full"
-                whileHover={{ scale: 1.3, boxShadow: '0 0 10px rgba(239, 68, 68, 0.7)' }}
-              ></motion.div>
-              <motion.div
-                className="w-3 h-3 bg-yellow-500 rounded-full"
-                whileHover={{ scale: 1.3, boxShadow: '0 0 10px rgba(234, 179, 8, 0.7)' }}
-              ></motion.div>
-              <motion.div
-                className="w-3 h-3 bg-green-500 rounded-full"
-                whileHover={{ scale: 1.3, boxShadow: '0 0 10px rgba(34, 197, 94, 0.7)' }}
-              ></motion.div>
-            </div>
-            <motion.div
-              className="space-y-1"
-              initial={{ opacity: 0 }}
-              animate={{ opacity: 1 }}
-              transition={{ delay: 1, duration: 0.5 }}
-            >
-              <motion.div
-                className="text-blue-400"
-                initial={{ opacity: 0, x: -10 }}
-                animate={{ opacity: 1, x: 0 }}
-                transition={{ delay: 1.1, duration: 0.3 }}
-              >
-                const <span className="text-white">developer</span> = {'{'}
-              </motion.div>
-              <motion.div
-                className="ml-4 text-green-400"
-                initial={{ opacity: 0, x: -10 }}
-                animate={{ opacity: 1, x: 0 }}
-                transition={{ delay: 1.2, duration: 0.3 }}
-              >
-                name: <span className="text-yellow-300">&quot;Steric Tsui&quot;</span>,
-              </motion.div>
-              <motion.div
-                className="ml-4 text-green-400"
-                initial={{ opacity: 0, x: -10 }}
-                animate={{ opacity: 1, x: 0 }}
-                transition={{ delay: 1.3, duration: 0.3 }}
-              >
-                skills: <span className="text-yellow-300">[&quot;AI/ML&quot;, &quot;Full-Stack&quot;, &quot;Systems&quot;]</span>,
-              </motion.div>
-              <motion.div
-                className="ml-4 text-green-400"
-                initial={{ opacity: 0, x: -10 }}
-                animate={{ opacity: 1, x: 0 }}
-                transition={{ delay: 1.4, duration: 0.3 }}
-              >
-                passion: <span className="text-yellow-300">&quot;Building impactful solutions&quot;</span>,
-              </motion.div>
-              <motion.div
-                className="ml-4 text-green-400"
-                initial={{ opacity: 0, x: -10 }}
-                animate={{ opacity: 1, x: 0 }}
-                transition={{ delay: 1.5, duration: 0.3 }}
-              >
-                focus: <span className="text-yellow-300">&quot;AI + Software Engineering&quot;</span>
-              </motion.div>
-              <motion.div
-                className="text-blue-400"
-                initial={{ opacity: 0, x: -10 }}
-                animate={{ opacity: 1, x: 0 }}
-                transition={{ delay: 1.6, duration: 0.3 }}
-              >
-                {'};'}
-              </motion.div>
-            </motion.div>
-          </div>
-        </motion.div>
       </div>
     </section>
   );

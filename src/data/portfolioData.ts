@@ -9,6 +9,7 @@ export interface PortfolioItem {
   github?: string
   image?: string
   projectImg?: string // Project image filename in public/assets/projects/
+  logo?: string // Logo image filename in public/assets/logos/
   type: 'project' | 'experience' | 'skill' | 'achievement' | 'contact'
   category?: 'Full Stack' | 'AI/ML' | 'Research' // Project category
   // Experience-specific properties
@@ -48,7 +49,7 @@ export const topPicksData: PortfolioSection[] = [
         subtitle: 'Award-Winning prototype',
         description: '',
         technologies: ['PyTorch', 'Azure ML', 'TCN', 'Computer Vision'],
-        link: '/experience',
+        link: '#experience',
         type: 'experience'
       },
       {
@@ -57,7 +58,7 @@ export const topPicksData: PortfolioSection[] = [
         subtitle: 'ML/RL + Multi-agent system',
         description: '',
         technologies: ['RL Game play Project', 'AI multi-agent Project', 'Project', 'Research'],
-        link: '/projects',
+        link: '#projects',
         github: 'https://github.com/utmgdsc/TinyProof',
         type: 'project'
       },
@@ -67,7 +68,7 @@ export const topPicksData: PortfolioSection[] = [
         subtitle: "Let's talk about your AI/ML roles",
         description: '',
         technologies: ['Summer Intern', 'CO-OP Intern', 'Remote/Hybrid', "Fall/Winter"],
-        link: '/contact',
+        link: '#contact',
         type: 'contact'
       }
     ]
@@ -82,7 +83,7 @@ export const topPicksData: PortfolioSection[] = [
         subtitle: 'ML/RL + Multi-agent system',
         description: '',
         technologies: ['RL Game play Project', 'AI multi-agent Project', 'Project', 'Research'],
-        link: '/projects',
+        link: '#projects',
         github: 'https://github.com/utmgdsc/TinyProof',
         type: 'project'
       },
@@ -92,7 +93,7 @@ export const topPicksData: PortfolioSection[] = [
         subtitle: 'Skill I have',
         description: '',
         technologies: ['Python', 'C++', 'Pytorch', 'numpy', 'C++', 'Scikit-learn', 'LangChain'],
-        link: '/experience',
+        link: '#skills',
         type: 'experience'
       },
       {
@@ -101,7 +102,7 @@ export const topPicksData: PortfolioSection[] = [
         subtitle: 'Award-Winning prototype',
         description: '',
         technologies: ['PyTorch', 'Azure ML', 'TCN', 'Computer Vision'],
-        link: '/experience',
+        link: '#experience',
         type: 'experience'
       },
       {
@@ -110,7 +111,7 @@ export const topPicksData: PortfolioSection[] = [
         subtitle: 'Always excited about new technical challenges',
         description: 'Got an interesting problem to solve? Want to pair program or collaborate on an open source project? Let\'s build something awesome!',
         technologies: ['Collaboration', 'Pair Programming', 'Innovation'],
-        link: '/contact',
+        link: '#contact',
         type: 'contact'
       }
     ]
@@ -125,7 +126,7 @@ export const topPicksData: PortfolioSection[] = [
         subtitle: 'ML/RL + Multi-agent system',
         description: '',
         technologies: ['RL Game play Project', 'AI multi-agent Project', 'Project', 'Research'],
-        link: '/projects',
+        link: '#projects',
         github: 'https://github.com/utmgdsc/TinyProof',
         type: 'project'
       },
@@ -135,7 +136,7 @@ export const topPicksData: PortfolioSection[] = [
         subtitle: 'Skill I have',
         description: '',
         technologies: ['Python', 'C++', 'Pytorch', 'numpy', 'C++'],
-        link: '/experience',
+        link: '#skills',
         type: 'experience'
       },
       {
@@ -144,7 +145,7 @@ export const topPicksData: PortfolioSection[] = [
         subtitle: 'Award-Winning prototype',
         description: '',
         technologies: ['PyTorch', 'Azure ML', 'TCN', 'Computer Vision'],
-        link: '/experience',
+        link: '#experience',
         type: 'experience'
       },
       {
@@ -153,7 +154,7 @@ export const topPicksData: PortfolioSection[] = [
         subtitle: 'For deeper conversations about AI and humanity',
         description: 'Interested in discussing AI consciousness, the singularity, or just want to share interesting articles? I love thoughtful conversations.',
         technologies: ['Deep Conversations', 'AI Philosophy', 'Future Studies'],
-        link: '/contact',
+        link: '#contact',
         type: 'contact'
       }
     ]
@@ -168,7 +169,7 @@ export const topPicksData: PortfolioSection[] = [
         subtitle: 'ML/RL + Multi-agent system',
         description: '',
         technologies: ['RL Game play Project', 'AI multi-agent Project', 'Project', 'Research'],
-        link: '/projects',
+        link: '#projects',
         github: 'https://github.com/utmgdsc/TinyProof',
         type: 'project'
       },
@@ -178,7 +179,7 @@ export const topPicksData: PortfolioSection[] = [
         subtitle: 'Skill I have',
         description: '',
         technologies: ['Python', 'C++', 'Pytorch', 'numpy', 'C++'],
-        link: '/experience',
+        link: '#skills',
         type: 'experience'
       },
       {
@@ -187,7 +188,7 @@ export const topPicksData: PortfolioSection[] = [
         subtitle: 'Award-Winning prototype',
         description: '',
         technologies: ['PyTorch', 'Azure ML', 'TCN', 'Computer Vision'],
-        link: '/experience',
+        link: '#experience',
         type: 'experience'
       },
       {
@@ -196,7 +197,7 @@ export const topPicksData: PortfolioSection[] = [
         subtitle: 'For deeper conversations about AI and humanity',
         description: 'Interested in discussing AI consciousness, the singularity, or just want to share interesting articles? I love thoughtful conversations.',
         technologies: ['Deep Conversations', 'AI Philosophy', 'Future Studies'],
-        link: '/contact',
+        link: '#contact',
         type: 'contact'
       }
     ]
@@ -208,6 +209,18 @@ export const projectsData: PortfolioSection[] = [
     id: 'featured-projects',
     title: 'Featured Projects',
     items: [
+      {
+        id: 'orbit-htv',
+        title: 'Orbit @Hack The Valley Winner',
+        subtitle: 'AI-Powered Waste-to-Product Platform',
+        description: 'Hackathon-winning platform that transforms waste materials into actionable product concepts with 3D models, build instructions, and sustainability metrics. Features an 11-phase LangGraph orchestration pipeline with Gemini 2.5 Flash, achieving 66% faster processing through parallel image generation.',
+        technologies: ['Next.js 15', 'React 19', 'TypeScript', 'FastAPI', 'LangGraph', 'Gemini 2.5', 'Three.js', 'Redis', 'Docker', 'Tailwind CSS', 'Python 3.11'],
+        link: '#',
+        github: 'https://github.com/stanleypangg/Orbit',
+        projectImg: 'orbit-htv.png',
+        type: 'project',
+        category: 'AI/ML'
+      },
       {
         id: 'tinyproof',
         title: 'TinyProof',
@@ -221,14 +234,14 @@ export const projectsData: PortfolioSection[] = [
         category: 'Research'
       },
       {
-        id: 'ML-adaptive-education',
-        title: 'Machine Learning for Adaptive Education',
-        subtitle: '',
-        description: '',
-        technologies: ['PyTorch', 'NumPy', 'Machine Learning', 'Item Response Theory'],
+        id: 'rl-airplane-boarding',
+        title: 'RL Airplane Boarding Optimization',
+        subtitle: 'Optimizing passenger boarding sequences using Maskable PPO',
+        description: 'Reinforcement learning solution that reduces passenger boarding time by 75% through intelligent sequencing. Features Maskable PPO with action masking, vectorized training across 12 parallel environments, and real-time Pygame visualization. Achieved convergence at 3M steps with stable policy updates.',
+        technologies: ['Python', 'Gymnasium', 'Stable Baselines 3', 'Maskable PPO', 'PyTorch', 'Pygame', 'TensorBoard', 'NumPy'],
         link: '#',
-        github: 'https://github.com/stericishere/ML-for-Adaptive-Education',
-        projectImg: 'adaptive-education.png',
+        github: 'https://github.com/stericishere/RL-for-airplane-onboarding',
+        projectImg: 'rl-airplane-boarding.png',
         type: 'project',
         category: 'AI/ML'
       },
@@ -243,6 +256,18 @@ export const projectsData: PortfolioSection[] = [
         projectImg: 'mini-motorway.png',
         type: 'project',
         category: 'AI/ML'
+      },
+      {
+        id: 'fault-tolerant-system',
+        title: 'Fault Tolerant Order Processing System',
+        subtitle: 'Distributed microservices system with event-driven architecture',
+        description: 'A fault-tolerant e-commerce backend with Order → Payment → Inventory → Shipping pipeline. Features RabbitMQ messaging, PostgreSQL databases, Docker deployment, and AWS CloudWatch monitoring.',
+        technologies: ['Python', 'FastAPI', 'RabbitMQ', 'PostgreSQL', 'Docker', 'AWS EC2', 'CloudWatch'],
+        link: 'http://3.80.195.219:8000/docs',
+        github: 'https://github.com/tusharra0/Fault-Tolerant-Order-System',
+        projectImg: 'fault-tolerant-system.png',
+        type: 'project',
+        category: 'Full Stack'
       },
       {
         id: 'Generative-agents-simulation',
@@ -263,22 +288,22 @@ export const projectsData: PortfolioSection[] = [
         description: 'Portfolio blog',
         link: '#',
         technologies: ['Next.js', 'Typescript', 'Javascript'],
-        github: 'https://github.com/stericishere/netflix-portfolio',
+        github: 'https://github.com/stericishere/profolio-page',
         projectImg: 'netflix-portfolio.png',
         type: 'project',
         category: 'Full Stack'
       },
       {
-        id: 'fault-tolerant-system',
-        title: 'Fault Tolerant Order Processing System',
-        subtitle: 'Distributed microservices system with event-driven architecture',
-        description: 'A fault-tolerant e-commerce backend with Order → Payment → Inventory → Shipping pipeline. Features RabbitMQ messaging, PostgreSQL databases, Docker deployment, and AWS CloudWatch monitoring.',
-        technologies: ['Python', 'FastAPI', 'RabbitMQ', 'PostgreSQL', 'Docker', 'AWS EC2', 'CloudWatch'],
-        link: 'http://3.80.195.219:8000/docs',
-        github: 'https://github.com/stericishere/fault-tolerant-order-system',
-        projectImg: 'fault-tolerant-system.png',
+        id: 'ML-adaptive-education',
+        title: 'Machine Learning for Adaptive Education',
+        subtitle: '',
+        description: '',
+        technologies: ['PyTorch', 'NumPy', 'Machine Learning', 'Item Response Theory'],
+        link: '#',
+        github: 'https://github.com/stericishere/ML-for-Adaptive-Education',
+        projectImg: 'adaptive-education.png',
         type: 'project',
-        category: 'Full Stack'
+        category: 'AI/ML'
       }
     ]
   }
@@ -294,6 +319,7 @@ export const experienceData: PortfolioSection[] = [
         title: 'Researcher',
         subtitle: 'UTMIST – University of Toronto Machine Intelligence Student Team',
         date: "Aug 2025 – Present",
+        logo: 'UTMIST-logo.png',
         description: 'Improved real-time video quality by 50% in the Real-ESRGAN research by refining frame reconstruction algorithms and reducing visual artifacts\n• Achieved an 18% PSNR gain by optimizing GAN-based super-resolution models in PyTorch, through advanced loss function tuning (perceptual, SSIM) and architectural modifications\n• Exploring GPU acceleration and low-latency inference techniques to enable practical deployment in real-world applications',
         technologies: ['PyTorch', 'SciPy', 'Scikit-learn', 'Matplotlib', 'GCP', 'CUDA'],
         link: 'https://utmist.gitlab.io/',
@@ -304,6 +330,7 @@ export const experienceData: PortfolioSection[] = [
         id: 'software-engineer-flymingos',
         title: 'Software Engineer Intern',
         subtitle: 'Flymingos',
+        logo: 'Flymingos-logo.png',
         date: 'May 2025 – Aug 2025',
         description: 'Boosted lead match accuracy by 35% by architecting a semantic matching pipeline leveraging OpenAI embeddings and Chroma vector search, enabled intelligent pairing through real-time vector similarity scoring\n• Scaled backend infrastructure to support 500+ concurrent users by deploying a fully serverless architecture using Node.js Cloud Functions and Firebase, streamlined authentication and event-driven data workflows\n• Automated high-volume product data collection by building a robust Python scraping system with BeautifulSoup and custom parsing logic, reducing manual input by 40% and improving data accuracy across seller platforms',
         technologies: ['Node.js', 'Cloud Functions', 'Firebase', 'Python', 'BeautifulSoup'],
@@ -316,6 +343,7 @@ export const experienceData: PortfolioSection[] = [
         title: 'ML Engineer',
         subtitle: 'Squirl Signs - Microsoft Startup Club and Backed by Alterna',
         date: 'Sep 2024 – April 2025',
+        logo: 'squirl-logo.png',
         description: 'Reduced inference computation by 33% using a post-training dynamic frame sampling technique in Azure ML, prioritizing real-time smooth user experience without compromising model accuracy\n• Optimized to a Temporal Convolutional Network (TCN) by performing a grid search over key hyperparameters and implementing a Cosine Annealing scheduler, resulting in an award-winning prototype\n• Selected for the Microsoft Startup Club and funded by Alterna Savings to develop a B2B ASL translator',
         technologies: ['PyTorch', 'Azure ML', 'TCN', 'Pandas', 'NumPy', 'Computer Vision'],
         link: 'https://www.squirlsigns.com/',
@@ -327,6 +355,7 @@ export const experienceData: PortfolioSection[] = [
         title: 'Research Assistant',
         date: 'Jan 2024 – April 2025',
         subtitle: 'University of Toronto',
+        logo: 'uoft-logo.jpg',
         description: 'Conducted original research under Dr. Mohammad to build an RL-based theorem prover extending AlphaProof using R\'max Tree Search, achieving 87% on college-level proofs surpassing expected baselines\n• Extract over 100k+ proof data by engineered a scalable ETL data pipeline in GCP, leveraging LeanDojo to transform data into usable structured datasets from different repositories for downstream training\n• Containerized workflows with Docker and coordinated iterations via Jira, ensuring reproducibility across research',
         technologies: ['PyTorch', 'Google Cloud Platform', 'LeanDojo', 'Lean4', 'Docker', 'Jira'],
         link: 'https://github.com/utmgdsc/TinyProof',

@@ -14,6 +14,7 @@ import { SkillsSection } from '@/components/sections/SkillsSection'
 import { ExperienceSection } from '@/components/sections/ExperienceSection'
 import { ProjectsSection } from '@/components/sections/ProjectsSection'
 import { ContactSection } from '@/components/sections/ContactSection'
+import { useScrollRestoration } from '@/hooks/useScrollRestoration'
 
 // Typewriter effect hook
 function useTypewriter(words: string[], speed: 100) {
@@ -56,6 +57,14 @@ export default function Home() {
   const [isClient, setIsClient] = useState(false)
   const [selectedPersona, setSelectedPersona] = useState<Persona | null>(null)
   const { preloadedData, isDataReady } = useDataPreload()
+
+  // Enable scroll restoration with section tracking
+  useScrollRestoration({
+    restoreOnMount: true,
+    saveOnUnmount: true,
+    trackSections: true,
+    restoreDelay: 300 // Wait for content to load
+  })
   const [portfolioData, setPortfolioData] = useState<{
     projectsData: PortfolioSection[]
     experienceData: PortfolioSection[]

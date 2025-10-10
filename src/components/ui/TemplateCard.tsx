@@ -20,8 +20,22 @@ export function TemplateCard({ item, index = 0, linkTo }: TemplateCardProps) {
     if (item.link) {
       if (item.link.startsWith('mailto:')) {
         window.location.href = item.link
+      } else if (item.link.startsWith('#')) {
+        // Handle anchor links - scroll to section
+        const sectionId = item.link.substring(1) // Remove the '#'
+        const section = document.getElementById(sectionId)
+        if (section) {
+          section.scrollIntoView({ behavior: 'smooth', block: 'start' })
+        }
       } else if (item.link !== '#') {
-        window.open(item.link, '_blank')
+        // External links or page navigation
+        if (item.link.startsWith('/')) {
+          // Internal page navigation
+          window.location.href = item.link
+        } else {
+          // External links
+          window.open(item.link, '_blank')
+        }
       }
     }
   }
