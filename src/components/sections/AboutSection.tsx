@@ -99,7 +99,6 @@ export function AboutSection() {
                   initial={{ opacity: 0, x: -20 }}
                   whileInView={{ opacity: 1, x: 0 }}
                   transition={{ duration: 0.1, delay: 0.5 }}
-                  whileHover={{ x: 10, transition: { duration: 0.05 } }}
                 >
                   <motion.div
                     className="w-2 h-2 bg-red-600 rounded-full mt-2 flex-shrink-0"
@@ -117,7 +116,6 @@ export function AboutSection() {
                   initial={{ opacity: 0, x: -20 }}
                   whileInView={{ opacity: 1, x: 0 }}
                   transition={{ delay: 0.6, duration: 0.6 }}
-                  whileHover={{ x: 10, transition: { duration: 0.05 } }}
                 >
                   <motion.div
                     className="w-2 h-2 bg-red-600 rounded-full mt-2 flex-shrink-0"

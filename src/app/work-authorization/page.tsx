@@ -12,35 +12,12 @@ export default function WorkAuthorizationPage() {
     opportunities: ['CO-OP positions', 'Internships', 'Research', 'Full-time after graduation']
   }
 
-  const benefits = [
-    {
-      icon: '🇨🇦',
-      title: 'Canadian Work Authorization',
-      description: 'Currently holding a valid CO-OP work permit, authorized to work in Canada without restrictions for eligible positions.'
-    },
-    {
-      icon: '🎓',
-      title: 'University of Toronto Student',
-      description: 'Enrolled in a degree program at University of Toronto, making me eligible for CO-OP and internship opportunities.'
-    },
-    {
-      icon: '💼',
-      title: 'Open for Opportunities',
-      description: 'Actively seeking CO-OP positions, internships, and part-time work in AI/ML, software development, and tech roles.'
-    },
-    {
-      icon: '🚀',
-      title: 'Ready to Start',
-      description: 'Available for immediate start with flexible scheduling around academic commitments.'
-    }
-  ]
-
   const opportunityTypes = [
     {
       type: 'CO-OP Positions',
       duration: '4-16 months',
       description: 'Full-time work terms integrated with academic program',
-      availability: 'Fall 2026'
+      availability: 'Winter 2026'
     },
     {
       type: 'Research Positions',
@@ -105,44 +82,6 @@ export default function WorkAuthorizationPage() {
               <span>📅 Valid through: {workDetails.duration}</span>
               <span>🎯 Status: Active and eligible</span>
             </div>
-          </div>
-        </div>
-      </motion.div>
-
-      {/* Benefits Grid */}
-      <motion.div
-        initial={{ opacity: 0 }}
-        animate={{ opacity: 1 }}
-        transition={{ delay: 0.6, duration: 0.6 }}
-        className="py-16 px-8"
-      >
-        <div className="max-w-6xl mx-auto">
-          <h2 className="text-3xl font-bold text-center mb-12 text-white">
-            Work Authorization Benefits
-          </h2>
-          
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-            {benefits.map((benefit, index) => (
-              <motion.div
-                key={benefit.title}
-                initial={{ opacity: 0, y: 30 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ delay: 0.7 + index * 0.1, duration: 0.5 }}
-                className="p-6 bg-gray-800/30 rounded-lg border border-gray-700/30 hover:border-gray-600/50 transition-all duration-300"
-              >
-                <div className="flex items-start space-x-4">
-                  <div className="text-3xl">{benefit.icon}</div>
-                  <div className="flex-1">
-                    <h3 className="text-lg font-semibold text-white mb-2">
-                      {benefit.title}
-                    </h3>
-                    <p className="text-gray-400 text-sm">
-                      {benefit.description}
-                    </p>
-                  </div>
-                </div>
-              </motion.div>
-            ))}
           </div>
         </div>
       </motion.div>
